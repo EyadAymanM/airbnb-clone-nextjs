@@ -50,7 +50,7 @@ const Header = () => {
                   <Image className="w-9 h-9 rounded-full" src={avatar} width="" height="" alt="" />  
                 </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[15rem]">
+              <DropdownMenuContent className="w-[15rem] mr-16">
                 <DropdownMenuItem className="pl-4 font-medium">Messages</DropdownMenuItem>
                 <DropdownMenuItem className="pl-4 font-medium">Notifications</DropdownMenuItem>
                 <DropdownMenuItem className="pl-4 font-medium">Trips</DropdownMenuItem>
