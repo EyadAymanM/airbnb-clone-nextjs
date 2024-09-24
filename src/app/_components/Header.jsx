@@ -1,10 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
-import logoWord from "../assets/svgs/Airbnb-word-Logo.png"
-import logo from "../assets/svgs/airbnb-logo-only.svg"
-import globe from "../assets/svgs/globe.svg"
-import avatar from "../assets/124599.jpg"
-import hamburger from "../assets/svgs/hamburger-menu.svg"
+import logoWord from "../_assets/svgs/Airbnb-word-Logo.png"
+import logo from "../_assets/svgs/airbnb-logo-only.svg"
+import globe from "../_assets/svgs/globe.svg"
+import avatar from "../_assets/124599.jpg"
+import hamburger from "../_assets/svgs/hamburger-menu.svg"
 import {
   DropdownMenu,
   DropdownMenuContent,
