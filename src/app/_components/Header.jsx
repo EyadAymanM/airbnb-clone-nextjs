@@ -54,7 +54,8 @@ const Header = () => {
                 <DropdownMenuItem className="pl-4 font-medium">Messages</DropdownMenuItem>
                 <DropdownMenuItem className="pl-4 font-medium">Notifications</DropdownMenuItem>
                 <DropdownMenuItem className="pl-4 font-medium">Trips</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4 font-medium">Wishlist</DropdownMenuItem>
+                <DropdownMenuItem className="pl-4 font-medium">
+                <Link href='/wishlists'>Wishlist</Link> </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="pl-4">Manage linsting</DropdownMenuItem>
                 <DropdownMenuItem className="pl-4">Host an experience</DropdownMenuItem>
