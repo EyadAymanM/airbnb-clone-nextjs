@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "./_components/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -11,6 +12,17 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const airbnbCerealArabic = localFont({
+  src: "./fonts/AirbnbCerealVF_Arabic_W_Wght.woff2",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
+const airbnbCereal = localFont({
+  src: "./fonts/AirbnbCerealVF_W_Wght.woff2",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
+
 
 export const metadata = {
   title: "Create Next App",
@@ -21,8 +33,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${airbnbCereal.variable} ${airbnbCerealArabic.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>
