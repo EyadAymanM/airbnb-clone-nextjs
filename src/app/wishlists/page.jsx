@@ -10,6 +10,9 @@ const Wishlist = () => {
   const [wishlistItems, setWishlistItems] = useState([
             { id: 1, imageSrc: img, title: "OMG! 2024", savedCount: 2 }, 
             { id: 2, imageSrc: img, title: "Another Item", savedCount: 5 },
+            { id: 3, imageSrc: img, title: "Another Item", savedCount: 5 },
+            { id: 4, imageSrc: img, title: "Another Item", savedCount: 5 },
+            { id: 5, imageSrc: img, title: "Another Item", savedCount: 5 },
   ]);
 
   const handleRemoveItem = (itemId) => {
@@ -34,6 +37,7 @@ const Wishlist = () => {
             title={item.title}
             savedCount={item.savedCount}
             onRemove={() => handleRemoveItem(item.id)}
+            id={item.id}
           />
         ))}
       </div>
