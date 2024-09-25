@@ -1,4 +1,3 @@
-'use client'
 import Map from "@/app/_components/Map/Map";
 
 const heartIconHtml = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="16px" height="16px">
@@ -22,14 +21,14 @@ const Page = () => {
   ];
 
   return (
-    <div className="flex space-x-4">
-      <div className="w-2/3 mx-3">
-        <p>Left</p>
-      </div>
-      <div className="w-1/3">
-        <Map locations={locations} />
-      </div>
+    <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
+    <div className="lg:w-2/3 w-full mx-3">
+      <p className="text-center lg:text-left">Left content goes here</p>
     </div>
+    <div className="lg:w-1/3 w-full">
+      <Map locations={locations} />
+    </div>
+  </div>
   );
 };
 

@@ -17,10 +17,9 @@ const WishlistCard = ({ imageSrc, imageAlt, title, savedCount, onRemove,id }) =>
         <div className="rounded-3xl shadow-lg p-2 bg-white border-solid border-white border-spacing-1 hover:shadow-xl transition-shadow duration-200 ease-in-out max-w-sm">
           <div className="relative w-full h-[250px] rounded-xl overflow-hidden">
             <Image
-              className="rounded-xl"
+              className="rounded-xl object-cover"
               src={imageSrc}
-              layout="fill"
-              objectFit="cover"
+              fill
               alt={imageAlt}
             />
           </div>
