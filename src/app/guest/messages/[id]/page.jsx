@@ -1,6 +1,7 @@
 'use client'
 import search from '@/app/_assets/svgs/search.svg'
 import setting from '@/app/_assets/svgs/setting.svg'
+import MessageCard from '@/app/_components/messages-components/messageCard'
 import { Section } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -37,11 +38,15 @@ const Page = () => {
 
               <button onClick={toggleSearch} className='font-airbnb text-sm px-4 py-2 rounded-xl hover:bg-[#f7f7f7]'>Cancel</button>
             </div>
-            <div></div>
+            <div className='pt-4 mr-9'>
+              <MessageCard />
+
+            </div>
           </div>
         </div>
-        <div className="grow w-[26.25rem] h-[calc(100vh-5rem)] text-6xl border-t border-l border-r border-[#ededed]">MID</div>
-        <div className="w-[26.25rem] h-[calc(100vh-5rem)] text-6xl border-t border-[#ededed]">RIGHT</div>
+        <div className="grow h-[calc(100vh-5rem)] text-6xl border-t border-l border-r border-[#ededed]">
+        </div>
+        <div className="w-[26.25rem] h-[calc(100vh-5rem)] text-6xl border-t border-[#ededed] relative z-10"></div>
       </div>
     </>
   )
