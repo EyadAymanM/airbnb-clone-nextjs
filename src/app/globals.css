@@ -1,6 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: 'Airbnb';
+  src: url('./fonts/AirbnbCerealVF_W_Wght.woff2') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AirbnbAr';
+  src: url('./fonts/AirbnbCerealVF_Arabic_W_Wght.woff2') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 /* @layer base {
   :root {
     --background: 0 0% 100%;

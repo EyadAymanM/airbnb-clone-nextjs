@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
   	extend: {
+			fontFamily: {
+				airbnb: ['Airbnb','AirbnbAr']
+			},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
