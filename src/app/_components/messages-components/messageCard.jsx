@@ -9,9 +9,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Image from "next/image"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import threedots from '@/app/_assets/svgs/three-dots.svg'
 const MessageCard = () => {
+  const isOpened  = useRef(false)
   const [active,setActive] = useState(false)
   const [isHoverd,setIsHoverd] = useState(false)
   const toggleActive = ()=>{
@@ -34,18 +35,14 @@ const MessageCard = () => {
         <div className="flex flex-col pt-3 text-[#6a6a73] ps-2 grow">
           <div className="flex justify-between items-baseline">
             <span className="text-base">Mostafa Mowad</span>
-            <div className={`${(isHoverd)?'hidden':'inline'} text-xs`}>1:13 PM</div>
+            <div className={`${(isHoverd || isOpened)?'hidden':'inline'} text-xs`}>1:13 PM</div>
           </div>
         </div>
-        {/* <button className={`${isHoverd ? '' : 'hidden'} absolute top-3 end-4 p-2 rounded-full hover:bg-white`}>
-          <Image className="w-3 h-3" src={threedots} alt="" height="" width="" />
-        </button> */}
-
         <DropdownMenu>
-          <DropdownMenuTrigger className={`${isHoverd ? '' : 'hidden'} absolute top-3 end-4 p-2 rounded-full hover:border border-[#e7e7e7] hover:bg-white`}>
+          <DropdownMenuTrigger onClick={isOpened.current = true} ref={isOpened} className={`${isHoverd || isOpened ? '' : 'hidden'} absolute top-3 end-4 p-2 rounded-full hover:border border-[#e7e7e7] hover:bg-white`}>
             <Image className="w-3 h-3" src={threedots} alt="" height="" width=""/>
             </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white">
+          <DropdownMenuContent>
             <DropdownMenuItem>Mark as read/unread</DropdownMenuItem>
             <DropdownMenuItem>Star</DropdownMenuItem>
             <DropdownMenuItem>Archive</DropdownMenuItem>

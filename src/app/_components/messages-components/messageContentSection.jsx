@@ -24,15 +24,14 @@ const MessageContentSection = () => {
       <div className="flex flex-col border-b border-[#ededed]" onMouseEnter={hoverOver} onMouseLeave={hoverOut}>
         <Dialog>
         <DialogTrigger>
-          <button className="h-[72px] flex gap-2 items-center ps-12 grow">
+          <div className="h-[72px] cursor-pointer flex gap-2 items-center ps-12 grow">
             <Avatar className="w-10 h-10 mr-2">
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <h3 className='text-[1.4rem] font-airbnb font-bold'>Airbnb Support <Image className={`${isHoverd ? 'inline' : 'hidden'}  ms-1`} src={rightarrow} alt="" height="12" width="12" /></h3>
-          </button>
+          </div>
         </DialogTrigger>
-          {/* <DialogTrigger>Open</DialogTrigger> */}
           <DialogContent className="bg-white border rounded-3xl">
             <DialogHeader>
               <DialogTitle>Are you absolutely sure?</DialogTitle>
@@ -41,6 +40,7 @@ const MessageContentSection = () => {
                 and remove your data from our servers.
               </DialogDescription>
             </DialogHeader>
+            dsadasasddsa
           </DialogContent>
         </Dialog>
         

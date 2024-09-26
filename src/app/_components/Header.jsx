@@ -44,18 +44,25 @@ const Header = () => {
               </button>
             </div>
             <DropdownMenu>
-              <DropdownMenuTrigger>
+              <DropdownMenuTrigger className="rounded-full">
                 <div className="flex w-auto rounded-full px-2 py-1 border gap-2 items-center hover:shadow" >
-                  <Image className="w-6 h-6" src={hamburger} height='' width='' alt=""/>
-                  <Image className="w-9 h-9 rounded-full" src={avatar} width="" height="" alt="" />  
+                  <Image className="w-6 h-6" src={hamburger} height='' width='' alt="" />
+                  <Image className="w-9 h-9 rounded-full" src={avatar} width="" height="" alt="" />
                 </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[15rem] mr-16">
-                <DropdownMenuItem className="pl-4 font-medium">Messages</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4 font-medium">Notifications</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4 font-medium">Trips</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4 font-medium">
-                <Link href='/wishlists'>Wishlist</Link> </DropdownMenuItem>
+              <DropdownMenuContent className="w-[15rem] mr-16 bg-white">
+                <Link href='/guest/messages/4564'>
+                  <DropdownMenuItem className="cursor-pointer pl-4 font-medium">
+                    Messages
+                  </DropdownMenuItem>
+                </Link>
+                <DropdownMenuItem className="cursor-pointer pl-4 font-medium">Notifications</DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer pl-4 font-medium">Trips</DropdownMenuItem>
+                <Link href='/wishlists'>
+                  <DropdownMenuItem className="cursor-pointer pl-4 font-medium">
+                    Wishlist
+                  </DropdownMenuItem>
+                </Link>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4">Manage linsting</DropdownMenuItem>
                 <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4">Host an experience</DropdownMenuItem>
