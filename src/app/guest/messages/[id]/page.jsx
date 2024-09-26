@@ -2,12 +2,12 @@
 import search from '@/app/_assets/svgs/search.svg'
 import setting from '@/app/_assets/svgs/setting.svg'
 import MessageCard from '@/app/_components/messages-components/messageCard'
-import { Section } from 'lucide-react'
+import MessageContentSection from '@/app/_components/messages-components/messageContentSection'
 import Image from 'next/image'
 import { useState } from 'react'
 const Page = () => {
   const [searchOpen, setSearchOpen] = useState(false)
-  const toggleSearch = ()=>{
+  const toggleSearch = () => {
     setSearchOpen(!searchOpen)
   }
   return (
@@ -15,7 +15,7 @@ const Page = () => {
       <div className="flex">
         <div className="w-[26.25rem] h-[calc(100vh-5rem)] border-t border-[#ededed]">
           <div className='flex flex-col'>
-            <div className={`flex justify-between ml-12 mr-10 mt-7 ${searchOpen?'hidden':''}`}>
+            <div className={`flex justify-between ml-12 mr-10 mt-7 ${searchOpen ? 'hidden' : ''}`}>
               <h1 className='text-2xl font-airbnb font-semibold'>Messages</h1>
               <div className='flex gap-2 items-center'>
                 <button onClick={toggleSearch} className={`w-10 h-10 rounded-full bg-[#e7e7e7] hover:bg-[#f7f7f7] `}>
@@ -45,8 +45,11 @@ const Page = () => {
           </div>
         </div>
         <div className="grow h-[calc(100vh-5rem)] text-6xl border-t border-l border-r border-[#ededed]">
+          <MessageContentSection />
         </div>
-        <div className="w-[26.25rem] h-[calc(100vh-5rem)] text-6xl border-t border-[#ededed] relative z-10"></div>
+        <div className="w-[26.25rem] h-[calc(100vh-5rem)] text-6xl border-t border-[#ededed] relative z-10">
+
+        </div>
       </div>
     </>
   )

@@ -50,19 +50,19 @@ const Header = () => {
                   <Image className="w-9 h-9 rounded-full" src={avatar} width="" height="" alt="" />  
                 </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[15rem] mr-16 bg-white">
-                <DropdownMenuItem className="pl-4 font-medium">Messages</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4 font-medium">Notifications</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4 font-medium">Trips</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4 font-medium">Wishlist</DropdownMenuItem>
+              <DropdownMenuContent className="w-[15rem] mr-16 bg-white pt-2 px-0">
+                <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4 font-medium">Messages</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4 font-medium">Notifications</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4 font-medium">Trips</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4 font-medium">Wishlist</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="pl-4">Manage linsting</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4">Host an experience</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4">Account</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4">Manage linsting</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4">Host an experience</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4">Account</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="pl-4">Gift cards</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4">Help Center</DropdownMenuItem>
-                <DropdownMenuItem className="pl-4">Log Out</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4">Gift cards</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4">Help Center</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4">Log Out</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
