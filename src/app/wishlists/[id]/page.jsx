@@ -1,14 +1,15 @@
 "use client";
-
 import ButtonGroup from "@/app/_components/ButtonGroup";
 import Heading from "@/app/_components/Heading";
 import IconButton from "@/app/_components/IconButton";
-import { MdOutlineIosShare } from "react-icons/md";
 import ListingCard from "@/app/_components/ListingCard";
 import Map from "@/app/_components/Map/Map";
 import { useRouter } from "next/navigation";
-import { BsThreeDots } from "react-icons/bs";
 import { IoIosArrowBack } from "react-icons/io";
+import SettingsModal from "@/app/_components/Modal/SettingsModal";
+import ShareModal from "@/app/_components/Modal/ShareModal";
+import GuestSelector from "@/app/_components/GuestSelector";
+import DateDropdown from "@/app/_components/DateDropdown";
 
 const heartIconHtml = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="16px" height="16px">
@@ -38,19 +39,12 @@ const Page = () => {
     router.back();
   };
 
-  const handleMoreOptionsClick = () => {
-    console.log("More Options clicked");
-  };
-
   const handleAddDatesClick = () => {
     console.log("Add Dates clicked");
   };
+
   const handleGuestClick = () => {
     console.log("Add Guest clicked");
-  };
-
-  const handleShareClick = () => {
-    console.log("Share clicked");
   };
 
   return (
@@ -64,11 +58,7 @@ const Page = () => {
               icon={IoIosArrowBack}
               click={handleBackClick}
             />
-            <IconButton
-              ariaLabel="More Options"
-              icon={BsThreeDots}
-              click={handleMoreOptionsClick}
-            />
+            <SettingsModal/>
           </div>
 
           {/* Wishlist Title */}
@@ -78,15 +68,15 @@ const Page = () => {
 
           {/* Button Group */}
           <div className="mx-7 mb-4 flex space-x-2">
-            <ButtonGroup onClick={handleAddDatesClick} ariaLabel="Add Dates">
+            {/* <ButtonGroup onClick={handleAddDatesClick} ariaLabel="Add Dates">
               Add Dates
-            </ButtonGroup>
-            <ButtonGroup onClick={handleGuestClick} ariaLabel="Add Guest">
+            </ButtonGroup> */}
+            {/* <ButtonGroup onClick={handleGuestClick} ariaLabel="Add Guest">
               1 guest
-            </ButtonGroup>
-            <ButtonGroup onClick={handleShareClick} ariaLabel="Share">
-              <span className="flex justify-center items-center gap-2">Share <MdOutlineIosShare/></span>
-            </ButtonGroup>
+            </ButtonGroup> */}
+            <DateDropdown/>
+            <GuestSelector/>
+            <ShareModal/>
           </div>
 
           {/* Listing Cards */}
@@ -97,9 +87,13 @@ const Page = () => {
           </div>
         </div>
       </div>
+
       <div className="lg:w-1/3 w-full">
         <Map locations={locations} />
       </div>
+
+      {/* Conditional rendering of SettingsModal */}
+      {/* {showModal && <SettingsModal />} */}
     </div>
   );
 };
