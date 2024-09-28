@@ -39,13 +39,13 @@ const MessageCard = () => {
           </div>
         </div>
         <DropdownMenu>
-          <DropdownMenuTrigger onClick={isOpened.current = true} ref={isOpened} className={`${isHoverd || isOpened ? '' : 'hidden'} absolute top-3 end-4 p-2 rounded-full hover:border border-[#e7e7e7] hover:bg-white`}>
+          <DropdownMenuTrigger onClick={isOpened.current = true} ref={isOpened} className={`${isHoverd || isOpened.current ? '' : 'hidden'} absolute top-3 end-4 p-2 rounded-full hover:border border-[#e7e7e7] hover:bg-white`}>
             <Image className="w-3 h-3" src={threedots} alt="" height="" width=""/>
             </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem>Mark as read/unread</DropdownMenuItem>
-            <DropdownMenuItem>Star</DropdownMenuItem>
-            <DropdownMenuItem>Archive</DropdownMenuItem>
+          <DropdownMenuContent className="bg-white p-0 py-2">
+            <DropdownMenuItem className="hover:bg-[#e7e7e7]">Mark as read/unread</DropdownMenuItem>
+            <DropdownMenuItem className="hover:bg-[#e7e7e7]">Star</DropdownMenuItem>
+            <DropdownMenuItem className="hover:bg-[#e7e7e7]">Archive</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 
