@@ -1,4 +1,8 @@
 "use client";
+<<<<<<< HEAD
+=======
+import ButtonGroup from "@/app/_components/ButtonGroup";
+>>>>>>> c9a97f345cc40c1b794e1ee31423d3640d51a66e
 import Heading from "@/app/_components/Heading";
 import IconButton from "@/app/_components/IconButton";
 import ListingCard from "@/app/_components/ListingCard";
@@ -36,6 +40,18 @@ const Page = () => {
   const handleBackClick = () => {
     router.back();
   };
+<<<<<<< HEAD
+=======
+
+  const handleAddDatesClick = () => {
+    console.log("Add Dates clicked");
+  };
+
+  const handleGuestClick = () => {
+    console.log("Add Guest clicked");
+  };
+
+>>>>>>> c9a97f345cc40c1b794e1ee31423d3640d51a66e
   return (
     <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
       <div className="lg:w-2/3 w-full mx-3">
@@ -57,6 +73,15 @@ const Page = () => {
 
           {/* Button Group */}
           <div className="mx-7 mb-4 flex space-x-2">
+<<<<<<< HEAD
+=======
+            {/* <ButtonGroup onClick={handleAddDatesClick} ariaLabel="Add Dates">
+              Add Dates
+            </ButtonGroup> */}
+            {/* <ButtonGroup onClick={handleGuestClick} ariaLabel="Add Guest">
+              1 guest
+            </ButtonGroup> */}
+>>>>>>> c9a97f345cc40c1b794e1ee31423d3640d51a66e
             <DateDropdown/>
             <GuestSelector/>
             <ShareModal/>
@@ -74,6 +99,9 @@ const Page = () => {
       <div className="lg:w-1/3 w-full">
         <Map locations={locations} />
       </div>
+
+      {/* Conditional rendering of SettingsModal */}
+      {/* {showModal && <SettingsModal />} */}
     </div>
   );
 };
