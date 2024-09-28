@@ -1,26 +1,20 @@
-import { useState } from "react";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/ui/dialog";
-import ButtonGroup from "../ButtonGroup";
-import { MdClose, MdOutlineIosShare } from "react-icons/md";
-import { FaLink } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
-import { BiMessageDetail } from "react-icons/bi";
-import { FaWhatsappSquare } from "react-icons/fa";
-import { FaFacebookMessenger } from "react-icons/fa6";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaEllipsisH } from "react-icons/fa";
-import Link from "next/link";
-import img from "../../_assets/image.png";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { BiMessageDetail } from "react-icons/bi";
+import { FaEllipsisH, FaFacebookSquare, FaWhatsappSquare } from "react-icons/fa";
+import { FaFacebookMessenger, FaLink, FaXTwitter } from "react-icons/fa6";
+import { MdEmail, MdOutlineIosShare } from "react-icons/md";
+import img from "../../_assets/image.png";
+import ButtonGroup from "../ButtonGroup";
 
 const ShareModal = () => {
   const [showModal, setShowModal] = useState(false);
