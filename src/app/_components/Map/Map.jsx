@@ -1,9 +1,9 @@
 "use client";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import L from "leaflet";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import "./Map.css";
 
 const Map = ({ locations }) => {

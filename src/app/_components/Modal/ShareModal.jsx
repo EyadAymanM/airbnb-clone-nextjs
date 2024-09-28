@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -8,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import ButtonGroup from "../ButtonGroup";
-import { MdOutlineIosShare } from "react-icons/md";
+import { MdClose, MdOutlineIosShare } from "react-icons/md";
 import { FaLink } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
@@ -27,7 +28,7 @@ const ShareModal = () => {
   const toggleModal = () => setShowModal(!showModal);
 
   return (
-    <Dialog open={showModal} onOpenChange={toggleModal}>
+    <Dialog open={showModal} onOpenChange={toggleModal} >
       <DialogTrigger asChild>
         <ButtonGroup onClick={toggleModal} ariaLabel="Share">
           <span className="flex justify-center items-center gap-2">
