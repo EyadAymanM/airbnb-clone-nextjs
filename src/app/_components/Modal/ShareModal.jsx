@@ -1,14 +1,9 @@
-<<<<<<< HEAD
-=======
-import { useState } from "react";
->>>>>>> c9a97f345cc40c1b794e1ee31423d3640d51a66e
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-<<<<<<< HEAD
   DialogTrigger
 } from "@/components/ui/dialog";
 import Image from "next/image";
@@ -20,23 +15,6 @@ import { FaFacebookMessenger, FaLink, FaXTwitter } from "react-icons/fa6";
 import { MdEmail, MdOutlineIosShare } from "react-icons/md";
 import img from "../../_assets/image.png";
 import ButtonGroup from "../ButtonGroup";
-=======
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import ButtonGroup from "../ButtonGroup";
-import { MdOutlineIosShare } from "react-icons/md";
-import { FaLink } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
-import { BiMessageDetail } from "react-icons/bi";
-import { FaWhatsappSquare } from "react-icons/fa";
-import { FaFacebookMessenger } from "react-icons/fa6";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaEllipsisH } from "react-icons/fa";
-import Link from "next/link";
-import img from "../../_assets/image.png";
-import Image from "next/image";
->>>>>>> c9a97f345cc40c1b794e1ee31423d3640d51a66e
 
 const ShareModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -44,11 +22,7 @@ const ShareModal = () => {
   const toggleModal = () => setShowModal(!showModal);
 
   return (
-<<<<<<< HEAD
     <Dialog open={showModal} onOpenChange={toggleModal} >
-=======
-    <Dialog open={showModal} onOpenChange={toggleModal}>
->>>>>>> c9a97f345cc40c1b794e1ee31423d3640d51a66e
       <DialogTrigger asChild>
         <ButtonGroup onClick={toggleModal} ariaLabel="Share">
           <span className="flex justify-center items-center gap-2">
