@@ -1,19 +1,28 @@
 'use client'
 import search from '@/app/_assets/svgs/search.svg'
 import setting from '@/app/_assets/svgs/setting.svg'
+import close from '@/app/_assets/svgs/close.svg'
 import MessageCard from '@/app/_components/messages-components/messageCard'
 import MessageContentSection from '@/app/_components/messages-components/messageContentSection'
 import Image from 'next/image'
 import { useState } from 'react'
+import MessageDetails from '@/app/_components/messages-components/messageDetails'
 const Page = () => {
+  const [detailsOpen, setDetailsOpen] = useState(true)
   const [searchOpen, setSearchOpen] = useState(false)
   const toggleSearch = () => {
     setSearchOpen(!searchOpen)
   }
+  const closeDetails = () => {
+    setDetailsOpen(false)
+  }
+  const openDetails = () => {
+    setDetailsOpen(true)
+  }
   return (
     <>
       <div className="flex">
-        <div className="w-[26.25rem] h-[calc(100vh-5rem)] border-t border-[#ededed]">
+        <div className="w-[26.25rem] max-h-[calc(100vh-5rem)] border-t border-[#ededed]  overflow-y-scroll">
           <div className='flex flex-col'>
             <div className={`flex justify-between ml-12 mr-10 mt-7 ${searchOpen ? 'hidden' : ''}`}>
               <h1 className='text-2xl font-airbnb font-semibold'>Messages</h1>
@@ -40,15 +49,26 @@ const Page = () => {
             </div>
             <div className='pt-4 mr-9'>
               <MessageCard />
-
+              <MessageCard />
+              <MessageCard />
+              <MessageCard />
+              <MessageCard />
+              <MessageCard />
+              <MessageCard />
             </div>
           </div>
         </div>
-        <div className="grow h-[calc(100vh-5rem)] text-6xl border-t border-l border-r border-[#ededed]">
+        <div className="grow max-h-[calc(100vh-5rem)] text-6xl border-t border-l border-r border-[#ededed] flex flex-col relative">
           <MessageContentSection />
+          <button onClick={openDetails} className={`${detailsOpen ? "hidden" : ""} transition-[width] bg-[#f7f7f7] translate-x-1 text-base font-semibold px-3 py-2 rounded-full absolute end-9 top-5 z-50`}>
+            Show details
+          </button>
         </div>
-        <div className="w-[26.25rem] h-[calc(100vh-5rem)] text-6xl border-t border-[#ededed] relative z-10">
-
+        <div className={`${detailsOpen?'w-[26.25rem]':'w-0'} transition-[width] duration-400 h-[calc(100vh-5rem)] text-6xl border-t border-[#ededed] relative`}>
+          <MessageDetails />
+          <button onClick={closeDetails} className={`${detailsOpen?"":"hidden"}bg-[#f7f7f7] p-[0.7rem] rounded-full absolute end-20 top-4 z-50`}>
+            <Image src={close} height="16" width="16" alt='' />
+          </button>
         </div>
       </div>
     </>
