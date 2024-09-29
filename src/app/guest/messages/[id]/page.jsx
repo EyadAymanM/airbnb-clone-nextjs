@@ -55,8 +55,6 @@ const Page = () => {
               <MessageCard />
               <MessageCard />
               <MessageCard />
-              <MessageCard />
-              <MessageCard />
             </div>
           </div>
         </div>
@@ -67,8 +65,8 @@ const Page = () => {
           </button>
         </div>
         <div className={`${detailsOpen?'w-[26.25rem]':'w-0'} transition-[width] duration-400 h-[calc(100vh-5rem)] text-6xl border-t border-[#ededed] relative`}>
-          {/* <MessageDetails /> */}
-          <button onClick={closeDetails} className={`${detailsOpen?"":"hidden"}bg-[#f7f7f7] p-[0.7rem] rounded-full absolute end-20 top-6 z-50`}>
+          <MessageDetails />
+          <button onClick={closeDetails} className={`${detailsOpen?"":"hidden"}bg-[#f7f7f7] p-[0.7rem] rounded-full absolute end-20 top-4 z-50`}>
             <Image src={close} height="16" width="16" alt='' />
           </button>
         </div>
