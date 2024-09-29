@@ -29,7 +29,7 @@ const AllImages = ({ params: { id } }) => {
   return (
   <>
   
-  <Link href={`/listing/${id}`} >
+  <Link href={`/rooms/${id}`} >
         <Button className=" py-2 px-4 text-5xl">
           ←
         </Button>

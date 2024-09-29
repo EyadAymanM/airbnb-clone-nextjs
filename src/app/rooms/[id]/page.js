@@ -55,7 +55,7 @@ export default function RoomDetail({params:{id}}) {
 <h1 className='mb-3 sm:text-3xl md:text-4xl lg:text-5xl font-bold'>{room.home_type}</h1>
 
 
-<Link href={`/listing/${room._id}/all-images`} passHref>
+<Link href={`/rooms/${room._id}/all-images`} passHref>
   <ResizablePanelGroup
     direction="horizontal"
     className="max-w rounded-lg relative min-h-80"
