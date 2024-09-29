@@ -1,4 +1,4 @@
-import { roomsModel } from '@/app/-lip/models/roomsSchema';
+import { roomsModel } from '@/app/_lib/models/roomsSchema';
 
 
 export async function GET(req) {

@@ -1,5 +1,5 @@
-import { dbConnection } from '@/app/-lip/dbConnection';  
-import { roomsModel } from '@/app/-lip/models/roomsSchema'; 
+import { dbConnection } from '@/app/_lib/dbConnection';  
+import { roomsModel } from '@/app/_lib/models/roomsSchema'; 
 
 dbConnection();
 

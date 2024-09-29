@@ -7,11 +7,11 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable"
 import Link from 'next/link';
-import InfoReviews from '../../component/infoReviews'
-import InfoHost from '@/app/component/infoHost'
-import InfoAmenities from '@/app/component/infoAmenities'
-import CalendarDemo from '@/app/component/calender'
-import BookingCard from '@/app/component/bookingCard'
+import InfoReviews from '../../_components/infoReviews'
+import InfoHost from '@/app/_components/infoHost'
+import InfoAmenities from '@/app/_components/infoAmenities'
+import CalendarDemo from '@/app/_components/calender'
+import BookingCard from '@/app/_components/bookingCard'
 import { Button } from "@/components/ui/button"
 
 

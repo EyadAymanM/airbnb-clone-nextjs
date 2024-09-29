@@ -45,7 +45,7 @@ export default function Listing() {
  
   <div className="flex flex-wrap justify-center ">
     {rooms.map((room) => (
-      <Link href={`/listing/${room._id}`}
+      <Link href={`/rooms/${room._id}`}
         key={room._id}
         className="w-full sm:w-1/3 lg:w-1/4 p-5" 
       >
