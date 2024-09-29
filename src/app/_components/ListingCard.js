@@ -24,7 +24,7 @@ const ListingCard = () => {
   }
   return (
     <>
-      <div className="max-w-xs">
+      <div className="max-w-xs mb-4">
         {/* <div onClick={(e) => { router.push("/"); stopPropagation(e); }} > */}
           <Carousel className="w-full max-w-xs" onMouseOver={handleOver} onMouseOut={handleOut}>
             <CarouselContent>
