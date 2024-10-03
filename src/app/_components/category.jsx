@@ -113,7 +113,7 @@ const CategoryList = () => {
     <div className="relative mx-10">
       <div
         ref={scrollContainerRef}
-        className="overflow-x-auto flex gap-7 py-4 scroll-smooth"
+        className="overflow-x-auto flex gap-7 py-2 scroll-smooth"
         style={{ scrollbarWidth: "none" }}
       >
         {categories.map((category) => (

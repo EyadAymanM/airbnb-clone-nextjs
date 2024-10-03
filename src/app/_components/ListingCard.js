@@ -40,8 +40,8 @@ const ListingCard = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className={`top-1/2 left-3 ${hover ? 'fill-white' : 'hidden'}`} />
-            <CarouselNext className={`top-1/2 right-3 ${hover ? 'fill-white' : 'hidden'}`} />
+          <CarouselPrevious className={`bg-white top-1/2 left-3 ${hover ? '' : 'hidden'}` } />
+          <CarouselNext className={`bg-white top-1/2 right-3 ${hover ? '' : 'hidden'}`} />
           </Carousel>
           <div className="px-2">
             <div className="flex pt-1">
