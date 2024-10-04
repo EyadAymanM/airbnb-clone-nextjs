@@ -8,7 +8,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import SettingsModal from "@/app/_components/Modal/SettingsModal";
 import ShareModal from "@/app/_components/Modal/ShareModal";
 import GuestSelector from "@/app/_components/GuestSelector";
-import DateDropdown from "@/app/_components/DateDropdown";
+import DateDropdown from "@/app/_components/DateDropdown/DateDropdown";
 
 const heartIconHtml = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="16px" height="16px">
