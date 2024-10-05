@@ -13,7 +13,7 @@ import InfoAmenities from '@/app/_components/infoAmenities'
 import CalendarDemo from '@/app/_components/calender'
 import BookingCard from '@/app/_components/bookingCard'
 import { Button } from "@/components/ui/button"
-
+import Description from '@/app/_components/description'
 
 export default function RoomDetail({params:{id}}) {
 
@@ -135,9 +135,10 @@ export default function RoomDetail({params:{id}}) {
     </div>
     <div><InfoReviews/></div>
     <div ><InfoHost/></div>
+    <div><Description/></div>
     <div ><InfoAmenities/></div>
     <div><CalendarDemo/></div>
-    <div>div 6</div>
+    {/* <div>div 6</div> */}
   </div>
 
   
@@ -145,6 +146,14 @@ export default function RoomDetail({params:{id}}) {
   <BookingCard/>
   </div>
 </div>
+
+
+
+
+
+
+
+
 
 </div>
 
