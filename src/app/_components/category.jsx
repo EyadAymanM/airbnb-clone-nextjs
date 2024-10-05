@@ -3,6 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 library.add(fas);
 
@@ -72,8 +73,10 @@ const CategoryList = () => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const scrollContainerRef = useRef(null);
-
+  const router = useRouter()
+  
   const handleCategoryClick = (technicalName) => {
+    router.push(`/?category=${technicalName}`)
     setActiveCategory(technicalName);
   };
 

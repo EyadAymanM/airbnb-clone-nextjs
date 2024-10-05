@@ -1,6 +1,6 @@
 'use client'
 import Heading from '@/app/_components/Heading'
-import { ArrowLeft, ChevronLeft } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { useState } from 'react'

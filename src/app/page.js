@@ -1,13 +1,14 @@
-import CategoryList from "./_components/Category";
-import ListingCard from "./_components/ListingCard";
-
+"use client"
+import { useSearchParams } from "next/navigation";
+import LisitingsFetch from "./_components/LisitingsFetch/LisitingsFetch";
 export default function Home() {
+  
+  const category = useSearchParams().get('category')
+
   return (
     <>
       <div className="flex flex-wrap justify-around pt-4">
-        {Array.from({ length: 20 }).map((_, index) =>
-          <ListingCard className="mb-4" key={index} />
-        )}
+      <LisitingsFetch category={category}/>
       </div>
     </>
   );
