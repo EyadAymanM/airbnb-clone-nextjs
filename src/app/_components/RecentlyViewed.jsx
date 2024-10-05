@@ -5,7 +5,7 @@ import Heading from "./Heading";
 
 const RecentlyViewed = () => {
   return (
-    <div>
+    <div >
       <div className="grid grid-cols-2 gap-1 rounded-3xl shadow-lg p-2 bg-white border-solid border-white border-spacing-1 hover:shadow-xl transition-shadow duration-200 ease-in-out max-w-sm">
         {images.map((image, index) => (
           <div
