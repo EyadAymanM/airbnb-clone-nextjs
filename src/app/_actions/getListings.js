@@ -10,4 +10,3 @@ export const fetchData = async () => {
     console.log(err.message);
   }
 };
-fetchData()

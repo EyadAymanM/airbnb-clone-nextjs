@@ -44,7 +44,7 @@ const categories = [
   },
 ];
 
-const Category = ({ icon, displayName, activated, onClick }) => (
+const Category = ({ icon, displayName, activated, onClick, technicalName }) => (
   <div
     className={`cursor-pointer border-b-2 flex flex-col items-center p-2 transition-all duration-300 ${
       activated
@@ -125,6 +125,7 @@ const CategoryList = () => {
             icon={category.icon}
             displayName={category.displayName}
             activated={activeCategory === category.technicalName}
+            technicalName={category.technicalName}
             onClick={() => handleCategoryClick(category.technicalName)}
           />
         ))}

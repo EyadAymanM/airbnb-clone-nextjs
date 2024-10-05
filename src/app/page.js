@@ -1,14 +1,12 @@
-"use client"
-import { useSearchParams } from "next/navigation";
 import LisitingsFetch from "./_components/LisitingsFetch/LisitingsFetch";
+import CategoryList from "./_components/category";
 export default function Home() {
   
-  const category = useSearchParams().get('category')
-
   return (
     <>
+      <CategoryList />
       <div className="flex flex-wrap justify-around pt-4">
-      <LisitingsFetch category={category}/>
+        <LisitingsFetch />
       </div>
     </>
   );

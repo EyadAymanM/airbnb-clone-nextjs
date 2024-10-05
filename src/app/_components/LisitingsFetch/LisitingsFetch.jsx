@@ -6,9 +6,9 @@ export default async function LisitingsFetch({ category }) {
   
   let listings = await fetchData()
 
-  if (category && !(category == "ALL")) {
-      listings = listings.filter((listing) => listing.category == category)
-  }
+  // if (category && !(category == "ALL")) {
+  //     listings = listings.filter((listing) => listing.category == category)
+  // }
 
   return (
     <>

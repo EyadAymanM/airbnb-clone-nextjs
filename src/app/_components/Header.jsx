@@ -162,7 +162,6 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <CategoryList />
       </div>
     </>
   );
