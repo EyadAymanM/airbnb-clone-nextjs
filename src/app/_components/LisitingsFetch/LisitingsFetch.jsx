@@ -1,9 +1,11 @@
 import { fetchData } from "@/app/_actions/getListings";
-import ListingCard from "../ListingCard";
+import FilterListing from "../FilterListing/FilterListing";
+import { Suspense } from "react";
+import Skeleton from "../Skeleton";
 
 export default async function LisitingsFetch({ category }) {
 
-  
+
   let listings = await fetchData()
 
   // if (category && !(category == "ALL")) {
@@ -12,9 +14,9 @@ export default async function LisitingsFetch({ category }) {
 
   return (
     <>
-      {listings.map((listing, index) =>
-        <ListingCard className="mb-4" key={index} listing={listing} />
-      )}
+      <Suspense fallback={<>{Array.from({ length: 12 }).map((_, index) => (<Skeleton key={index} />))}</>}>
+        <FilterListing listings={listings} />
+      </Suspense>
     </>
   )
 }
