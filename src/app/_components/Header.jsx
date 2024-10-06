@@ -16,6 +16,7 @@ import {
 import { BiSearch } from "react-icons/bi";
 import CategoryList from "./category";
 import { useEffect, useState } from "react";
+import GuestSelector from "./GuestSelector";
 
 const Header = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -38,7 +39,7 @@ const Header = () => {
   return (
     <>
       <div className="w-full border-b sticky top-0 start-0 bg-white z-50">
-        <div className={`${(isExpanded || isSearchOpen) ?'h-32':'h-20'} transition-all duration-150 border-b`}>
+        <div className={`${(isExpanded || isSearchOpen) ? 'h-32' : 'h-20'} transition-all duration-150 border-b`}>
           <div className="w-[90%] mx-auto">
             <div className="flex justify-around items-center flex-wrap">
               <div className="lg:basis-1/3 ">
@@ -60,30 +61,36 @@ const Header = () => {
                 </Link>
               </div>
               <div className="flex justify-center flex-col">
-              {(isExpanded || isSearchOpen) && (
-                  <div className={`${(isExpanded || isSearchOpen) ?'translate-y-0':'-translate-y-10'} transition-all flex basis-1/3 justify-center`}>
-                  <button className="text-[#737373] hover:bg-[#f7f7f7] p-3 rounded-full">
-                    Stays
-                  </button>
-                  {/* <button className="text-[#737373] hover:bg-[#f7f7f7] p-3 rounded-full">
+                {(isExpanded || isSearchOpen) && (
+                  <div className={`${(isExpanded || isSearchOpen) ? 'translate-y-0' : '-translate-y-10'} transition-all flex basis-1/3 justify-center`}>
+                    <button className="text-[#737373] hover:bg-[#f7f7f7] p-3 rounded-full">
+                      Stays
+                    </button>
+                    {/* <button className="text-[#737373] hover:bg-[#f7f7f7] p-3 rounded-full">
                     Experiences
                   </button> */}
-                </div>
-              )}
-              <div onClick={toggleSearch} className={`border-[1px] w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md cursor-pointer`}>
-                <div className="flex flex-row items-center justify-between">
-                  <div className="text-sm font-semibold px-6">AnyWhere</div>
-                  <div className="hidden sm:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center">
-                    Any week
                   </div>
-                  <div className="text-sm pl-6 pr-2 text-gray-600 flex flex-row items-center gap-3">
-                    <div className="hidden sm:block">Add guests</div>
-                    <div className="p-2 bg-rose-500 rounded-full text-white">
-                      <BiSearch />
+                )}
+                <div onClick={toggleSearch} className={`border-[1px] w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md cursor-pointer`}>
+                  <div className="flex flex-row items-center justify-between">
+                    <div className="text-sm font-semibold px-6">AnyWhere</div>
+                    <div className="hidden sm:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center">
+                      Any week
+                    </div>
+                    <div className="text-sm pl-6 pr-2 text-gray-600 flex flex-row items-center gap-3">
+                      <div className="hidden sm:block">
+                        {(isExpanded || isSearchOpen) ?
+                          <GuestSelector />
+                          :
+                          <>Add Guest</>
+                        }
+                      </div>
+                      <div className="p-2 bg-rose-500 rounded-full text-white">
+                        <BiSearch />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               </div>
               <div className="lg:basis-1/3 flex justify-end">
                 <div className="flex items-center mr-1">

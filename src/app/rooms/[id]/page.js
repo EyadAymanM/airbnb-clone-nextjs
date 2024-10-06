@@ -1,5 +1,5 @@
-'use client'
-import { useEffect, useState } from 'react';
+// 'use client'
+// import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import {
   ResizableHandle,
@@ -15,39 +15,45 @@ import BookingCard from '@/app/_components/bookingCard'
 import { Button } from "@/components/ui/button"
 import Description from '@/app/_components/description'
 
-export default function RoomDetail({params:{id}}) {
+export default async function RoomDetail({params:{id}}) {
 
-  const [room, setRoom] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [room, setRoom] = useState(null);
+  // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchRoom = async () => {
-      try {
-        const res = await fetch(`/api/rooms/${id}`);
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await res.json();
-        setRoom(data.data);
-      } catch (error) {
-        console.error('Error fetching room details:', error);
-      }
-      setLoading(false);
-    };
+  // useEffect(() => {
+  //   const fetchRoom = async (id) => {
+  //     try {
+  //       const res = await fetch(`http://localhost:3000/listing/${id}`);
 
-    if (id) {
-      fetchRoom();
-    }
-  }, [id]);
+  //       if (!res.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       const data = await res.json();
+  //       console.log(data);
 
-  if (loading) {
-    return <p>Loading room details...</p>;
-  }
+  //       setRoom(data);
+  //     } catch (error) {
+  //       console.error('Error fetching room details:', error);
+  //     }
+  //     setLoading(false);
+  //   };
 
-  if (!room) {
-    return <p>Room not found</p>;
-  }
+  //   if (id) {
+  //     fetchRoom(id);
+  //   }
+  // }, [id]);
 
+  // if (loading) {
+  //   return <p>Loading room details...</p>;
+  // }
+
+  // if (!room) {
+  //   return <p>Room not found</p>;
+  // }
+  const res = await fetch(`http://localhost:3000/listing/${id}`);
+  const room = await res.json()
+  console.log(room);
+  
   return (
 <>
 <div className="container mt-8 ">
@@ -71,7 +77,7 @@ export default function RoomDetail({params:{id}}) {
       className="flex items-center justify-center sm:w-full"
     >
       <Image
-        src={room.images[0]} 
+        src={room.photos[0]} 
         alt="Main Image"
         width={100}
         height={100}
@@ -87,15 +93,18 @@ export default function RoomDetail({params:{id}}) {
        
         <ResizablePanel defaultSize={50}>
           <div className="grid grid-cols-2 gap-2 h-full ms-2">
-            <Image
-              src={room.images[1]}  
-              alt="Image 1"
-              width={100}
-              height={100}
-              priority
-              className="object-cover w-full h-full"
-            />
-            <Image
+            {room.photos.map((photo,index)=>(
+              <Image
+                key={index}
+                src={photo}
+                alt="Image 1"
+                width={100}
+                height={100}
+                priority
+                className="object-cover w-full h-full"
+              />
+            ))}
+            {/* <Image
               src={room.images[2]}  
               alt="Image 2"
               width={100}
@@ -118,7 +127,7 @@ export default function RoomDetail({params:{id}}) {
               height={100}
               priority
               className="object-cover w-full h-full"
-            />
+            /> */}
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
@@ -131,11 +140,11 @@ export default function RoomDetail({params:{id}}) {
   
   <div className="flex flex-col md:grid md:grid-cols-1 md:grid-auto-rows-auto md:gap-5 md:col-span-2">
     <div className="	 sm:text-xl md:text-2xl lg:text-4xl font-semibold">
-      {room.room_type} in {room.address}
+              {room.type} in {room.address.city} {room.address.street}
     </div>
     <div><InfoReviews/></div>
     <div ><InfoHost/></div>
-    <div><Description/></div>
+    <div><Description description={room.description}/></div>
     <div ><InfoAmenities/></div>
     <div><CalendarDemo/></div>
     {/* <div>div 6</div> */}
