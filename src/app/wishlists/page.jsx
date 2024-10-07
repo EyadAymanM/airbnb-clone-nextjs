@@ -1,5 +1,5 @@
 "use client";
-import img from "@/app/_assets/image.png";
+import img from "../../app/_assets/image.png";
 import { useState } from "react";
 import Container from "../_components/Container";
 import Heading from "../_components/Heading";

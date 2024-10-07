@@ -1,10 +1,7 @@
-import {
-            DropdownMenu,
-            DropdownMenuContent,
-            DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "../../components/ui/dropdown-menu";
 
 const GuestSelector = () => {
   const [guests, setGuests] = useState({ adults: 1, children: 0, infants: 0, pets: 0 });
@@ -20,7 +17,7 @@ const GuestSelector = () => {
       const newValue = prevGuests[type] + (operation === 'increment' ? 1 : -1);
       return {
         ...prevGuests,
-        [type]: Math.max(type === 'adults' ? 1 : 0, newValue)
+        [type]: Math.max(type === "adults" ? 1 : 0, newValue),
       };
     });
   };
@@ -37,15 +34,15 @@ const GuestSelector = () => {
       </div>
       <div className="flex items-center space-x-3">
         <button
-          onClick={() => updateGuests(type, 'decrement')}
+          onClick={() => updateGuests(type, "decrement")}
           className="bg-white text-gray-700 border border-gray-200 rounded-full w-8 h-8 flex items-center justify-center hover:border-gray-900 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-gray-200"
-          disabled={guests[type] === (type === 'adults' ? 1 : 0)}
+          disabled={guests[type] === (type === "adults" ? 1 : 0)}
         >
           -
         </button>
         <span className="w-8 text-center">{guests[type]}</span>
         <button
-          onClick={() => updateGuests(type, 'increment')}
+          onClick={() => updateGuests(type, "increment")}
           className="bg-white text-gray-700 border border-gray-200 rounded-full w-8 h-8 flex items-center justify-center hover:border-gray-900 transition duration-300"
         >
           +
@@ -62,7 +59,10 @@ const GuestSelector = () => {
         </button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-96 p-6 bg-white rounded-xl shadow-lg" align="start">
+      <DropdownMenuContent
+        className="w-96 p-6 bg-white rounded-xl shadow-lg"
+        align="start"
+      >
         <div className="space-y-4 max-h-64 overflow-y-auto">
           <GuestTypeSelector
             title="Adults"
@@ -81,11 +81,15 @@ const GuestSelector = () => {
           />
           <GuestTypeSelector
             title="Pets"
-            subtitle={<Link href="#" className="underline">Bringing a service animal?</Link>}
+            subtitle={
+              <Link href="#" className="underline">
+                Bringing a service animal?
+              </Link>
+            }
             type="pets"
           />
         </div>
-            <div className=" "></div>
+        <div className=" "></div>
         <div className="flex justify-between items-center space-x-3 mt-6">
           <button
             onClick={resetGuests}

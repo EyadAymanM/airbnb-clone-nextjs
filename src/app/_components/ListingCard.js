@@ -1,14 +1,14 @@
 "use client"
 import * as React from "react"
 import star from '../_assets/svgs/star.svg'
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "../../components/ui/card"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "../../components/ui/carousel"
 import Image from "next/image"
 import Link from "next/link"
 

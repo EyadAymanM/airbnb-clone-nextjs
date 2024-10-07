@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { useState, useRef, useEffect } from "react";
+import { Button } from "../../../components/ui/button";
 
 library.add(fas);
 const FlexibleOptions = () => {

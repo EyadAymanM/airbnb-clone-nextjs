@@ -1,18 +1,26 @@
 import React, { useState } from "react";
+import { addDays } from "date-fns";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-} from "@/components/ui/dropdown-menu";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
+} from "../../../components/ui/dropdown-menu";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "../../../components/ui/tabs";
+import { Button } from "../../../components/ui/button";
 import FlexibleOptions from "./FlexibleOptions";
-import CalendarComponent from "./CalendarComponent";
+import CalendarComponent from "../CalendarComponent/CalendarComponent";
 
 const DateDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [dateRange, setDateRange] = useState({ from: null, to: null });
+  const [dateRange, setDateRange] = useState({
+    from: new Date(),
+    to: addDays(new Date(), 7),
+  });
 
+  const handleReset = () => {
+    setDateRange({ from: null, to: null });
+  };
+  console.log("dateRange", dateRange);
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
@@ -59,9 +67,7 @@ const DateDropdown = () => {
           <Button
             variant="link"
             className="px-4 py-2 rounded-2xl underline font-semibold text-gray-700 hover:bg-gray-100 transition-colors duration-300 disabled:text-gray-400 disabled:hover:bg-transparent disabled:cursor-not-allowed"
-            onClick={() => {
-              setDateRange({ from: null, to: null });
-            }}
+            onClick={handleReset}
             disabled={!dateRange.from && !dateRange.to}
           >
             Reset

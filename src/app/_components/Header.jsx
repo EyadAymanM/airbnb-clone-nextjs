@@ -6,17 +6,18 @@ import logo from "../_assets/svgs/airbnb-logo-only.svg";
 import globe from "../_assets/svgs/globe.svg";
 import avatar from "../_assets/124599.jpg";
 import hamburger from "../_assets/svgs/hamburger-menu.svg";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuSeparator,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
 import { BiSearch } from "react-icons/bi";
 import CategoryList from "./category";
 import { useEffect, useState } from "react";
 import GuestSelector from "./GuestSelector";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../../components/ui/dropdown-menu";
 
 const Header = () => {
   const [isExpanded, setIsExpanded] = useState(false);

@@ -2,11 +2,10 @@ import { useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "../../../components/ui/dialog";
 import IconButton from "../IconButton";
 import { BsThreeDots } from "react-icons/bs";
 import { MdOutlineIosShare } from "react-icons/md";

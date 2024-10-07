@@ -1,4 +1,4 @@
-import { fetchData } from "@/app/_actions/getListings";
+import { fetchData } from "../../_actions/getListings";
 import FilterListing from "../FilterListing/FilterListing";
 import { Suspense } from "react";
 import Skeleton from "../Skeleton";
