@@ -1,4 +1,5 @@
 "use client";
+import AddLisitngNav from "@/app/_components/AddListingLayout/AddLisitngNav";
 import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -45,7 +46,7 @@ function Page() {
       technicalName: "CHEFS_KITCHEN",
     },
   ];
-  const [selectedType, setSelectedType] = useState("Apartment");
+  const [selectedType, setSelectedType] = useState(null);
   return (
     <>
       <h1 className="max-w-2xl mx-auto my-2 text-3xl font-semibold font-airbnb text-center">Which of these best describes your place?</h1>
@@ -72,7 +73,7 @@ function Page() {
           </div>
         ))}
       </div>
-      <NextBackFooter progress={15}/>
+      <NextBackFooter progress={15} />
     </>
   );
 }

@@ -82,7 +82,7 @@ export default function infoAmenities() {
         <DialogContent className="sm:max-w-[425px] md:max-w-[600px] lg:max-w-[800px] max-h-[500px] overflow-y-auto ">
           <DialogHeader className="flex justify-center items-center ">
             <DialogTitle>
-              <h1>All Amenities</h1>
+              <div>All Amenities</div>
             </DialogTitle>
             <DialogDescription className="text-center">
             

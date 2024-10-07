@@ -3,9 +3,9 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function AddLisitngNav({ btnLabel }) {
+export default function AddLisitngNav() {
 
-  const [scroll,setScroll] = useState(6)
+  const [scroll,setScroll] = useState(0)
   
   useEffect(()=>{
     const handleScroll = () => {
