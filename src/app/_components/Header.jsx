@@ -14,7 +14,6 @@ import hamburger from "../_assets/svgs/hamburger-menu.svg";
 //   DropdownMenuTrigger,
 // } from "@/components/ui/dropdown-menu";
 import { BiSearch } from "react-icons/bi";
-import CategoryList from "./category";
 import { useEffect, useState } from "react";
 import GuestSelector from "./GuestSelector";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../../components/ui/dropdown-menu";
