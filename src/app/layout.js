@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./_components/Header";
+import NavBar from "./_components/Navbar/NavBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,7 +36,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${airbnbCereal.variable} ${airbnbCerealArabic.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
+        {/* <Header /> */}
+        {/* <NavBar /> */}
         {children}
       </body>
     </html>

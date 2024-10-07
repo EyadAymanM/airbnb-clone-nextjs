@@ -21,15 +21,15 @@ const ListingCard = ({ listing }) => {
   const handleOut = () => {
     setHover(false)
   }
-  
+
   return (
     <>
       <div className="max-w-xs mb-4">
         {/* <Link onClick={(e) => { router.push(`/rooms/${listing._id}`); stopPropagation(e); }} > */}
-        <Link href={`/rooms/${listing._id}`} >
-          <Carousel className="w-full max-w-xs" onMouseOver={handleOver} onMouseOut={handleOut}>
+        <Carousel className="w-full max-w-xs" onMouseOver={handleOver} onMouseOut={handleOut}>
+          <Link href={`/rooms/${listing._id}`} >
             <CarouselContent>
-            {listing.photos.map((photo, index) => (
+              {listing.photos.map((photo, index) => (
                 <CarouselItem key={index}>
                   <div className="p-2">
                     <Card>
@@ -41,12 +41,14 @@ const ListingCard = ({ listing }) => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-          <CarouselPrevious className={`bg-white top-1/2 left-3 ${hover ? '' : 'hidden'}` } />
+          </Link>
+          <CarouselPrevious className={`bg-white top-1/2 left-3 ${hover ? '' : 'hidden'}`} />
           <CarouselNext className={`bg-white top-1/2 right-3 ${hover ? '' : 'hidden'}`} />
-          </Carousel>
+        </Carousel>
+        <Link href={`/rooms/${listing._id}`} >
           <div className="px-2">
             <div className="flex pt-1">
-            <span className="font-semibold text-lg  grow">{listing.title}</span>
+              <span className="font-semibold text-lg  grow">{listing.title}</span>
               <span className="font-semibold flex items-baseline gap-1"><Image src={star} alt="" height={15} width={15} />4.9</span>
             </div>
             <div className="text-[#777] leading-4">
