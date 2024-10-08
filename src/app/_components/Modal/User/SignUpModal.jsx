@@ -21,14 +21,16 @@ const SignUpModal = () => {
   const toggleModal = () => setShowModal(!showModal);
 
   const initialValues = {
-    name: "",
+    fName: "",
+    lName: "",
     email: "",
     password: "",
     confirmPassword: "",
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("Name is required"),
+    fName: Yup.string().required("First Name is required"),
+    lName: Yup.string().required("Last Name is required"),
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required")
@@ -76,13 +78,20 @@ const SignUpModal = () => {
           >
             {({ errors, touched }) => (
               <Form className="space-y-5">
-                <InputField
-                  id="name"
-                  name="name"
-                  type="text"
-                  label="Name"
-                  icon={MdPerson}
-                />
+              <InputField
+              id="fName"
+              name="fName"
+              type="text"
+              label="First Name"
+              icon={MdPerson}
+            />
+            <InputField
+              id="lName"
+              name="lName"
+              type="text"
+              label="Last Name"
+              icon={MdPerson}
+            />
                 <InputField
                   id="email"
                   name="email"
