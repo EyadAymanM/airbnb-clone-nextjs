@@ -9,9 +9,9 @@ export default function FilterListing({listings}) {
   }
   return (
     <>
-      {listings.map((listing, index) =>
+      {/* {listings.map((listing, index) =>
         <ListingCard className="mb-4" key={index} listing={listing} />
-      )}
+      )} */}
     </>
   )
 }
