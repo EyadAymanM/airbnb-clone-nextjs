@@ -6,12 +6,18 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import Link from "next/link";
 import InputField from "../../_components/InputField";
 import SocialLoginButton from "../../_components/Modal/User/SocialLoginButton";
+import { login } from "@/app/_actions/User/user";
+import { useRouter } from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const LoginPage = () => {
+  const router = useRouter();
   const initialValues = {
     email: "",
     password: "",
   };
+  const notify = () => toast('Here is your toast.');
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -26,13 +32,25 @@ const LoginPage = () => {
       .required("Password is required"),
   });
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = async (values) => {
+    try {
+      const result = await login(values);
+      if (result.access_token) {
+        toast.success('Login successful!');
+        router.push("/");
+      } else {
+        toast.error(result.message || 'Login failed. Please try again.');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('An error occurred during login. Please try again.');
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center ">
-      <div className="bg-white border rounded-2xl w-full max-w-2xl p-6 shadow-lg">
+      <Toaster position="top-center" reverseOrder={false} />
+      <div className="bg-white border rounded-2xl w-full max-w-xl p-6 shadow-lg">
         <h1 className="text-xl text-center text-gray-900 p-3">Log in</h1>
         <hr className="border-neutral-300 mb-4" />
         <p className="text-lg text-gray-900 font-semibold mb-4">
