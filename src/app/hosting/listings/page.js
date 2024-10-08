@@ -3,6 +3,7 @@ import { FaPlus } from "react-icons/fa6";
 import { BsBricks } from "react-icons/bs";
 
 import itiImage from '@/app/_assets/iti.jpeg'
+import Image from "next/image";
 
 export default function page() {
   return (
@@ -29,18 +30,18 @@ export default function page() {
                   </thead>
                   <tbody className="text-gray-600 text-sm font-light">
                       <tr className="border-b border-gray-300 hover:bg-gray-100">
-                          <td className="py-3 px-6"><img src={itiImage} style={{display: 'inline' }} className="pr-3" />ITI</td>
+                          <td className="py-3 px-6"><Image width='150' height='150' alt='' src={itiImage} style={{display: 'inline' }} className="pr-3" /> ITI</td>
                           <td className="py-3 px-6">Cairo</td>
                           <td className="py-3 px-6"> <span className="rounded-full mr-2" style={{width: '10px',height: '10px', background: 'orange', display: 'inline-block' }}></span>Virification required</td>
                       </tr>
                       <tr className="border-b border-gray-300 hover:bg-gray-100">
-                          <td className="py-3 px-6"><img src={itiImage} style={{display: 'inline' }} className="pr-3" />ITI</td>
-                          <td className="py-3 px-6">Giza</td>
+                      <td className="py-3 px-6"><Image width='150' height='150' alt='' src={itiImage} style={{display: 'inline' }} className="pr-3" /> ITI</td>
+                      <td className="py-3 px-6">Giza</td>
                           <td className="py-3 px-6"> <span className="rounded-full mr-2" style={{width: '10px',height: '10px', background: 'orange', display: 'inline-block' }}></span>In-Progress</td>
                       </tr>
                       <tr className="border-b border-gray-300 hover:bg-gray-100">
-                          <td className="py-3 px-6"><img src={itiImage} style={{display: 'inline' }} className="pr-3" />ITI</td>
-                          <td className="py-3 px-6">Alex</td>
+                      <td className="py-3 px-6"><Image width='150' height='150' alt='' src={itiImage} style={{display: 'inline' }} className="pr-3" /> ITI</td>
+                      <td className="py-3 px-6">Alex</td>
                           <td className="py-3 px-6"> <span className="rounded-full mr-2" style={{width: '10px',height: '10px', background: 'orange', display: 'inline-block' }}></span>In-Progress</td>
                       </tr>
                   </tbody>
