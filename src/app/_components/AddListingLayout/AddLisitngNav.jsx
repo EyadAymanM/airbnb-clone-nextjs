@@ -20,7 +20,7 @@ export default function AddLisitngNav() {
   },[scroll])
   return (
     <>
-      <div className={`${scroll == 0 ? '' :'border-b'} w-full bg-white sticky top-0 start-0`}>
+      <div className={`${scroll == 0 ? '' :'border-b'} w-full bg-white sticky top-0 start-0 z-20`}>
 
         <div className="py-4 ">
 

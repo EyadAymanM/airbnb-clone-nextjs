@@ -1,6 +1,6 @@
 function NextBackFooter({ progress, back, next } ) {
   return (
-    <div className="w-full sticky bottom-0 start-0 bg-white font-airbnb">
+    <div className="w-full sticky bottom-0 start-0 bg-white font-airbnb z-20">
 
       <div className="h-[5px] bg-[#ddd]"><div className={`bg-black h-[5px]`} style={{width:`${progress}%`}}></div></div>
 

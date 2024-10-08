@@ -7,7 +7,7 @@ const user = {
 };
 
 function page() {
-  const token = localStorage.getItem('token') || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmY2M2U1N2NkZDIxMjI0NWI3YTllMSIsImZpcnN0TmFtZSI6IkV5YWQiLCJlbWFpbCI6ImVpYWRhaW1hbkBnbWFpbC5jb20iLCJpYXQiOjE3MjgzMzM2MjksImV4cCI6MTcyODM3NjgyOX0.5CpDdk1Me4eLMBdxqq1c4DwJuRVQsnJ2lCC8R5LfXk4"
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDQ2NTA4NWMzODllZmJiZTFmY2M1YSIsImZpcnN0TmFtZSI6IkV5YWQiLCJlbWFpbCI6ImVpYWRhaW1hbjUxQGdtYWlsLmNvbSIsImlhdCI6MTcyODM0NDA5NywiZXhwIjoxNzI4Mzg3Mjk3fQ.BHaFmdEdE-MdQXSNslhtxePasHZee5uHZjzlS96h_wU"
 
   return (
     <>
@@ -45,8 +45,7 @@ function page() {
                 <path d="M31.7 15.3 29 12.58 18.12 1.7a3.07 3.07 0 0 0-4.24 0L3 12.59l-2.7 2.7 1.4 1.42L3 15.4V28a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V15.41l1.3 1.3ZM27 28H5V13.41L15.3 3.12a1 1 0 0 1 1.4 0L27 13.42ZM17 12v5h5v2h-5v5h-2v-5h-5v-2h5v-5Z"></path>
               </svg>
             </div>
-            <form action=""></form>
-            <div onClick={createNewListing(token)} className="flex justify-between grow cursor-pointer">
+            <div onClick={()=>createNewListing(token)} className="flex justify-between grow cursor-pointer">
               <span>
                 Create a new listing
               </span>
