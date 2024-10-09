@@ -3,12 +3,14 @@ import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import { useState } from "react";
-import AddressInput from "./AddressInput";
 import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { toast ,Toaster } from "react-hot-toast";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
+import { useRouter } from "next/navigation";
 
 
 const Location = ({params:{id}}) => {
+  const router = useRouter()
   const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
   const [address, setAddress] = useState({
     street: "",
@@ -17,6 +19,10 @@ const Location = ({params:{id}}) => {
     country: "",
     postalCode: "",
   });
+  const handleChange = (e) => {
+    setAddress({ ...address, [e.target.name]: e.target.value });
+  }
+
   const addressValues = [
     {
       id: "street",
@@ -49,10 +55,18 @@ const Location = ({params:{id}}) => {
       label: "postalCode"
     },
   ]
-  const lentgh = addressValues.length
-  const handleChange = (e) => {
-    setAddress({ ...address, [e.target.name]: e.target.value });
+
+  const updateLocation = async() => {
+    const listing = await updateListing(id, { address, location })
+    
+    if(listing._id){
+      router.push(`/become-a-host/${id}/floor-plan`)
+    }
+    else{
+      toast('Something went wrong..')
+    }
   };
+
   const LocationMarker = () => {
     useMapEvents({
       click: (e) => {
@@ -63,31 +77,13 @@ const Location = ({params:{id}}) => {
 
     return null;
   };
-  const updateLocation = async (id)=>{
-    try{
-      const listing = await axios(`http://localhost:3000/listing/${id}`, {
-        body:JSON.stringify({
-          address:address,
-          location:location
-        }),
-        method: 'PUT',
-        // headers: {
-        //   'authorization': token
-        // }
-      });
-    }catch{
-      toast('Something went Wrong try again later',{
-        duration:4000,
-        position:'top-center'
-      })
-    }
-  }
+  
   
   return (
     <>
       <Toaster />
       <div className="w-full flex justify-center font-airbnb">
-        <div className="max-w-[630px]">
+        <div className="max-w-[630px] min-h-[500px]">
           <h1 className="mt-2 text-3xl font-semibold font-airbnb text-start">
             Where&#39;s your place located?
           </h1>
@@ -163,7 +159,8 @@ const Location = ({params:{id}}) => {
           </div>
         </div>
       </div>
-      <NextBackFooter progress={55} next={()=>updateLocation(id)}/>
+      {/* <button onClick={()=>updateListing(id, { address, location })}>press</button> */}
+      <NextBackFooter progress={55} next={updateLocation}/>
     </>
   );
 };

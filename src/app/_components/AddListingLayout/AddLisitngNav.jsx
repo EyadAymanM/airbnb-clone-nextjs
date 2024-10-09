@@ -10,7 +10,6 @@ export default function AddLisitngNav() {
   useEffect(()=>{
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      console.log(scrollPosition);
       
       setScroll(scrollPosition)
     }
