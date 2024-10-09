@@ -76,6 +76,11 @@ const CategoryList = () => {
   const router = useRouter()
   
   const handleCategoryClick = (technicalName) => {
+    if (technicalName == "ALL"){
+      router.push('/')
+      setActiveCategory(technicalName);
+      return
+    }
     router.push(`/?category=${technicalName}`)
     setActiveCategory(technicalName);
   };

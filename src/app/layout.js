@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
         className={`${airbnbCereal.variable} ${airbnbCerealArabic.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* <Header /> */}
-        {/* <NavBar /> */}
+        <NavBar />
         {children}
       </body>
     </html>
