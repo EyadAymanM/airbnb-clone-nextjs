@@ -15,7 +15,7 @@ const WishlistCard = ({ imageSrc, imageAlt, title, savedCount, onRemove,id }) =>
 
       <Link href={`wishlists/${id}`} className="block"> 
         <div className="rounded-3xl shadow-lg p-2 bg-white border-solid border-white border-spacing-1 hover:shadow-xl transition-shadow duration-200 ease-in-out max-w-sm">
-          <div className="relative w-full h-[250px] rounded-xl overflow-hidden">
+          <div className="relative w-full h-0 pb-[100%] rounded-xl overflow-hidden">
             <Image
               className="rounded-xl object-cover"
               src={imageSrc}

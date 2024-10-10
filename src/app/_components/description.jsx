@@ -11,17 +11,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-export default function Description() {
+export default function Description({description}) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const shortDescription = `
-    Our modern penthouse with a private pool is perfect for families seeking convenience and luxury. 
-    Located in a gated community in the upscale area of New Cairo, just 30 minutes from the airport, 
-    and close to amenities like KFC, Starbucks, and a variety of Western and local restaurants 
-    (Chili's, Fuddruckers, LongHorn Texas, Ibn Al Sham). Amenities like a King Bed, washer, dryer, 
-    dishwasher, and microwave ensure comfort, and 4 smart TVs provide entertainment. 
-    Book with us for a hassle-free stay!
-  `
+  const shortDescription = description
+  // `
+  //   Our modern penthouse with a private pool is perfect for families seeking convenience and luxury. 
+  //   Located in a gated community in the upscale area of New Cairo, just 30 minutes from the airport, 
+  //   and close to amenities like KFC, Starbucks, and a variety of Western and local restaurants 
+  //   (Chili's, Fuddruckers, LongHorn Texas, Ibn Al Sham). Amenities like a King Bed, washer, dryer, 
+  //   dishwasher, and microwave ensure comfort, and 4 smart TVs provide entertainment. 
+  //   Book with us for a hassle-free stay!
+  // `
 
   const fullDescription = `
     ${shortDescription}

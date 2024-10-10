@@ -3,6 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 library.add(fas);
 
@@ -43,7 +44,7 @@ const categories = [
   },
 ];
 
-const Category = ({ icon, displayName, activated, onClick }) => (
+const Category = ({ icon, displayName, activated, onClick, technicalName }) => (
   <div
     className={`cursor-pointer border-b-2 flex flex-col items-center p-2 transition-all duration-300 ${
       activated
@@ -72,8 +73,15 @@ const CategoryList = () => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const scrollContainerRef = useRef(null);
-
+  const router = useRouter()
+  
   const handleCategoryClick = (technicalName) => {
+    if (technicalName == "ALL"){
+      router.push('/')
+      setActiveCategory(technicalName);
+      return
+    }
+    router.push(`/?category=${technicalName}`)
     setActiveCategory(technicalName);
   };
 
@@ -113,7 +121,7 @@ const CategoryList = () => {
     <div className="relative mx-10">
       <div
         ref={scrollContainerRef}
-        className="overflow-x-auto flex gap-7 py-4 scroll-smooth"
+        className="overflow-x-auto flex gap-7 py-2 scroll-smooth"
         style={{ scrollbarWidth: "none" }}
       >
         {categories.map((category) => (
@@ -122,6 +130,7 @@ const CategoryList = () => {
             icon={category.icon}
             displayName={category.displayName}
             activated={activeCategory === category.technicalName}
+            technicalName={category.technicalName}
             onClick={() => handleCategoryClick(category.technicalName)}
           />
         ))}

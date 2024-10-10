@@ -1,14 +1,16 @@
 "use client";
-import Heading from "@/app/_components/Heading";
-import IconButton from "@/app/_components/IconButton";
-import ListingCard from "@/app/_components/ListingCard";
-import Map from "@/app/_components/Map/Map";
+import Heading from "../../_components/Heading";
+import IconButton from "../../_components/IconButton";
+import ListingCard from "../../_components/ListingCard";
+import Map from "../../_components/Map/Map";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
-import SettingsModal from "@/app/_components/Modal/SettingsModal";
-import ShareModal from "@/app/_components/Modal/ShareModal";
-import GuestSelector from "@/app/_components/GuestSelector";
-import DateDropdown from "@/app/_components/DateDropdown";
+import SettingsModal from "../../_components/Modal/SettingsModal";
+import ShareModal from "../../_components/Modal/ShareModal";
+import GuestSelector from "../../_components/GuestSelector";
+import DateDropdown from "../../_components/DateDropdown/DateDropdown";
+import LoginModal from "../../_components/Modal/User/LoginModal";
+import SignUpModal from "../../_components/Modal/User/SignUpModal";
 
 const heartIconHtml = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="16px" height="16px">
@@ -60,13 +62,15 @@ const Page = () => {
             <DateDropdown/>
             <GuestSelector/>
             <ShareModal/>
+            <LoginModal/>
+            <SignUpModal/>
           </div>
 
           {/* Listing Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 mx-7">
+            {/* <ListingCard />
             <ListingCard />
-            <ListingCard />
-            <ListingCard />
+            <ListingCard /> */}
           </div>
         </div>
       </div>
@@ -74,9 +78,6 @@ const Page = () => {
       <div className="lg:w-1/3 w-full">
         <Map locations={locations} />
       </div>
-
-      {/* Conditional rendering of SettingsModal */}
-      {/* {showModal && <SettingsModal />} */}
     </div>
   );
 };
