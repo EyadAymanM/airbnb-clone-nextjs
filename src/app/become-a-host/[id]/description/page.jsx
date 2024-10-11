@@ -48,7 +48,7 @@ function Page({ params: { id } }) {
           <span className="text-sm font-semibold text-gray-600">{description.length}/500</span>
         </div>
       </div>
-      <NextBackFooter progress={73} next={updateDescription} />
+      <NextBackFooter progress={84} next={updateDescription} />
     </>
   );
 }

@@ -57,7 +57,7 @@ function Page({ params: { id } }) {
 
         </div>
       </div>
-      <NextBackFooter progress={88} next={updatePrice} />
+      <NextBackFooter progress={91} next={updatePrice} />
     </>
   );
 }

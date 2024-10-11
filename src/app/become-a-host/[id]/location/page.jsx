@@ -160,7 +160,7 @@ const Location = ({params:{id}}) => {
         </div>
       </div>
       {/* <button onClick={()=>updateListing(id, { address, location })}>press</button> */}
-      <NextBackFooter progress={55} next={updateLocation}/>
+      <NextBackFooter progress={34} next={updateLocation}/>
     </>
   );
 };

@@ -45,7 +45,7 @@ function Page() {
           </div>
         ))}
       </div>
-      <NextBackFooter progress={15} className="" />
+      <NextBackFooter progress={22} className="" />
     </>
   )
 }

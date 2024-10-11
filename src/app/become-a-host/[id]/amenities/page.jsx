@@ -90,7 +90,7 @@ function Page({ params: { id } }) {
           </Suspense>
         </div>
       </div>
-      <NextBackFooter progress={60} next={updateAmenties}/>
+      <NextBackFooter progress={53} next={updateAmenties}/>
     </>
   );
 }
