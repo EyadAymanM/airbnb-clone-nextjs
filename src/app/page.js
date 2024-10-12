@@ -5,7 +5,6 @@ import CategoryList from "./_components/category";
 export default async function Home({ searchParams }) {
 
   const listings = searchParams['category'] ? await fetchData(`listing?category=${searchParams['category']}`) : await fetchData(`listing`)
-  console.log(listings);
   try {
     if (listings['message'])
       console.log('sddsa');

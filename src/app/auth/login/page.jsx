@@ -9,6 +9,7 @@ import SocialLoginButton from "../../_components/Modal/User/SocialLoginButton";
 import { login } from "@/app/_actions/User/user";
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
+import { signIn } from "next-auth/react";
 
 
 const LoginPage = () => {
@@ -33,18 +34,25 @@ const LoginPage = () => {
   });
 
   const onSubmit = async (values) => {
-    try {
-      const result = await login(values);
-      if (result.access_token) {
-        toast.success('Login successful!');
-        router.push("/");
-      } else {
-        toast.error(result.message || 'Login failed. Please try again.');
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error('An error occurred during login. Please try again.');
+    console.log(values);
+    const res = await signIn('credentials', {...values,redirect:false})
+    if(res.error){
+      toast.error(res.error)
+    }else{
+      router.push('/')
     }
+    // try {
+    //   const result = await login(values);
+    //   if (result.access_token) {
+    //     toast.success('Login successful!');
+    //     router.push("/");
+    //   } else {
+    //     toast.error(result.message || 'Login failed. Please try again.');
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    //   toast.error('An error occurred during login. Please try again.');
+    // }
   };
 
   return (
