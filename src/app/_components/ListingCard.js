@@ -34,7 +34,7 @@ const ListingCard = ({ listing }) => {
                   <div className="p-2">
                     <Card>
                       <CardContent className="flex aspect-square items-center justify-center p-0 ">
-                        <Image className="rounded-xl h-full" src={photo} width={303} height={200} alt="" />
+                        <Image className="object-cover rounded-xl h-full" src={photo} width={303} height={200} alt="" />
                       </CardContent>
                     </Card>
                   </div>
