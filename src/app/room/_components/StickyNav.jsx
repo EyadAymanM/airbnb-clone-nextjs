@@ -21,6 +21,7 @@ export default function StickyNav() {
 
     return () => {
       if (triggerRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(triggerRef.current)
       }
     }
@@ -34,31 +35,31 @@ export default function StickyNav() {
       {/* Sticky Navigation */}
       <div
         ref={navRef}
-        className={`${isSticky ? 'fixed top-0 left-0 right-0 border-b' : 'hidden'
+        className={`${isSticky ? 'fixed top-0 left-0 right-0 border-b md:block hidden' : 'hidden'
           } bg-white z-10 transition-all duration-300 ease-in-out `}
       >
         <nav className="container  px-20 mx-[120px] py-4 mt-3 pb-0 font-airbnb">
           <ul className="flex justify-start gap-6">
-            <li className='border-b-4 border-b-transparent hover:border-b-black pb-4 cursor-pointer transition ease-in-out'>
-              <a href="#photos" className="text-black">
+            <a href="#photos" className='border-b-4 border-b-transparent hover:border-b-black pb-4 cursor-pointer transition ease-in-out'>
+              <li className="text-black">
                 Photos
-              </a>
-            </li>
-            <li className='border-b-4 border-b-transparent hover:border-b-black pb-4 cursor-pointer transition ease-in-out'>
-              <a href="#" className="text-black">
+              </li>
+            </a>
+            <a href="#amenities" className='border-b-4 border-b-transparent hover:border-b-black pb-4 cursor-pointer transition ease-in-out'>
+              <li  className="text-black">
                 Amenities
-              </a>
-            </li>
-            <li className='border-b-4 border-b-transparent hover:border-b-black pb-4 cursor-pointer transition ease-in-out'>
-              <a href="#" className="text-black">
+              </li>
+            </a>
+            <a href="#reviews" className='border-b-4 border-b-transparent hover:border-b-black pb-4 cursor-pointer transition ease-in-out'>
+              <li  className="text-black">
                 Reviews
-              </a>
-            </li>
-            <li className='border-b-4 border-b-transparent hover:border-b-black pb-4 cursor-pointer transition ease-in-out'>
-              <a href="#" className="text-black">
+              </li>
+            </a>
+            <a href="#location" className='border-b-4 border-b-transparent hover:border-b-black pb-4 cursor-pointer transition ease-in-out'>
+              <li  className="text-black">
                 Location
-              </a>
-            </li>
+              </li>
+            </a>
           </ul>
         </nav>
       </div>

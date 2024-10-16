@@ -4,7 +4,7 @@ import UserMenu from "@/app/_components/Navbar/UserMenu"
 function NavBar() {
   return (
     <>
-      <div className="w-full border-b bg-white z-10">
+      <div className="w-full border-b bg-white z-10 md:block hidden">
 
         <div className="py-4 border-b">
 
@@ -25,6 +25,7 @@ function NavBar() {
         </div>
 
       </div>
+      
     </>
   )
 }
