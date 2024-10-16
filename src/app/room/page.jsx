@@ -74,7 +74,9 @@ function Page() {
             </div>
             {/* amenities */}
             <div className="flex flex-col gap-4 my-6" id="amenities">
-              <h1 className="text-2xl font-semibold mb-2">What this place offers</h1>
+              <h1 className="text-2xl font-semibold mb-2">
+                What this place offers
+              </h1>
               <div className="grid md:grid-cols-2 grid-cols-1 gap-4 md:ps-0 ps-4">
                 <div className="flex gap-4 items-center">
                   <svg
@@ -153,31 +155,67 @@ function Page() {
             </div>
           </div>
         </div>
+        {/* mobile reserve */}
+        <div className="flex justify-between items-center md:hidden w-full border-t fixed bottom-0 start-0 end-0 px-8 py-2 bg-white z-20">
+          <div className="flex items-center gap-1">
+            <span>Rating:</span>
+            <span className="flex items-center gap-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
+                focusable="false"
+                style={{
+                  display: "block",
+                  height: "0.5625rem",
+                  width: "0.5625rem",
+                  fill: "var(--linaria-theme_palette-hof)",
+                }}
+              >
+                <path
+                  fillRule="evenodd"
+                  d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"
+                />
+              </svg>{" "}
+              {<>4.87</> || review.rating}
+            </span>
+          </div>
+          <button className="bg-[#FF385C] text-white w-fit text-base rounded-[6px] py-2 my-2 px-8">
+            Reserve
+          </button>
+        </div>
 
         {/* reviews & location */}
         <div className="flex flex-col">
-
           {/* reviews */}
           <div className="border-b">
-
-            <h1 className="text-2xl font-semibold mt-5" id="reviews">Reviews</h1>
+            <h1 className="text-2xl font-semibold mt-5" id="reviews">
+              Reviews
+            </h1>
 
             <div className="grid md:grid-cols-2 grid-cols-1 gap-x-24 gap-y-8 py-6">
-              {Array.from({ length: 5 }).map((_, i) => <Review key={i} />)}
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Review key={i} />
+              ))}
             </div>
-
           </div>
 
           <div className="flex flex-col gap-4 pb-8" id="location">
+            <h1 className="text-2xl font-semibold mt-5" id="reviews">
+              Where you&#39;ll be
+            </h1>
 
-            <h1 className="text-2xl font-semibold mt-5" id="reviews">Where you&#39;ll be</h1>
-
-            <span className="text-gray-700">{<>Greater London, England, United Kingdom</> || <>{address.street} {address.city} {address.country}</>}</span>
+            <span className="text-gray-700">
+              {<>Greater London, England, United Kingdom</> || (
+                <>
+                  {address.street} {address.city} {address.country}
+                </>
+              )}
+            </span>
 
             <StaticMap />
-
           </div>
-
         </div>
       </div>
     </>

@@ -20,7 +20,7 @@ const StaticMap = ({lat,long}) => {
       zoom={13}
       scrollWheelZoom={false}
       style={{ height: "500px", width: "100%" }}
-      className="border rounded-xl"
+      className="border rounded-xl z-10"
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
