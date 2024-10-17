@@ -20,7 +20,6 @@ const DateDropdown = () => {
   const handleReset = () => {
     setDateRange({ from: null, to: null });
   };
-  console.log("dateRange", dateRange);
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>

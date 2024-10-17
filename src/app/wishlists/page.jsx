@@ -1,23 +1,11 @@
-"use client";
-import img from "../../app/_assets/image.png";
-import { useState } from "react";
 import Container from "../_components/Container";
 import Heading from "../_components/Heading";
 import RecentlyViewed from "../_components/RecentlyViewed";
 import WishlistCard from "../_components/WishlistCard";
+import { fetchWishlists } from "../_actions/wishlist/wishlist";
 
-const Wishlist = () => {
-  const [wishlistItems, setWishlistItems] = useState([
-            { id: 1, imageSrc: img, title: "OMG! 2024", savedCount: 2 }, 
-            { id: 2, imageSrc: img, title: "Another Item", savedCount: 5 },
-            { id: 3, imageSrc: img, title: "Another Item", savedCount: 5 },
-  ]);
-
-  const handleRemoveItem = (itemId) => {
-    setWishlistItems((prevItems) =>
-      prevItems.filter((item) => item.id !== itemId)
-    );
-  };
+const Wishlist = async () => {
+  const wishlistItems = await fetchWishlists();
 
   return (
     <Container>
@@ -26,18 +14,18 @@ const Wishlist = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         <RecentlyViewed />
-
-        {wishlistItems.map((item) => (
-          <WishlistCard
-            key={item.id}
-            imageSrc={item.imageSrc}
-            imageAlt={item.imageAlt}
-            title={item.title}
-            savedCount={item.savedCount}
-            onRemove={() => handleRemoveItem(item.id)}
-            id={item.id}
-          />
-        ))}
+        {wishlistItems && wishlistItems.reverse().map((item) => {
+          return (
+            <WishlistCard
+              key={item.id}
+              imageSrc={item.listing[0].photos[0]} 
+              imageAlt={item.title}
+              title={item.title}
+              savedCount={item.listing.length || 0}
+              id={item._id}
+            />
+          );
+        })}
       </div>
     </Container>
   );
