@@ -12,11 +12,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
 
 function UserMenu() {
 
   const router = useRouter()
-
+  const { data: session, status } = useSession()
+  console.log(session,status);
+  const handleLogOut = async()=>{
+    const res = await signOut()
+    router.push("/")
+  }
   
   return (
     <>
@@ -55,7 +61,7 @@ function UserMenu() {
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[15rem] mr-16 bg-white px-0 py-3">
-            {true ?
+            {session ?
               (
                 <>
                   <DropdownMenuItem onClick={() => router.push('/guest/messages/6556')} className="hover:bg-[#e7e7e7] cursor-pointer pl-4 font-medium">
@@ -82,7 +88,7 @@ function UserMenu() {
                     Gift cards
                   </DropdownMenuItem><DropdownMenuItem onClick={()=> router.push('/')} className="hover:bg-[#e7e7e7] cursor-pointer pl-4">
                     Help Center
-                  </DropdownMenuItem><DropdownMenuItem onClick={()=> router.push('/')} className="hover:bg-[#e7e7e7] cursor-pointer pl-4">
+                  </DropdownMenuItem><DropdownMenuItem onClick={handleLogOut} className="hover:bg-[#e7e7e7] cursor-pointer pl-4">
                     Log Out
                   </DropdownMenuItem>
                 </>
@@ -90,10 +96,10 @@ function UserMenu() {
               :
               (
                 <>
-                  <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4">
+                  <DropdownMenuItem onClick={()=>router.push('/auth/login')} className="hover:bg-[#e7e7e7] cursor-pointer pl-4">
                     Log in
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="hover:bg-[#e7e7e7] cursor-pointer pl-4">
+                  <DropdownMenuItem onClick={()=>router.push('/auth/register')}  className="hover:bg-[#e7e7e7] cursor-pointer pl-4">
                     Sign up
                   </DropdownMenuItem>
                 </>

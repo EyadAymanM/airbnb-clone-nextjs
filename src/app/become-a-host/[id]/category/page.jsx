@@ -73,7 +73,7 @@ function Page() {
           </div>
         ))}
       </div>
-      <NextBackFooter progress={15} />
+      <NextBackFooter progress={12} />
     </>
   );
 }

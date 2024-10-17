@@ -57,11 +57,11 @@ function Page({ params: { id } }) {
     <>
       <Toaster />
 
-      <div className="w-full flex justify-center font-airbnb my-6">
+      <div className="w-full grow flex justify-center font-airbnb my-6">
 
-        <div className="w-[630px] py-20 px-3">
+        <div className="w-[630px] my-auto px-3">
 
-          <h1 className="mt-2 text-3xl font-semibold font-airbnb text-start">
+          <h1 className="text-3xl font-semibold font-airbnb text-start">
             Share some basics about your place
           </h1>
           <div className="text-[#777] text-base mb-2">
@@ -76,7 +76,7 @@ function Page({ params: { id } }) {
         </div>
 
       </div>
-      <NextBackFooter progress={40} next={updateFloorPlan} />
+      <NextBackFooter progress={45} next={updateFloorPlan} />
     </>
   )
 }

@@ -2,6 +2,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./_components/Header";
 import NavBar from "./_components/Navbar/NavBar";
+import Provider from "./_components/Providers/Provider";
+import ToastProvider from "./_components/Providers/ToastProvider";
+import Footer from "./_components/Footer/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,13 +35,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${airbnbCereal.variable} ${airbnbCerealArabic.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Provider>
+          <ToastProvider/>
         {/* <Header /> */}
-        <NavBar />
+        {/* <NavBar /> */}
         {children}
+        <Footer />
+        </Provider>
       </body>
     </html>
   );
