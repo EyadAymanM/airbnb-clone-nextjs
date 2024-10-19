@@ -1,8 +1,12 @@
 'use client'
 import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter"
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
 
-function Page() {
+function Page({ params: { id } }) {
+  const router = useRouter()
   const types = [
     {
       title: "An entire place (Apartment)",
@@ -22,6 +26,17 @@ function Page() {
     
   ]
   const [selectedType, setSelectedType] = useState(null);
+  const updateType = async () => {
+    if (selectedType) {
+      const listing = await updateListing(id, { category: selectedType })
+      if (listing._id)
+        router.push(`/become-a-host/${id}/location`)
+      else
+        toast('Somthing went wrong..')
+    } else {
+      toast('Please select a type')
+    }
+  }
   return (
     <>
       <h1 className="max-w-2xl mx-auto my-2 text-3xl font-semibold font-airbnb text-center">What type of place will guests have?</h1>
@@ -45,7 +60,7 @@ function Page() {
           </div>
         ))}
       </div>
-      <NextBackFooter progress={22} className="" />
+      <NextBackFooter progress={22} next={updateType} />
     </>
   )
 }

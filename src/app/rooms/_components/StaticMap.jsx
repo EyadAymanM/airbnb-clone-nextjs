@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { FaLocationArrow } from "react-icons/fa";
 
-const StaticMap = ({lat,long}) => {
-  const position = [30.0444, 31.2357];
+const StaticMap = ({ latitude, longitude }) => {
+  const [position, setPosition] = useState(null);
   const Icon = L.divIcon({
     className: "",
     html: `<svg className="w-8 h-8 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="red" viewBox="0 0 24 24">
@@ -14,6 +13,17 @@ const StaticMap = ({lat,long}) => {
 </svg>
 `,
   });
+
+  useEffect(() => {
+    if (typeof latitude === 'number' && typeof longitude === 'number') {
+      setPosition([latitude, longitude]);
+    }
+
+  }, [latitude, longitude])
+
+  if (!position) {
+    return <div>Loading map...</div>; // Render a loading state while fetching data
+  }
   return (
     <MapContainer
       center={position}

@@ -52,7 +52,7 @@ export default async function RoomDetail({params:{id}}) {
   // }
   const res = await fetch(`http://localhost:3000/listing/${id}`);
   const room = await res.json()
-  console.log(room);
+  // console.log(room);
   
   return (
 <>

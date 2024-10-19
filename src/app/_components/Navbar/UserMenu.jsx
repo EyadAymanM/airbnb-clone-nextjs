@@ -1,5 +1,4 @@
 'use client'
-import avatar from "../../_assets/124599.jpg";
 import hamburger from "../../_assets/svgs/hamburger-menu.svg";
 import globe from "../../_assets/svgs/globe.svg";
 
@@ -13,17 +12,25 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 function UserMenu() {
 
   const router = useRouter()
+  const [avatar, setAvatar] = useState('https://res.cloudinary.com/dqrid1fi3/image/upload/v1729230344/kwrifwuycusuohxopa8j.jpg')
   const { data: session, status } = useSession()
-  console.log(session,status);
+  console.log('session:',session);
+  console.log('status:',status);
   const handleLogOut = async()=>{
     const res = await signOut()
     router.push("/")
   }
-  
+  useEffect(()=>{
+    if (status == "authenticated") {
+      setAvatar(session.user.token.image)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status])
   return (
     <>
       <div className="flex">
@@ -52,10 +59,10 @@ function UserMenu() {
                 alt=""
               />
               <Image
-                className="w-9 h-9 rounded-full"
+                className="w-9 h-9 rounded-full object-cover"
                 src={avatar}
-                width=""
-                height=""
+                width="36"
+                height="36"
                 alt=""
               />
             </div>

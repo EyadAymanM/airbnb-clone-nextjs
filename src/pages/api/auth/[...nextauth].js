@@ -29,7 +29,7 @@ export default NextAuth({
         
         
 
-        if (user.accessToken) {
+        if (user.access_token) {
           return user;
         } else {
           throw new Error('wrong email or password')

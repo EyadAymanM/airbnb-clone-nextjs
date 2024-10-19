@@ -1,12 +1,16 @@
 "use client";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
 import AddLisitngNav from "@/app/_components/AddListingLayout/AddLisitngNav";
 import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 library.add(fas);
-function Page() {
+function Page({ params: { id } }) {
+  const router = useRouter()
   const categories = [
     {
       icon: "eye",
@@ -47,6 +51,17 @@ function Page() {
     },
   ];
   const [selectedType, setSelectedType] = useState(null);
+  const updateCategory = async () => {
+    if (selectedType) {
+      const listing = await updateListing(id, { category: selectedType })
+      if (listing._id)
+        router.push(`/become-a-host/${id}/type`)
+      else
+        toast('Somthing went wrong..')
+    } else {
+      toast('Please select a category')
+    }
+  }
   return (
     <>
       <h1 className="max-w-2xl mx-auto my-2 text-3xl font-semibold font-airbnb text-center">Which of these best describes your place?</h1>
@@ -66,14 +81,14 @@ function Page() {
               <FontAwesomeIcon
               fixedWidth={true}
                 icon={["fas", icon]}
-                className={`text-2xl mb-1 text-start ${selectedType ? "text-black" : "text-gray-500"}`}
+                className={`text-2xl mb-1 text-start ${selectedType === technicalName ? "text-black" : "text-gray-500"}`}
               />
             </div>
             <span className="text-base font-semibold font-airbnb ms-2 text-[#333]">{displayName}</span>
           </div>
         ))}
       </div>
-      <NextBackFooter progress={12} />
+      <NextBackFooter progress={12} next={updateCategory} />
     </>
   );
 }

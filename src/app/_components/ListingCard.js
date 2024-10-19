@@ -52,7 +52,7 @@ const ListingCard = ({ listing }) => {
               <span className="font-semibold flex items-baseline gap-1"><Image src={star} alt="" height={15} width={15} />4.9</span>
             </div>
             <div className="text-[#777] leading-4">
-              Stay in {listing.city}
+              Stay in {listing.address.city}
             </div>
             <div className="text-[#777] leading-6">
               Oct 10 - 15
