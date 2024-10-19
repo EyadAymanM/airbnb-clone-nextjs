@@ -6,16 +6,16 @@ import {
   } from "@/components/ui/avatar"
 
 
-export default function infoHost() {
+export default function HostInfo({img , name}) {
 
   return (
     <>
      <div className="flex items-center gap-3 ">
             <Avatar>
-      <AvatarImage src=""alt="@shadcn" />
-      <AvatarFallback>A</AvatarFallback>
+      <AvatarImage src={img}alt="@shadcn" />
+      <AvatarFallback>cn</AvatarFallback>
     </Avatar>
-     <h3 className='font-bold'>Hosted By Abeer</h3>
+     <h3 className='font-bold'>Hosted By {name}</h3>
      <br></br></div>
     
     </>
