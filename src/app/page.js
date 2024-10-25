@@ -1,6 +1,7 @@
 import { fetchData } from "./_actions/Listing/fetchData";
 import Container from "./_components/Container";
 import ListingCard from "./_components/ListingCard";
+import NavBar from "./_components/Navbar/NavBar";
 import CategoryList from "./_components/category";
 export default async function Home({ searchParams }) {
 
@@ -10,14 +11,18 @@ export default async function Home({ searchParams }) {
       console.log('sddsa');
   } catch {
     return (
+      <>
+      <NavBar />
       <Container>
-      <CategoryList />
-      <h1 className="font-airbnb text-2xl text-center">No listing in available in this category</h1>
+        <CategoryList />
+        <h1 className="font-airbnb text-2xl text-center">No listing in available in this category</h1>
       </Container>
+      </>
     )
   }
   return (
     <>
+      <NavBar />
       <Container>
         <CategoryList />
         <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">

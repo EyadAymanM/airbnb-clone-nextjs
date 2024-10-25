@@ -9,10 +9,13 @@ import SocialLoginButton from "../../_components/Modal/User/SocialLoginButton";
 import { login } from "@/app/_actions/User/user";
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useUser } from "../../_components/Providers/SessionProvider";
 
 
 const LoginPage = () => {
+  const {data : session , status} = useSession()
+  const {setSession} = useUser()
   const router = useRouter();
   const initialValues = {
     email: "",
@@ -34,13 +37,20 @@ const LoginPage = () => {
   });
 
   const onSubmit = async (values) => {
-    console.log(values);
+    // console.log(values);
     const res = await signIn('credentials', {...values,redirect:false})
+    // console.log(res);
+    
     if(res.error){
       toast.error(res.error)
     }else{
       router.push('/')
     }
+
+    if (status == "authenticated"){
+      setSession(session)
+    }
+
     // try {
     //   const result = await login(values);
     //   if (result.access_token) {
