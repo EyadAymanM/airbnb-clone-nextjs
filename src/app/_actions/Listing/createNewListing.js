@@ -10,7 +10,6 @@ export const createNewListing = async (token) => {
   });
   const newListing = await res.json()
   if (newListing){
-   
     redirect(`/become-a-host/${newListing._id}/category`)
   }
 };

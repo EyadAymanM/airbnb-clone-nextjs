@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
         <Provider>
           <ToastProvider/>
         {/* <Header /> */}
-        {/* <NavBar /> */}
+        <NavBar />
         {children}
         <Footer />
         </Provider>

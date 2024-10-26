@@ -56,7 +56,7 @@ const FavoriteListCard = ({ listing }) => {
             className={`bg-white hover:bg-white top-1/2 right-3 ${hover ? "" : "hidden"}`}
           />
         </Carousel>
-        <AddWishlistModal listingId={listing._id} />
+        {/* <AddWishlistModal listingId={listing._id} /> */}
         <Link href={`/rooms/${listing._id}`}>
           <div className="px-2">
             <div className="flex pt-1">

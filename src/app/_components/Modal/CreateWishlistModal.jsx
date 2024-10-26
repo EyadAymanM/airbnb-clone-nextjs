@@ -65,7 +65,7 @@ const CreateWishlistModal = ({ listingId, toggleIcon }) => {
             />
           )}
         </DialogTrigger>
-        <DialogContent className="bg-white border rounded-3xl max-w-2xl">
+        <DialogContent className="bg-white border rounded-3xl max-w-md">
           <DialogHeader>
             <DialogTitle className="text-xl text-center font-airbnb">
               Create wishlist

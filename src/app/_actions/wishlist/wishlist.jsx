@@ -1,11 +1,10 @@
-
 "use server"
 import axios from "axios";
-import { revalidatePath } from 'next/cache'
+import { revalidatePath } from 'next/cache';
 
 const API_BASE_URL = "http://localhost:3000/wishlist";
 
-const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDU1MzA2MDQ4ZWFhY2FlMmFkNmE3NiIsImZpcnN0TmFtZSI6Im1vc3RhZmEiLCJlbWFpbCI6ImZheWVkbW9zdGFmYUBnbWFpbC5jb20iLCJpYXQiOjE3MjkxNzI1NTgsImV4cCI6MTcyOTIxNTc1OH0.-EeixFOK0E45DmxWozy2EQEpMbKvWSPcV6Ny4YR-6KI`;
+const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDU1MzA2MDQ4ZWFhY2FlMmFkNmE3NiIsImZpcnN0TmFtZSI6Im1vc3RhZmEiLCJlbWFpbCI6ImZheWVkbW9zdGFmYUBnbWFpbC5jb20iLCJpYXQiOjE3Mjk1MDIzODksImV4cCI6MTcyOTU0NTU4OX0.wAZGCP0K4Y33L5-w0-8sBIAzmK7z7acDW_dSfTz-n3Q`;
 
 const authHeader = {
   headers: {
@@ -60,10 +59,24 @@ export const getWishlistById = async (wishlistId) => {
     const response = await axios.get(`${API_BASE_URL}/${wishlistId}`, authHeader);
     return response.data.listing;
   } catch (error) {
-    if (error.response && error.response.status === 404) {
-      throw new Error(`No wishlist found with ID: ${wishlistId}`);
-    } else {
       throw new Error(`Error retrieving wishlist with ID: ${wishlistId}`);
     }
+}
+
+export const getAllFavoriteListingIds = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/favorite/get`, authHeader);
+    return response.data.listingIds;
+  } catch (error) {
+    throw new Error(`Error retrieving listing IDs: ${error.message}`);
+  }
+};
+
+export const removeFromWishlist = async (listingId) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/favorite/remove/${listingId}`, authHeader );
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error removing listing from wishlist: ${error.message}`);
   }
 };

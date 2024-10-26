@@ -1,6 +1,6 @@
 import { Field } from "formik";
 
-const InputField = ({ id, name, type, label, icon: Icon }) => {
+const InputField = ({ id, name, type, label, icon: Icon, classNames }) => {
   return (
     <div className="w-full relative">
       <Field
@@ -8,7 +8,7 @@ const InputField = ({ id, name, type, label, icon: Icon }) => {
         name={name}
         type={type}
         placeholder=" "
-        className="peer w-full p-4 pt-6 font-light bg-white border-2 rounded-xl transition border-neutral-400 focus:border-neutral-800 focus:outline-none"
+        className={` w-full p-4 pt-6 font-light bg-white border-2 rounded-xl transition border-neutral-400 focus:border-neutral-800 focus:outline-none ${classNames}`}
       />
       <label
         htmlFor={id}
