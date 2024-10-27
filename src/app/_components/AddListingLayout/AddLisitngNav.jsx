@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function AddLisitngNav() {
+export default function AddLisitngNav({ onClick }) {
 
   const [scroll,setScroll] = useState(0)
   
@@ -40,7 +40,9 @@ export default function AddLisitngNav() {
                 </svg>
               </Link>
 
-              <button className="py-2 px-4 border rounded-3xl hover:border-black font-semibold">
+              <button 
+              onClick={onClick}
+              className="py-2 px-4 border rounded-3xl hover:border-black font-semibold">
                 Save & exit
               </button>
             </div>

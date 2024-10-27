@@ -79,7 +79,7 @@ const ListingCard = ({ listing }) => {
                 4.9
               </span>
             </div>
-            <div className="text-[#777] leading-4">Stay in {listing.city}</div>
+            <div className="text-[#777] leading-4">Stay in {listing.address.city}</div>
             <div className="text-[#777] leading-6">Oct 10 - 15</div>
           </div>
         </Link>

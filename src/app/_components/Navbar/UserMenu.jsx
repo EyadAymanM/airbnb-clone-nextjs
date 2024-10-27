@@ -35,7 +35,7 @@ function UserMenu() {
     <>
       <div className="flex">
         <div className="flex items-center me-1">
-          <button onClick={()=> router.push('/hosting')} className="text-[#222] font-medium  hover:bg-[#f7f7f7] p-3 rounded-full">
+          <button onClick={()=> router.push('/hosting/listings')} className="text-[#222] font-medium  hover:bg-[#f7f7f7] p-3 rounded-full">
             Switch to hosting
           </button>
           <button className="text-[#222] font-medium  hover:bg-[#f7f7f7] p-3 rounded-full">
@@ -68,7 +68,7 @@ function UserMenu() {
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[15rem] mr-16 bg-white px-0 py-3">
-            {true ?
+            {session ?
               (
                 <>
                   <DropdownMenuItem onClick={() => router.push('/guest/messages/6556')} className="hover:bg-[#e7e7e7] cursor-pointer pl-4 font-medium">
