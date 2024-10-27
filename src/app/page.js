@@ -8,7 +8,7 @@ export default async function Home({ searchParams }) {
   const listings = searchParams['category'] ? await fetchData(`listing?category=${searchParams['category']}`) : await fetchData(`listing`)
   try {
     if (listings['message'])
-      console.log('sddsa');
+      console.log('');
   } catch {
     return (
       <>

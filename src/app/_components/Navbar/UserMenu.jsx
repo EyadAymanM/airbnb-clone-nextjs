@@ -68,7 +68,7 @@ function UserMenu() {
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[15rem] mr-16 bg-white px-0 py-3">
-            {session ?
+            {true ?
               (
                 <>
                   <DropdownMenuItem onClick={() => router.push('/guest/messages/6556')} className="hover:bg-[#e7e7e7] cursor-pointer pl-4 font-medium">

@@ -94,7 +94,7 @@ const Location = ({params:{id}}) => {
           <MapContainer
             center={[28, 31]}
             zoom={6}
-            className="h-[500px] w-full rounded-xl shadow border border-[#555] z-10"
+            className="h-[500px] w-full rounded-xl shadow border border-[#555]"
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
