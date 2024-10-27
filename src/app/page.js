@@ -5,7 +5,7 @@ import NavBar from "./_components/Navbar/NavBar";
 import CategoryList from "./_components/category";
 export default async function Home({ searchParams }) {
 
-  const listings = searchParams['category'] ? await fetchData(`listing?category=${searchParams['category']}`) : await fetchData(`listing`)
+  const listings = searchParams['category'] ? await fetchData(`listing/verified?category=${searchParams['category']}`) : await fetchData(`listing/verified`)
   try {
     if (listings['message'])
       console.log('');

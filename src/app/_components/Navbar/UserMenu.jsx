@@ -29,6 +29,9 @@ function UserMenu() {
     if (status == "authenticated") {
       setAvatar(session.user.token.image)
     }
+    if (status == "unauthenticated") {
+      setAvatar('https://res.cloudinary.com/dqrid1fi3/image/upload/v1729230344/kwrifwuycusuohxopa8j.jpg')
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status])
   return (
