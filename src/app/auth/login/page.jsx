@@ -6,57 +6,50 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import Link from "next/link";
 import InputField from "../../_components/InputField";
 import SocialLoginButton from "../../_components/Modal/User/SocialLoginButton";
-import { login } from "@/app/_actions/User/user";
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 import { signIn } from "next-auth/react";
 
+const initialValues = {
+  email: "",
+  password: "",
+};
+
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required")
+    .matches(
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+      "Invalid email address pattern"
+    ),
+  password: Yup.string()
+    .min(4, "Password must be at least 4 characters")
+    .required("Password is required"),
+});
 
 const LoginPage = () => {
   const router = useRouter();
-  const initialValues = {
-    email: "",
-    password: "",
-  };
-  const notify = () => toast('Here is your toast.');
+  
+  const onSubmit = async (values, { setSubmitting }) => {
+    const result = await signIn("credentials", {
+      redirect: false,
+      email: values.email,
+      password: values.password,
+    });
 
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required")
-      .matches(
-        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        "Invalid email address pattern"
-      ),
-    password: Yup.string()
-      .min(4, "Password must be at least 4 characters")
-      .required("Password is required"),
-  });
+    setSubmitting(false);
 
-  const onSubmit = async (values) => {
-    console.log(values);
-    const res = await signIn('credentials', {...values,redirect:false})
-    if(res.error){
-      toast.error(res.error)
-    }else{
-      router.push('/')
+    if (result.ok) {
+      router.push('/');
+      toast.success("Login successful!");
+    } else {
+      toast.error("Login failed. Please try again.");
     }
-    // try {
-    //   const result = await login(values);
-    //   if (result.access_token) {
-    //     toast.success('Login successful!');
-    //     router.push("/");
-    //   } else {
-    //     toast.error(result.message || 'Login failed. Please try again.');
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error('An error occurred during login. Please try again.');
-    // }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center ">
+    <div className="min-h-screen flex items-center justify-center">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="bg-white border rounded-2xl w-full max-w-xl p-6 shadow-lg">
         <h1 className="text-xl text-center text-gray-900 p-3">Log in</h1>
@@ -103,7 +96,7 @@ const LoginPage = () => {
                 type="submit"
                 className="w-full py-3 bg-[#D70466] text-white rounded-lg hover:bg-[#e1227b] transition duration-300 font-semibold"
               >
-                Continue
+                Login
               </button>
               <p className="text-sm text-center mt-4">
                 Don&apos;t have an account?{" "}
@@ -124,10 +117,7 @@ const LoginPage = () => {
           <hr className="flex-grow border-t border-gray-300" />
         </div>
         <div className="space-y-2">
-          <SocialLoginButton
-            provider="facebook"
-            text="Continue with Facebook"
-          />
+          <SocialLoginButton provider="facebook" text="Continue with Facebook" />
           <SocialLoginButton provider="google" text="Continue with Google" />
           <SocialLoginButton provider="apple" text="Continue with Apple" />
         </div>

@@ -63,9 +63,9 @@ const Page = ({ params: { id } }) => {
 
           {/* Button Group */}
           <div className="mx-7 mb-4 flex space-x-2">
-            <DateDropdown />
-            <GuestSelector />
-            <ShareModal />
+            <DateDropdown listingId={id} />
+            <GuestSelector listingId={id} />
+            <ShareModal listingId={id} />
           </div>
 
           {/* Wishlist Items */}

@@ -32,7 +32,7 @@ const ShareModal = () => {
       </DialogTrigger>
       <DialogContent className="bg-white border rounded-3xl p-8 max-w-xl w-full">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold mb-4">
+          <DialogTitle className="text-xl text-center font-bold mb-4">
             Invite others to join
           </DialogTitle>
           <div className="flex items-center">

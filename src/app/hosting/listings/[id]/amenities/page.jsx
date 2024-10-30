@@ -38,10 +38,10 @@ function Page({ params: { id } }) {
         <AmenitiesModal listingId={id} selectedAmenities={amenities.map(({_id}) => _id)}/>
         </div>
         {amenities.length > 0 ? (<p className="text-xl text-gray-600 mb-4">
-          You’ve added these to your listing so far.
+          You&apos;ve added these to your listing so far.
         </p>):(
           <p className="text-xl text-gray-600 mb-4">
-            You haven't added any amenities yet.
+            You haven&apos;t added any amenities yet.
         </p>)
         }
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl">

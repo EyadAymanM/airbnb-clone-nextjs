@@ -9,11 +9,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../../components/ui/dialog";
+} from "@/components/ui/dialog";
 import grayHeartIcon from '../../_assets/gray-heart-icon.jpg';
 import IconButton from "../IconButton";
 import CreateWishlistModal from "./CreateWishlistModal";
-
+import withAuth from "@/lib/withAuth";
 
 const AddWishlistModal = ({ listingId }) => {
   const [showModal, setShowModal] = useState(false);
@@ -33,7 +33,9 @@ const AddWishlistModal = ({ listingId }) => {
         setFavoriteIds(favorite);
       } catch (error) {
         toast.error('Unable to fetch your wishlists. Please try again later.');
-      }
+      } 
+        setLoading(false);
+      
     };
     fetchItems();
   }, []);
@@ -42,12 +44,13 @@ const AddWishlistModal = ({ listingId }) => {
     setLoading(true);
     try {
       await addToWishlist(wishlistId, listingId);
-      toggleModal()
+      toggleModal();
       setFavoriteIds((prev) => [...prev, listingId]);
       toast.success('The listing has been added to your wishlist!');
     } catch (error) {
       toast.error('Failed to add to wishlist. Please try again.');
     }
+      setLoading(false);
   };
 
   const handleRemoveFromWishlist = async () => {
@@ -59,6 +62,7 @@ const AddWishlistModal = ({ listingId }) => {
     } catch (error) {
       toast.error('Failed to remove from wishlist. Please try again.');
     }
+      setLoading(false);
   };
 
   const isFavorite = favoriteIds.includes(listingId);
@@ -73,13 +77,15 @@ const AddWishlistModal = ({ listingId }) => {
 
   return (
     <div>
-      <Dialog open={isFavorite? null :showModal} onOpenChange={isFavorite?null :toggleModal}>
+      <Dialog open={showModal} onOpenChange={toggleModal}>
         <DialogTrigger asChild>
           <IconButton
             ariaLabel="Add to Wishlist"
-            icon={isFavorite? AiFillHeart :AiOutlineHeart}
+            icon={isFavorite ? AiFillHeart : AiOutlineHeart}
             onClick={handleIconClick}
-            classNames={`absolute top-4 right-4 flex items-center justify-center ${isFavorite ? 'text-red-500' :'text-white'}`}
+            classNames={`absolute top-4 right-4 flex items-center justify-center hover:scale-125 ${
+              isFavorite ? 'text-red-500' : 'text-gray-300'
+            }`}
           />
         </DialogTrigger>
         <DialogContent className="bg-white border rounded-3xl max-w-xl p-6 shadow-lg">
@@ -99,7 +105,6 @@ const AddWishlistModal = ({ listingId }) => {
                   savedCount={item.listing.length || 0}
                   id={item._id}
                   click={handleAddToWishlist}
-                  loading={loading}
                 />
               ))
             ) : (
@@ -114,19 +119,19 @@ const AddWishlistModal = ({ listingId }) => {
   );
 };
 
-export default AddWishlistModal;
+export default withAuth(AddWishlistModal);
 
 const WishlistItem = ({ image, title, savedCount, id, click }) => (
   <button
     className="flex flex-col items-center space-y-2 cursor-pointer overflow-hidden"
-    onClick={() => click(id)} 
+    onClick={() => click(id)}
   >
-    <div className="relative w-64 h-64 rounded-3xl"> 
+    <div className="relative w-64 h-64 rounded-3xl">
       <Image
         src={image || grayHeartIcon}
         alt={title}
         fill
-        className='object-cover rounded-3xl shadow-lg p-2 bg-white border-solid border-white border-spacing-1 hover:shadow-xl transition-shadow duration-200 ease-in-out mb-3'
+        className="object-cover rounded-3xl shadow-lg p-2 bg-white border-solid border-white hover:shadow-xl transition-shadow duration-200 ease-in-out mb-3"
       />
     </div>
     <div className="text-center">

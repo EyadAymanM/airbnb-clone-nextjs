@@ -120,7 +120,7 @@ const SignUpModal = () => {
                    touched.confirmPassword && errors.confirmPassword ? errors.confirmPassword : null}
                 </p>
                 <p className="text-sm text-gray-600 mb-4">
-                  We'll email you to confirm your email address. Standard message and data rates apply.{" "}
+                  We&apos;ll email you to confirm your email address. Standard message and data rates apply.{" "}
                   <Link href="#" className="underline">
                     Privacy Policy
                   </Link>

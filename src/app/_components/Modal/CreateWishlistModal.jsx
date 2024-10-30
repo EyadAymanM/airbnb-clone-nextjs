@@ -4,16 +4,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../../components/ui/dialog";
-
+} from "@/components/ui/dialog";
 import { createWishlists } from "@/app/_actions/wishlist/wishlist";
 import { Button } from "@/components/ui/button";
+import withAuth from "@/lib/withAuth";
 import { Form, Formik } from "formik";
 import { useState } from "react";
-import * as Yup from "yup";
-import InputField from "../InputField";
-import IconButton from "../IconButton";
 import { AiOutlineHeart } from "react-icons/ai";
+import * as Yup from "yup";
+import IconButton from "../IconButton";
+import InputField from "../InputField";
 
 const CreateWishlistModal = ({ listingId, toggleIcon }) => {
   const [showModal, setShowModal] = useState(false);
@@ -42,6 +42,8 @@ const CreateWishlistModal = ({ listingId, toggleIcon }) => {
       resetForm();
     } catch (error) {
       console.error("Error creating wishlist:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -120,4 +122,4 @@ const CreateWishlistModal = ({ listingId, toggleIcon }) => {
   );
 };
 
-export default CreateWishlistModal;
+export default withAuth(CreateWishlistModal);

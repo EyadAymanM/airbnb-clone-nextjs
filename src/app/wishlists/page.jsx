@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useState } from "react"; 
 import Container from "../_components/Container";
 import Heading from "../_components/Heading";
 import RecentlyViewed from "../_components/RecentlyViewed";
@@ -5,8 +7,19 @@ import WishlistCard from "../_components/WishlistCard";
 import { fetchWishlists } from "../_actions/wishlist/wishlist";
 import grayHeartIcon from "../../app/_assets/gray-heart-icon.jpg";
 
-const Wishlist = async () => {
-  const wishlistItems = await fetchWishlists();
+const Wishlist = () => {
+  const [wishlistItems, setWishlistItems] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const items = await fetchWishlists();
+        setWishlistItems(items);
+      } catch (err) {
+        console.error("Error fetching wishlists:", err);
+      } 
+    })();
+  }, [wishlistItems]);
 
   return (
     <Container>

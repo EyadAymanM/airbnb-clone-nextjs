@@ -14,6 +14,7 @@ import AddWishlistModal from "./Modal/AddWishlistModal";
 import { useEffect, useState } from "react";
 import { fetchWishlists } from "../_actions/wishlist/wishlist";
 import CreateWishlistModal from "./Modal/CreateWishlistModal";
+import withAuth from "@/lib/withAuth";
 
 const ListingCard = ({ listing }) => {
   const [hover, setHover] = useState(false);
@@ -47,7 +48,13 @@ const ListingCard = ({ listing }) => {
                   <div className="p-2">
                     <Card>
                       <CardContent className="flex aspect-square items-center justify-center p-0 ">
-                        <Image className="rounded-xl h-full" src={photo} width={303} height={200} alt="" />
+                        <Image
+                          className="rounded-xl h-full"
+                          src={photo}
+                          width={303}
+                          height={200}
+                          alt=""
+                        />
                       </CardContent>
                     </Card>
                   </div>
@@ -63,11 +70,13 @@ const ListingCard = ({ listing }) => {
           />
         </Carousel>
 
-        {wishlistItems && wishlistItems.length > 0 ? (
-          <AddWishlistModal listingId={listing._id} />
-        ) : (
-          <CreateWishlistModal listingId={listing._id} />
-        )}
+        {
+          wishlistItems && wishlistItems.length > 0 ? (
+            <AddWishlistModal listingId={listing._id} />
+          ) : (
+            <CreateWishlistModal listingId={listing._id} />
+          )
+        }
         <Link href={`/rooms/${listing._id}`}>
           <div className="px-2">
             <div className="flex pt-1">

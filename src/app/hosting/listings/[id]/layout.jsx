@@ -1,47 +1,27 @@
-"use client";
 import { fetchData } from "@/app/_actions/Listing/fetchData";
+import BackButton from "@/app/_components/BackButton";
 import CardEditorList from "@/app/_components/CardEditorList";
-import IconButton from "@/app/_components/IconButton";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { IoIosArrowRoundBack } from "react-icons/io";
 
-function Layout({ children, params }) {
-  const router = useRouter();
-  const [listing, setListing] = useState([]);
-  useEffect(() => {
-    const fetchInitialData = async () => {
-      try {
-        const data = await fetchData(`listing/${params.id}`);
-        setListing(data); 
-      } catch (error) {
-        toast.error("Error fetching initial data.");
-      }
-    };
+async function Layout({ children, params }) {
+  const { id } = params;
 
-    fetchInitialData();
-  }, []);
-  const handleBackClick = () => {
-    router.push("/hosting/listings");
-  };
+  let listing = [];
+  try {
+    listing = await fetchData(`listing/${id}`);
+  } catch (error) {
+    console.error("Error fetching initial data:", error);
+  }
 
   return (
     <div className="flex flex-col md:flex-row">
       {/* LEFT - Sidebar */}
       <div className="w-full md:w-1/3 bg-white p-6 border-r border-gray-200 ">
         <div className="flex items-center gap-4 p-4">
-          <IconButton
-            ariaLabel="Go Back to the previous page"
-            icon={IoIosArrowRoundBack}
-            onClick={handleBackClick}
-            classNames="bg-gray-100 hover:bg-gray-200"
-            role="button"
-          />
+          <BackButton /> 
           <h1 className="text-3xl font-bold text-gray-800">Listing Editor</h1>
         </div>
-        <div className="h-[72vh] overflow-y-auto ">
-          <CardEditorList listing={listing}/>
+        <div className="h-[72vh] overflow-y-auto">
+          <CardEditorList listing={listing} />
         </div>
       </div>
 
