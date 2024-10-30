@@ -13,7 +13,7 @@ import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
 import { useLocale, useTranslations } from "next-intl";
-import { Footer } from "react-day-picker";
+import Footer from "../../_components/Footer/Footer";
 
 function Page({ params: { id } }) {
   const t = useTranslations("Room")
@@ -190,7 +190,7 @@ function Page({ params: { id } }) {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer position={""} />
     </div>
   );
 }
