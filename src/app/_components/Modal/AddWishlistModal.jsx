@@ -81,7 +81,7 @@ const AddWishlistModal = ({ listingId }) => {
         <DialogTrigger asChild>
           <IconButton
             ariaLabel="Add to Wishlist"
-            icon={isFavorite ? AiFillHeart : AiOutlineHeart}
+            icon={AiFillHeart}
             onClick={handleIconClick}
             classNames={`absolute top-4 right-4 flex items-center justify-center hover:scale-125 ${
               isFavorite ? 'text-red-500' : 'text-gray-300'

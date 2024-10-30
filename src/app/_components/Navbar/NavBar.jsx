@@ -6,7 +6,7 @@ import UserMenu from "./UserMenu"
 function NavBar() {
   return (
     <>
-      <div className="w-full border-b sticky top-0 start-0 bg-white z-10">
+      <div className="w-full border-b sticky top-0 start-0 bg-white z-10 ">
 
         <div className="py-4 border-b">
 

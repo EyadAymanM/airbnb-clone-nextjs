@@ -8,9 +8,9 @@ const ListingEditorList = ({ listings }) => {
         <Link
           href={`/hosting/listings/${listing._id}/photo-tour`}
           key={index}
-          className="grid grid-cols-4 gap-4 bg-white p-6 shadow-md rounded-3xl transition-all hover:shadow-lg hover:cursor-pointer hover:bg-gray-100 items-center"
+          className="grid grid-cols-1 sm:grid-cols-4 gap-6 bg-white p-4 sm:p-6 shadow-md rounded-xl transition-all hover:shadow-lg hover:cursor-pointer hover:bg-gray-50 items-center"
         >
-          <div className="flex space-x-4 items-center col-span-2">
+          <div className="flex space-x-4 items-center col-span-1 sm:col-span-2">
             <Image
               width={64}
               height={64}
@@ -19,19 +19,19 @@ const ListingEditorList = ({ listings }) => {
               className="w-16 h-16 bg-gray-300 rounded-lg object-cover"
             />
             <div>
-              <p className="font-semibold text-lg">{listing.title}</p>
+              <p className="font-semibold text-lg text-gray-800">{listing.title}</p>
             </div>
           </div>
-          <div className="col-span-1">
+          <div className="col-span-1 sm:col-span-1 text-gray-600">
             {`${listing.address.street}, ${listing.address.city}, ${listing.address.governorate}, ${listing.address.country}`}
           </div>
-          <div className="col-span-1">
+          <div className="col-span-1 sm:col-span-1 flex justify-center">
             <span
               className={`inline-block px-3 py-1 rounded-full text-sm font-medium 
                   ${
                     listing.verified
                       ? "bg-green-100 text-green-600"
-                      : "bg-yellow-100 text-yellow-600"
+                      : "bg-red-100 text-red-600"
                   }`}
             >
               {listing.verified ? "Verified" : "Verification required"}

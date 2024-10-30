@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <>
-      <div className="w-full border-t fixed bottom-0 start-0 end-0 bg-white z-10">
+      <div className="w-full border-t fixed bottom-0 start-0 end-0 bg-white z-10 ">
 
         <div className="py-2 border-b">
 
