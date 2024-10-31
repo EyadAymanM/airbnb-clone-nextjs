@@ -1,5 +1,5 @@
 "use client";
-import NextBackFooter from "@/app/[locale]/_components/AddListingLayout/NextBackFooter";
+import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { Suspense, useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";

@@ -1,5 +1,5 @@
 'use client'
-import Heading from '@/app/[locale]/_components/Heading'
+import Heading from '@/app/_components/Heading'
 import { ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'

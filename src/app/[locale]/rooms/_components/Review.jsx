@@ -1,5 +1,5 @@
 import Image from "next/image";
-import t from "../../_assets/camera.jpg";
+import t from "../../../_assets/camera.jpg";
 
 function Review() {
   return (

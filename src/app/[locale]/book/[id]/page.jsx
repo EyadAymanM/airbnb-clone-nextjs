@@ -5,7 +5,7 @@ import { ChevronLeftIcon, ChevronRightIcon, Clock } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../_actions/Listing/fetchData";
-import Loading from "../../_components/UnauthenticatedComponent.jsx/Loading";
+import Loading from "../../../_components/UnauthenticatedComponent.jsx/Loading";
 import { Link } from "@/i18n/routing";
 function Page({ params: { id } }) {
   const t = useTranslations("book")

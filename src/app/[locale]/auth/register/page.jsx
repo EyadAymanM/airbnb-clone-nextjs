@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { MdEmail, MdPerson } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "@/i18n/routing";
-import InputField from "../../_components/InputField";
+import InputField from "../../../_components/InputField";
 import { signUp } from "@/app/[locale]/_actions/User/user";
 import { useRouter } from '@/i18n/routing';
 

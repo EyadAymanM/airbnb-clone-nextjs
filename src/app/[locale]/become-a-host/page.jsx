@@ -1,12 +1,12 @@
 'use client'
 import { ChevronLeftIcon, ChevronRightIcon, Home } from "lucide-react";
-import Container from "../_components/Container";
+import Container from "../../_components/Container";
 import { createNewListing } from "../_actions/Listing/createNewListing";
 import { useSession } from "next-auth/react";
 import { useRouter } from "@/i18n/routing";
 import {Link} from "@/i18n/routing";
-import UnauthenticatedComponent from "../_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
-import Loading from "../_components/UnauthenticatedComponent.jsx/Loading";
+import UnauthenticatedComponent from "../../_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
+import Loading from "../../_components/UnauthenticatedComponent.jsx/Loading";
 import { useLocale, useTranslations } from "next-intl";
 
 

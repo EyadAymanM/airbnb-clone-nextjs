@@ -4,9 +4,9 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-} from "../../../../components/ui/dropdown-menu";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "../../../../components/ui/tabs";
-import { Button } from "../../../../components/ui/button";
+} from "../../../components/ui/dropdown-menu";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "../../../components/ui/tabs";
+import { Button } from "../../../components/ui/button";
 import FlexibleOptions from "./FlexibleOptions";
 import CalendarComponent from "../CalendarComponent/CalendarComponent";
 

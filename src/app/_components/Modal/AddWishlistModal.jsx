@@ -1,4 +1,4 @@
-import { addToWishlist, fetchWishlists, getAllFavoriteListingIds, removeFromWishlist } from "@/app/[locale]/_actions/wishlist/wishlist";
+import { addToWishlist, fetchWishlists, getAllFavoriteListingIds, removeFromWishlist } from "@/app/_actions/wishlist/wishlist";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from 'react-hot-toast';
@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../../../components/ui/dialog";
+} from "../../../components/ui/dialog";
 import grayHeartIcon from '../../_assets/gray-heart-icon.jpg';
 import IconButton from "../IconButton";
 import CreateWishlistModal from "./CreateWishlistModal";

@@ -1,7 +1,7 @@
 
 
 import { getTranslations } from 'next-intl/server';
-import AcountCard from '../_components/acountCard'
+import AcountCard from '../../_components/acountCard'
 
 export default async function page() {
   const t = await getTranslations("personal");

@@ -1,7 +1,7 @@
-import Container from "../_components/Container";
-import Heading from "../_components/Heading";
-import RecentlyViewed from "../_components/RecentlyViewed";
-import WishlistCard from "../_components/WishlistCard";
+import Container from "../../_components/Container";
+import Heading from "../../_components/Heading";
+import RecentlyViewed from "../../_components/RecentlyViewed";
+import WishlistCard from "../../_components/WishlistCard";
 import { fetchWishlists } from "../_actions/wishlist/wishlist";
 import grayHeartIcon from "../../app/_assets/gray-heart-icon.jpg";
 

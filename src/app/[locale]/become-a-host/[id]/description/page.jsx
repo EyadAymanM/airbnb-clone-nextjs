@@ -1,5 +1,5 @@
 'use client'
-import NextBackFooter from "@/app/[locale]/_components/AddListingLayout/NextBackFooter";
+import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "@/i18n/routing";

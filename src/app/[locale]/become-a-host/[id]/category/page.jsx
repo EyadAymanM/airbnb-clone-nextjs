@@ -1,7 +1,7 @@
 "use client";
 import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing";
-import AddLisitngNav from "@/app/[locale]/_components/AddListingLayout/AddLisitngNav";
-import NextBackFooter from "@/app/[locale]/_components/AddListingLayout/NextBackFooter";
+import AddLisitngNav from "@/app/_components/AddListingLayout/AddLisitngNav";
+import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import parse from "html-react-parser";

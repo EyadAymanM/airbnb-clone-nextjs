@@ -1,7 +1,7 @@
 
 import {Link} from "@/i18n/routing";
 import { useEffect, useState } from "react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "../../../components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "../../components/ui/dropdown-menu";
 
 const GuestSelector = () => {
   const [guests, setGuests] = useState({ adults: 1, children: 0, infants: 0, pets: 0 });

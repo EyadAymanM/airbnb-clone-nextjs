@@ -1,6 +1,6 @@
 'use client'
 import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing";
-import NextBackFooter from "@/app/[locale]/_components/AddListingLayout/NextBackFooter";
+import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { useState } from "react";

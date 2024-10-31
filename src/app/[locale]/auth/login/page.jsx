@@ -4,13 +4,13 @@ import * as Yup from "yup";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "@/i18n/routing";
-import InputField from "../../_components/InputField";
-import SocialLoginButton from "../../_components/Modal/User/SocialLoginButton";
+import InputField from "../../../_components/InputField";
+import SocialLoginButton from "../../../_components/Modal/User/SocialLoginButton";
 import { login } from "@/app/[locale]/_actions/User/user";
 import { useRouter } from '@/i18n/routing';
 import toast, { Toaster } from 'react-hot-toast';
 import { signIn, useSession } from "next-auth/react";
-import { useUser } from "../../_components/Providers/SessionProvider";
+import { useUser } from "../../../_components/Providers/SessionProvider";
 
 
 const LoginPage = () => {

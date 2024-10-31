@@ -16,7 +16,7 @@ import hamburger from "../_assets/svgs/hamburger-menu.svg";
 import { BiSearch } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import GuestSelector from "./GuestSelector";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../../../components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../../components/ui/dropdown-menu";
 
 const Header = () => {
   const [isExpanded, setIsExpanded] = useState(false);

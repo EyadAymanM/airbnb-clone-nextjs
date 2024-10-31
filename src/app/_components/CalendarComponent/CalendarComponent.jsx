@@ -4,7 +4,7 @@ import { addDays, subDays, isAfter, isBefore } from "date-fns";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import "./CalendarComponent.css";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "../../../components/ui/button";
 
 const CalendarComponent = ({ dateRange, setDateRange }) => {
   const handleSelect = (item) => {

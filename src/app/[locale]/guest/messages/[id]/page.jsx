@@ -2,11 +2,11 @@
 import search from '@/app/_assets/svgs/search.svg'
 import setting from '@/app/_assets/svgs/setting.svg'
 import close from '@/app/_assets/svgs/close.svg'
-import MessageCard from '@/app/[locale]/_components/messages-components/messageCard'
-import MessageContentSection from '@/app/[locale]/_components/messages-components/messageContentSection'
+import MessageCard from '@/app/_components/messages-components/messageCard'
+import MessageContentSection from '@/app/_components/messages-components/messageContentSection'
 import Image from 'next/image'
 import { useState } from 'react'
-import MessageDetails from '@/app/[locale]/_components/messages-components/messageDetails'
+import MessageDetails from '@/app/_components/messages-components/messageDetails'
 const Page = () => {
   const [detailsOpen, setDetailsOpen] = useState(true)
   const [searchOpen, setSearchOpen] = useState(false)

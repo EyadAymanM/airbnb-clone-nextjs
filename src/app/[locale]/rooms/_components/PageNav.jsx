@@ -1,5 +1,5 @@
-import Logo from "@/app/[locale]/_components/Navbar/Logo"
-import UserMenu from "@/app/[locale]/_components/Navbar/UserMenu"
+import Logo from "@/app/_components/Navbar/Logo"
+import UserMenu from "@/app/_components/Navbar/UserMenu"
 
 function NavBar() {
   return (

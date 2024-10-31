@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { fetchData } from "./_actions/Listing/fetchData";
-import Container from "./_components/Container";
-import ListingCard from "./_components/ListingCard";
-import NavBar from "./_components/Navbar/NavBar";
-import CategoryList from "./_components/category";
-import Footer from "./_components/Footer/Footer";
+import { fetchData } from "../_actions/Listing/fetchData";
+import Container from "../_components/Container";
+import ListingCard from "../_components/ListingCard";
+import NavBar from "../_components/Navbar/NavBar";
+import CategoryList from "../_components/category";
+import Footer from "../_components/Footer/Footer";
 export default async function Home({ searchParams }) {
   const t = await getTranslations('HomePage');
   const listings = searchParams['category'] ? await fetchData(`listing/verified?category=${searchParams['category']}`) : await fetchData(`listing/verified`)

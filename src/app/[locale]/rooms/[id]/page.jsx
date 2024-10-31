@@ -2,18 +2,18 @@
 import Image from "next/image";
 import Gallery from "../_components/Gallery";
 // import PageNav from "../_components/PageNav";
-import PageNav from "@/app/[locale]/_components/Navbar/NavBar";
+import PageNav from "@/app/_components/Navbar/NavBar";
 import StickyNav from "../_components/stickyNav";
 import Title from "../_components/Title";
-import owner from "../../_assets/camera.jpg";
+import owner from "../../../_assets/camera.jpg";
 import { useRouter } from "@/i18n/routing";
 import Review from "../_components/Review";
 import StaticMap from "../_components/StaticMap";
 import parse from "html-react-parser";
 import { useEffect, useState } from "react";
-import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
+import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { useLocale, useTranslations } from "next-intl";
-import Footer from "../../_components/Footer/Footer";
+import Footer from "../../../_components/Footer/Footer";
 
 function Page({ params: { id } }) {
   const t = useTranslations("Room")

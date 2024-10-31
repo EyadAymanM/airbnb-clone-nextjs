@@ -5,10 +5,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../../../components/ui/dialog";
+} from "../../../components/ui/dialog";
 
 import { Button } from "@/components/ui/button";
-import { removeWishlist } from "@/app/[locale]/_actions/wishlist/wishlist";
+import { removeWishlist } from "@/app/_actions/wishlist/wishlist";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 

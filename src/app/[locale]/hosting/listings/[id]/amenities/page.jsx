@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
-import AmenitiesModal from "@/app/[locale]/_components/Modal/AmenitiesModal";
+import AmenitiesModal from "@/app/_components/Modal/AmenitiesModal";
 
 const AmenityIcon = ({ svgString }) => {
   return (

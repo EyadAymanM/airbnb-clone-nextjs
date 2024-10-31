@@ -1,9 +1,9 @@
 "use client"
-import AddLisitngNav from "../../_components/AddListingLayout/AddLisitngNav"
+import AddLisitngNav from "../../../_components/AddListingLayout/AddLisitngNav"
 import { useRouter } from "@/i18n/routing"
 import { signIn, useSession } from "next-auth/react"
-import UnauthenticatedComponent from "../../_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent"
-import Loading from "../../_components/UnauthenticatedComponent.jsx/Loading"
+import UnauthenticatedComponent from "../../../_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent"
+import Loading from "../../../_components/UnauthenticatedComponent.jsx/Loading"
 
 function Layout({ children }) {
   const router = useRouter()

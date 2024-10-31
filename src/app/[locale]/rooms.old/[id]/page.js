@@ -1,16 +1,16 @@
 'use client'
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import InfoReviews from '../../_components/infoReviews'
-import HostInfo from '@/app/[locale]/_components/HostInfo'
-import InfoAmenities from '@/app/[locale]/_components/infoAmenities'
-import CalendarDemo from '@/app/[locale]/_components/calender'
-import BookingCard from '@/app/[locale]/_components/bookingCard'
+import InfoReviews from '../../../_components/infoReviews'
+import HostInfo from '@/app/_components/HostInfo'
+import InfoAmenities from '@/app/_components/infoAmenities'
+import CalendarDemo from '@/app/_components/calender'
+import BookingCard from '@/app/_components/bookingCard'
 import { Button } from "@/components/ui/button"
-import Description from '@/app/[locale]/_components/description'
-import ImageGallery from '@/app/[locale]/_components/ImageGallery'
-import Container from '@/app/[locale]/_components/Container';
-import RoomInfo from '@/app/[locale]/_components/RoomInfo'
+import Description from '@/app/_components/description'
+import ImageGallery from '@/app/_components/ImageGallery'
+import Container from '@/app/_components/Container';
+import RoomInfo from '@/app/_components/RoomInfo'
 
 
 

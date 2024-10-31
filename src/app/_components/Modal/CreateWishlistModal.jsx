@@ -4,9 +4,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../../../components/ui/dialog";
+} from "../../../components/ui/dialog";
 
-import { createWishlists } from "@/app/[locale]/_actions/wishlist/wishlist";
+import { createWishlists } from "@/app/_actions/wishlist/wishlist";
 import { Button } from "@/components/ui/button";
 import { Form, Formik } from "formik";
 import { useState } from "react";

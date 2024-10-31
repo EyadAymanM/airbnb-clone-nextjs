@@ -1,17 +1,17 @@
 "use client";
 import { getWishlistById } from "@/app/[locale]/_actions/wishlist/wishlist";
-import FavoriteListCard from "@/app/[locale]/_components/FavoriteListCard";
+import FavoriteListCard from "@/app/_components/FavoriteListCard";
 import { useRouter } from "@/i18n/routing";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { IoIosArrowBack } from "react-icons/io";
-import DateDropdown from "../../_components/DateDropdown/DateDropdown";
-import GuestSelector from "../../_components/GuestSelector";
-import Heading from "../../_components/Heading";
-import IconButton from "../../_components/IconButton";
-import Map from "../../_components/Map/Map";
-import SettingsModal from "../../_components/Modal/SettingsModal";
-import ShareModal from "../../_components/Modal/ShareModal";
+import DateDropdown from "../../../_components/DateDropdown/DateDropdown";
+import GuestSelector from "../../../_components/GuestSelector";
+import Heading from "../../../_components/Heading";
+import IconButton from "../../../_components/IconButton";
+import Map from "../../../_components/Map/Map";
+import SettingsModal from "../../../_components/Modal/SettingsModal";
+import ShareModal from "../../../_components/Modal/ShareModal";
 
 const heartIconHtml = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="16px" height="16px">

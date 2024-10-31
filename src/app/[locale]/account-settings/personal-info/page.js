@@ -9,7 +9,7 @@ import Image from "next/image";
 import updateUser from "@/app/[locale]/_actions/User/updateUser"
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
-import UnauthenticatedComponent from "../../_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
+import UnauthenticatedComponent from "../../../_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
 
 export default function Page() {
   const t = useTranslations("user-info")

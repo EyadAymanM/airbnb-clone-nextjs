@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../../../../components/ui/dialog";
+} from "../../../../components/ui/dialog";
 import { MdEmail, MdPerson } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "@/i18n/routing";

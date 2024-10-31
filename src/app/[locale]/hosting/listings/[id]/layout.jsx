@@ -1,7 +1,7 @@
 "use client";
 import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
-import CardEditorList from "@/app/[locale]/_components/CardEditorList";
-import IconButton from "@/app/[locale]/_components/IconButton";
+import CardEditorList from "@/app/_components/CardEditorList";
+import IconButton from "@/app/_components/IconButton";
 import { useRouter } from "@/i18n/routingn";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
