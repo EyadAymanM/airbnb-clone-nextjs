@@ -4,9 +4,9 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import { useState, useEffect } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
+import { fetchData } from "@/app/_actions/Listing/fetchData";
 
 const LocationMarker = ({ setLocation }) => {
   useMapEvents({

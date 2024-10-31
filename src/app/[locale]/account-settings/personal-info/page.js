@@ -1,12 +1,12 @@
 "use client";
 
-import { getUser } from "@/app/[locale]/_actions/User/getUserInfo";
+import { getUser } from "@/app/_actions/User/getUserInfo";
 import { useSession } from "next-auth/react";
 import { useRouter } from "@/i18n/routing";
 import React, { useEffect, useState } from "react";
 import { CldUploadButton } from 'next-cloudinary';
 import Image from "next/image";
-import updateUser from "@/app/[locale]/_actions/User/updateUser"
+import updateUser from "@/app/_actions/User/updateUser"
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
 import UnauthenticatedComponent from "../../../_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";

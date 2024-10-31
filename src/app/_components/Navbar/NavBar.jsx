@@ -3,10 +3,10 @@ import Logo from "./Logo"
 import Search from "./Search"
 import UserMenu from "./UserMenu"
 
-function NavBar({ position }) {
+function NavBar({ position, className }) {
   return (
     <>
-      <div className={`w-full border-b ${position} top-0 start-0 bg-white z-10`}>
+      <div className={`w-full border-b ${position} top-0 start-0 bg-white z-10 ${className}`}>
 
         <div className="py-4 border-b">
 

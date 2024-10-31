@@ -1,12 +1,16 @@
 "use client"
 import Image from "next/image";
-import airbnb from "@/app/[locale]/_assets/svgs/Airbnb-Logo-full.svg";
+import airbnb from "@/app/_assets/svgs/Airbnb-Logo-full.svg";
 import { ChevronLeftIcon, ChevronRightIcon, Clock } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { fetchData } from "../../_actions/Listing/fetchData";
+import { fetchData } from "../../../_actions/Listing/fetchData";
 import Loading from "../../../_components/UnauthenticatedComponent.jsx/Loading";
 import { Link } from "@/i18n/routing";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
+
 function Page({ params: { id } }) {
   const t = useTranslations("book")
   const locale = useLocale();
@@ -27,6 +31,7 @@ function Page({ params: { id } }) {
     return (<Loading />)
   return (
     <div className="font-airbnb">
+      {/* Nav */}
       <div className="border-b">
         <Image
           className="hidden md:block mx-2"
@@ -95,11 +100,26 @@ function Page({ params: { id } }) {
               {t("p-7")}
             </p>
 
-            <button className="w-fit px-12 py-3 rounded-lg bg-[#E51D53] hover:bg-[#D11146] text-white">
+            <Elements
+            stripe={stripePromise}
+            options={{
+              mode: "payment",
+              amount: listing.price*100,
+              currency: 'usd'
+            }}
+            >
+
+            <form action="">
+              
+            <button type="submit" className="w-fit px-12 py-3 rounded-lg bg-[#E51D53] hover:bg-[#D11146] text-white">
               Book
             </button>
 
+            </form>
+            </Elements>
+
           </div>
+          {/* Sticky Card */}
           <div className="md:w-1/2 md:block hidden">
             <div className="border sticky top-8 start-0 mt-4 p-6 rounded-xl ms-20">
               <div className="border-b flex gap-2 pb-4 items-center">

@@ -1,5 +1,5 @@
 "use client";
-import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
 import AddLisitngNav from "@/app/_components/AddListingLayout/AddLisitngNav";
 import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -8,7 +8,7 @@ import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import toast from "react-hot-toast";
-import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
+import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { useTranslations } from "next-intl";
 library.add(fas);
 function Page({ params: { id } }) {

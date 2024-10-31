@@ -3,7 +3,7 @@ import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "@/i18n/routing";
-import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
 import { useTranslations } from "next-intl";
 
 function Page({ params: { id } }) {

@@ -1,5 +1,5 @@
 'use client'
-import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
 import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";

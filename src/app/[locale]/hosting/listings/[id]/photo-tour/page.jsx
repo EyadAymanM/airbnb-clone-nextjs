@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing";
-import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
+import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { CldUploadButton } from "next-cloudinary";
 import { Button } from "@/components/ui/button";
 import { FaPlus, FaTrash } from "react-icons/fa";

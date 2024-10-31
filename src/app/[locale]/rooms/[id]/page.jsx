@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Gallery from "../_components/Gallery";
-// import PageNav from "../_components/PageNav";
 import PageNav from "@/app/_components/Navbar/NavBar";
 import StickyNav from "../_components/stickyNav";
 import Title from "../_components/Title";
@@ -47,7 +46,7 @@ function Page({ params: { id } }) {
 
   return (
     <div>
-      <PageNav position={""}/>
+      <PageNav position={""} className="hidden md:block"/>
       <div className="max-w-[2520px] mx-auto xl:px-20 xl:mx-[120px] md:px-10 sm:px-5 px-4 font-airbnb">
         <Title title={room.title} />
 

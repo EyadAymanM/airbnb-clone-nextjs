@@ -5,7 +5,7 @@ import "leaflet-defaulticon-compatibility";
 import { useState } from "react";
 import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { toast ,Toaster } from "react-hot-toast";
-import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 

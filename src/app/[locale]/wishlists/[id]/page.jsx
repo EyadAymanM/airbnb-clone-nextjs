@@ -1,5 +1,5 @@
 "use client";
-import { getWishlistById } from "@/app/[locale]/_actions/wishlist/wishlist";
+import { getWishlistById } from "@/app/_actions/wishlist/wishlist";
 import FavoriteListCard from "@/app/_components/FavoriteListCard";
 import { useRouter } from "@/i18n/routing";
 import { useEffect, useState } from "react";

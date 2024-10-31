@@ -2,7 +2,7 @@ import { CiSearch } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa6";
 import { BsBricks } from "react-icons/bs";
 import ListingEditorList from "@/app/_components/ListingEditorList";
-import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
+import { fetchData } from "@/app/_actions/Listing/fetchData";
 import {Link} from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 

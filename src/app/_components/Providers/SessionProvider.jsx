@@ -1,17 +1,17 @@
-"use client";
-import { createContext, useContext, useState } from "react";
+// "use client";
+// import { createContext, useContext, useState } from "react";
 
-export const SessionContext = createContext(null);
+// export const SessionContext = createContext(null);
 
-const SessionContextProvider = ({ children }) => {
-  const [session, setSession] = useState(null);
+// const SessionContextProvider = ({ children }) => {
+//   const [session, setSession] = useState(null);
 
-  return (
-    <SessionContext.Provider value={{ session, setSession }}>
-      {children}
-    </SessionContext.Provider>
-  );
-};
-export default SessionContextProvider;
+//   return (
+//     <SessionContext.Provider value={{ session, setSession }}>
+//       {children}
+//     </SessionContext.Provider>
+//   );
+// };
+// export default SessionContextProvider;
 
-export const useUser = () => useContext(SessionContext)
+// export const useUser = () => useContext(SessionContext)

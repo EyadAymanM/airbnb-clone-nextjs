@@ -6,11 +6,10 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "@/i18n/routing";
 import InputField from "../../../_components/InputField";
 import SocialLoginButton from "../../../_components/Modal/User/SocialLoginButton";
-import { login } from "@/app/[locale]/_actions/User/user";
+import { login } from "@/app/_actions/User/user";
 import { useRouter } from '@/i18n/routing';
 import toast, { Toaster } from 'react-hot-toast';
 import { signIn, useSession } from "next-auth/react";
-import { useUser } from "../../../_components/Providers/SessionProvider";
 
 
 const LoginPage = () => {
@@ -46,23 +45,6 @@ const LoginPage = () => {
     }else{
       router.push('/')
     }
-
-    if (status == "authenticated"){
-      setSession(session)
-    }
-
-    // try {
-    //   const result = await login(values);
-    //   if (result.access_token) {
-    //     toast.success('Login successful!');
-    //     router.push("/");
-    //   } else {
-    //     toast.error(result.message || 'Login failed. Please try again.');
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error('An error occurred during login. Please try again.');
-    // }
   };
 
   return (

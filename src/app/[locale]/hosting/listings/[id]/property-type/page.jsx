@@ -1,6 +1,6 @@
 'use client';
-import { fetchData } from '@/app/[locale]/_actions/Listing/fetchData';
-import { updateListing } from '@/app/[locale]/_actions/Listing/updateListing';
+import { fetchData } from '@/app/_actions/Listing/fetchData';
+import { updateListing } from '@/app/_actions/Listing/updateListing';
 import { Button } from '@/components/ui/button';
 import { Field, Form, Formik, useFormikContext } from 'formik';
 import { useEffect, useState } from 'react';

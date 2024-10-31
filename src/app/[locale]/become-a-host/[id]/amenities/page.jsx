@@ -2,8 +2,8 @@
 import NextBackFooter from "@/app/_components/AddListingLayout/NextBackFooter";
 import { Suspense, useEffect, useState } from "react";
 import parse from "html-react-parser";
-import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
-import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing";
+import { fetchData } from "@/app/_actions/Listing/fetchData";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";

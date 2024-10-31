@@ -18,8 +18,8 @@ import avatar13 from "/src/app/_assets/avatar/13.png";
 import avatar14 from "/src/app/_assets/avatar/14.png";
 import avatar15 from "/src/app/_assets/avatar/15.png";
 import avatar16 from "/src/app/_assets/avatar/16.png";
-import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
-import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing"; 
+import { fetchData } from "@/app/_actions/Listing/fetchData";
+import { updateListing } from "@/app/_actions/Listing/updateListing"; 
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 

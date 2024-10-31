@@ -1,10 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "../_components/Header";
-import NavBar from "../_components/Navbar/NavBar";
 import Provider from "../_components/Providers/Provider";
 import ToastProvider from "../_components/Providers/ToastProvider";
-import SessionContextProvider from "../_components/Providers/SessionProvider";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -58,12 +55,10 @@ export default async function RootLayout({ children, params: { locale } }) {
       >
         <NextIntlClientProvider messages={messages}>
           <Provider>
-            <SessionContextProvider>
+            {/* <SessionContextProvider> */}
               <ToastProvider />
-              {/* <Header /> */}
-              {/* <NavBar /> */}
               {children}
-            </SessionContextProvider>
+            {/* </SessionContextProvider> */}
           </Provider>
         </NextIntlClientProvider>
       </body>

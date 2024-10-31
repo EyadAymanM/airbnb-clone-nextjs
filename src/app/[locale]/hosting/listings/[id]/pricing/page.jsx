@@ -1,11 +1,11 @@
 "use client";
-import { fetchData } from "@/app/[locale]/_actions/Listing/fetchData";
+import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { Button } from "@/components/ui/button";
 import { Form, Formik, Field } from "formik";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
-import { updateListing } from "@/app/[locale]/_actions/Listing/updateListing";
+import { updateListing } from "@/app/_actions/Listing/updateListing";
 
 const PricingPage = ({ params: { id } }) => {
   const [initialPrice, setInitialPrice] = useState("");

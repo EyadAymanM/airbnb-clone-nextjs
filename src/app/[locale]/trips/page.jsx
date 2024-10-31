@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Container from "../../_components/Container";
-import { fetchData, deleteData } from "@/app/[locale]/_actions/booking/fetchtrips";
+import { fetchData, deleteData } from "@/app/_actions/booking/fetchtrips";
 import { TripCard, NoTripsContent } from "@/app/_components/TripCard";
 
 const categorizeTrips = (reservations) => {
