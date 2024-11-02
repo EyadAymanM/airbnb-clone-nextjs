@@ -130,7 +130,10 @@
     "room": "A room",
     "room-desc": "Guests have their own room in a home, plus access to shared spaces.",
     "sharedroom": "A shared room in a hostel",
-    "sharedroom-desc": "Guests have the whole place to themselves."
+    "sharedroom-desc": "Guests have the whole place to themselves.",
+    "dates": "Please add when is your listing available",
+    "dates-desc": "Pick two dates: the start date and the end date - you can always change it later if it wasn't booked and add another date if the current date gets booked",
+    "dates-toast": "Please Select a Date"
   },
   "personal": {
     "account" : "Account",
@@ -154,6 +157,7 @@
     "not-verified": "Verification required"
   },
   "book": {
+    "book": "Book",
     "request": "Request to book",
     "trip": "Your trip",
     "dates": "Dates",

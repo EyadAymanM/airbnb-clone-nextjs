@@ -14,11 +14,11 @@ import AddWishlistModal from "./Modal/AddWishlistModal";
 import { useEffect, useState } from "react";
 import { fetchWishlists } from "../_actions/wishlist/wishlist";
 import CreateWishlistModal from "./Modal/CreateWishlistModal";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const ListingCard = ({ listing }) => {
   const t = useTranslations('ListingCard');
-
+  const locale = useLocale();
   const [hover, setHover] = useState(false);
   const [wishlistItems, setWishlistItems] = useState([]);
   const handleOver = () => {
@@ -39,6 +39,7 @@ const ListingCard = ({ listing }) => {
     <>
       <div className="max-w-xs mb-4 relative">
         <Carousel
+          
           className="w-full max-w-xs"
           onMouseOver={handleOver}
           onMouseOut={handleOut}
@@ -49,7 +50,7 @@ const ListingCard = ({ listing }) => {
                 <CarouselItem key={index}>
                   <div className="p-2">
                     <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-0 ">
+                      <CardContent dir={locale == "ar" ? "ltr" : ""} className="flex aspect-square items-center justify-center p-0 ">
                         <Image className="rounded-xl h-full" src={photo} width={303} height={200} alt="" />
                       </CardContent>
                     </Card>

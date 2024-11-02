@@ -5,6 +5,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Container from "../../_components/Container";
 import { fetchData, deleteData } from "@/app/_actions/booking/fetchtrips";
 import { TripCard, NoTripsContent } from "@/app/_components/TripCard";
+import NavBar from "@/app/_components/Navbar/NavBar";
+import Loading from "@/app/_components/UnauthenticatedComponent.jsx/Loading";
 
 const categorizeTrips = (reservations) => {
   const now = new Date();
@@ -47,7 +49,7 @@ export default function TripsPage() {
   }, []);
 
   const handleCancel = async (tripId) => {
-    if (window.confirm("Are you sure you want to cancel thic trip ?")) {
+    if (window.confirm("Are you sure you want to cancel this trip ?")) {
       try {
         await deleteData(tripId);
 
@@ -61,57 +63,62 @@ export default function TripsPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-12"> Loading trips...</div>;
+    return <Loading />;
   }
 
   return (
-    <Container>
-      <div className="min-h-screen">
-        <h1 className="text-3xl font-bold mb-6 pb-3 border-b">Trips</h1>
+    <div>
+      <NavBar />
+      <Container>
+        <div className="min-h-screen">
+          <h1 className="text-3xl font-bold mb-6 pb-3">Trips</h1>
+          <button onClick={()=> console.log(pastTrips)}>see</button>
 
-        {upcomingTrips.length === 0 && pastTrips.length === 0 ? (
-          <NoTripsContent />
-        ) : (
-          <Tabs defaultValue="upcoming" className="w-full">
-            <TabsList className="mb-4">
-              <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-              <TabsTrigger value="past"> past</TabsTrigger>
-            </TabsList>
-            <TabsContent value="upcoming">
-              {upcomingTrips.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {upcomingTrips.map((trip) => (
-                    <TripCard
-                      key={trip._id}
-                      trip={trip}
-                      listingID={trip.listingId}
-                      onCancel={handleCancel}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <NoTripsContent />
-              )}
-            </TabsContent>
-            <TabsContent value="past">
-              {pastTrips.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {pastTrips.map((trip) => (
-                    <TripCard
-                      key={trip._id}
-                      trip={trip}
-                      listingID={trip.listingId}
-                      onCancel={handleCancel}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <NoTripsContent />
-              )}
-            </TabsContent>
-          </Tabs>
-        )}
-      </div>
-    </Container>
+          {upcomingTrips.length === 0 && pastTrips.length === 0 ? (
+            <NoTripsContent />
+          ) : (
+            <Tabs defaultValue="upcoming" className="w-full">
+              <TabsList className="mb-4">
+                <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+                <TabsTrigger value="past"> past</TabsTrigger>
+              </TabsList>
+              <TabsContent value="upcoming">
+                {upcomingTrips.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {upcomingTrips.map((trip) => (
+                      <TripCard
+                        key={trip._id}
+                        trip={trip}
+                        listingID={trip.listingId}
+                        onCancel={handleCancel}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <NoTripsContent />
+                )}
+              </TabsContent>
+              <TabsContent value="past">
+                {pastTrips.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {pastTrips.map((trip) => (
+                      <TripCard
+                        key={trip._id}
+                        trip={trip}
+                        listingID={trip.listingId}
+                        onCancel={handleCancel}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <NoTripsContent />
+                )}
+              </TabsContent>
+            </Tabs>
+          )}
+        </div>
+      </Container>
+    </div>
+
   );
 }

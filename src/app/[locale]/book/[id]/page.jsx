@@ -9,26 +9,33 @@ import Loading from "../../../_components/UnauthenticatedComponent.jsx/Loading";
 import { Link } from "@/i18n/routing";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Checkout from "./_components/Checkout";
+import { useSession } from "next-auth/react";
+import UnauthenticatedComponent from "@/app/_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
 
 function Page({ params: { id } }) {
+  const { data: session , status } = useSession()
   const t = useTranslations("book")
   const locale = useLocale();
-  const [loading,setLoading] = useState(true)
-  const [listing,setListing] = useState({photos:[]})
-  
-  
-  useEffect(()=>{
-    const getListing = async()=>{
+  const [loading, setLoading] = useState(true)
+  const [listing, setListing] = useState({ photos: [] })
+
+
+  useEffect(() => {
+    const getListing = async () => {
       const res = await fetchData(`listing/${id}`)
       setListing(res)
       setLoading(false)
     }
     getListing()
-  },[id])
+  }, [id])
 
-  if (loading)
+  if (loading || status == "loading")
     return (<Loading />)
+  if (status == "unauthenticated")
+    return (<UnauthenticatedComponent />)
+  if (status == "authenticated")
   return (
     <div className="font-airbnb">
       {/* Nav */}
@@ -58,15 +65,15 @@ function Page({ params: { id } }) {
           <div className="md:w-1/2 mt-4 flex flex-col gap-4">
 
             <div className="flex flex-col gap-5 border-b pb-4">
-              <h1 className="text-2xl font-bold">{t("request")}</h1>
-              <div className="text-base"> 
+              <h1 className="text-2xl font-bold">{t("trip")}</h1>
+              <div className="text-base">
                 <div className="font-medium">{t("dates")}</div>
                 <div className="text-[#444]">Jan 3 – 8, 2025</div>
               </div>
-              <div className="text-base"> 
+              <div className="text-base">
                 <div className="font-medium">{t("guests")}</div>
                 <div className="text-[#444]">{listing.guests} {t("guest")}</div>
-              </div>             
+              </div>
             </div>
 
             <div className="my-4 border-b pb-4">
@@ -101,21 +108,14 @@ function Page({ params: { id } }) {
             </p>
 
             <Elements
-            stripe={stripePromise}
-            options={{
-              mode: "payment",
-              amount: listing.price*100,
-              currency: 'usd'
-            }}
+              stripe={stripePromise}
+              options={{
+                mode: "payment",
+                amount: listing.price * 100,
+                currency: 'usd'
+              }}
             >
-
-            <form action="">
-              
-            <button type="submit" className="w-fit px-12 py-3 rounded-lg bg-[#E51D53] hover:bg-[#D11146] text-white">
-              Book
-            </button>
-
-            </form>
+              <Checkout amount={listing.price} listing={listing} token={session.user.access_token}/>
             </Elements>
 
           </div>

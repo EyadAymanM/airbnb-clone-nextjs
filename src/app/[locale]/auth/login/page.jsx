@@ -14,7 +14,6 @@ import { signIn, useSession } from "next-auth/react";
 
 const LoginPage = () => {
   const {data : session , status} = useSession()
-  const {setSession} = useUser()
   const router = useRouter();
   const initialValues = {
     email: "",

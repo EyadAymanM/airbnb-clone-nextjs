@@ -13,10 +13,12 @@ import { useEffect, useState } from "react";
 import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { useLocale, useTranslations } from "next-intl";
 import Footer from "../../../_components/Footer/Footer";
+import Loading from "@/app/_components/UnauthenticatedComponent.jsx/Loading";
 
 function Page({ params: { id } }) {
   const t = useTranslations("Room")
   const t2 = useTranslations("ListingCard")
+  const [loading, setLoading] = useState(true);
   const locale = useLocale()
   const router = useRouter();
 
@@ -40,9 +42,12 @@ function Page({ params: { id } }) {
     const getRoom = async () => {
       const data = await fetchData(`listing/${id}`);
       setRoom(data);
+      setLoading(false)
     };
     getRoom();
   }, [id]);
+  if(loading)
+    return <Loading/>;
 
   return (
     <div>
@@ -75,7 +80,7 @@ function Page({ params: { id } }) {
             {/* owner */}
             <div className="flex items-center my-6 pb-8 border-b">
               <Image
-                src={owner}
+                src={room.owner.image || "https://res.cloudinary.com/dqrid1fi3/image/upload/v1729230344/kwrifwuycusuohxopa8j.jpg"}
                 alt=""
                 width="40"
                 height="40"
@@ -121,7 +126,9 @@ function Page({ params: { id } }) {
                 }).format(room.price)}
                 <span className="text-base"> {t2("night")}</span>
               </div>
-              <button className="bg-[#FF385C] text-white w-full text-lg rounded-[6px] py-2 my-2 ">
+              <button
+                onClick={()=> router.push(`/book/${id}`)}
+                className="bg-[#FF385C] text-white w-full text-lg rounded-[6px] py-2 my-2 ">
                 {t("reserve")}
               </button>
             </div>

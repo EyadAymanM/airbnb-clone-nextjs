@@ -1,7 +1,7 @@
 'use client'
 import { ChevronLeftIcon, ChevronRightIcon, Home } from "lucide-react";
 import Container from "../../_components/Container";
-import { createNewListing } from "../_actions/Listing/createNewListing";
+import { createNewListing } from "../../_actions/Listing/createNewListing";
 import { useSession } from "next-auth/react";
 import { useRouter } from "@/i18n/routing";
 import {Link} from "@/i18n/routing";

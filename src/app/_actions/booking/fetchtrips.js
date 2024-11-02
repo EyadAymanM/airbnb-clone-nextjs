@@ -1,16 +1,14 @@
-'use server'
+"use server";
 import axios from "axios";
 
-
 export const fetchData = async (path) => {
-  try{
-    const res = await axios.get(`http://localhost:3000/${path}`)
-    return res.data
-  }catch(err){
+  try {
+    const res = await axios.get(`http://localhost:3000/${path}`);
+    return res.data;
+  } catch (err) {
     console.log(err);
   }
-}
-
+};
 
 export const deleteData = async (id) => {
   try {
@@ -18,6 +16,18 @@ export const deleteData = async (id) => {
     return res.data;
   } catch (err) {
     console.log(err);
-    throw new Error('Failed to delete the trip');
+    throw new Error("Failed to delete the trip");
+  }
+};
+
+export const addReservation = async (token, data) => {
+  console.log(data);
+  try {
+    const res = await axios.post("http://localhost:3000/book", data, {
+      headers: { 'Authorization': token },
+    });
+    return res.data;
+  } catch (err) {
+    console.log(err.response.data.message);
   }
 };

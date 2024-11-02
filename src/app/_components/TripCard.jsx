@@ -19,13 +19,26 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Trash2, Moon, MapPin, Calendar } from "lucide-react";
 import Image from "next/image";
 import { format, differenceInDays } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "@/i18n/routing";
+import { useLocale } from "next-intl";
+import { ReviewComponent } from "./Review/ReviewComponent";
+
+
 
 export function TripCard({ trip, listingID, onCancel }) {
+  const locale = useLocale();
   const [isHovered, setIsHovered] = useState(false);
 
   const title = listingID?.title || "No title available";
@@ -100,7 +113,29 @@ export function TripCard({ trip, listingID, onCancel }) {
             </div>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-end">
+        <CardFooter className="flex justify-center">
+          {isPast && (
+
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <button
+                  className="w-fit px-12 py-3 rounded-lg bg-[#E51D53] hover:bg-[#D11146] text-white"
+                >
+                  Add review
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[525px] bg-white">
+                <DialogHeader>
+                  <DialogTitle className="text-center border-b pb-4">{locale == 'en' ? 'Submit a Review' : 'أضف مراجعة'}</DialogTitle>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="flex justify-around">
+                    <ReviewComponent title={title} city={city} trip={trip}/>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>)}
           {isUpcoming && (
             <AlertDialog>
               <AlertDialogTrigger asChild>
