@@ -9,14 +9,16 @@ import {
   CarouselPrevious,
 } from "../../components/ui/carousel";
 import Image from "next/image";
-import Link from "next/link";
+import {Link} from "@/i18n/routing";
 import AddWishlistModal from "./Modal/AddWishlistModal";
 import { useEffect, useState } from "react";
 import { fetchWishlists } from "../_actions/wishlist/wishlist";
 import CreateWishlistModal from "./Modal/CreateWishlistModal";
-import withAuth from "@/lib/withAuth";
+import { useTranslations } from "next-intl";
 
 const ListingCard = ({ listing }) => {
+  const t = useTranslations('ListingCard');
+
   const [hover, setHover] = useState(false);
   const [wishlistItems, setWishlistItems] = useState([]);
   const handleOver = () => {
@@ -48,13 +50,7 @@ const ListingCard = ({ listing }) => {
                   <div className="p-2">
                     <Card>
                       <CardContent className="flex aspect-square items-center justify-center p-0 ">
-                        <Image
-                          className="rounded-xl h-full"
-                          src={photo}
-                          width={303}
-                          height={200}
-                          alt=""
-                        />
+                        <Image className="rounded-xl h-full" src={photo} width={303} height={200} alt="" />
                       </CardContent>
                     </Card>
                   </div>
@@ -88,12 +84,12 @@ const ListingCard = ({ listing }) => {
                 4.9
               </span>
             </div>
-            <div className="text-[#777] leading-4">Stay in {listing.city}</div>
+            <div className="text-[#777] leading-4">{t("stay")} {listing.address.city}</div>
             <div className="text-[#777] leading-6">Oct 10 - 15</div>
           </div>
         </Link>
-        <div className="font-semibold ml-2">
-          {listing.price * 10}ج.م <span className="font-light">night</span>
+        <div className="font-semibold ms-2">
+          {listing.price * 10}ج.م <span className="font-light">{t("night")}</span>
         </div>
       </div>
     </>

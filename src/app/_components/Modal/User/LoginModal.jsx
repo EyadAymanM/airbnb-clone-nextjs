@@ -12,7 +12,7 @@ import {
 } from "../../../../components/ui/dialog";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import Link from "next/link";
+import {Link} from "@/i18n/routing";
 import SocialLoginButton from "./SocialLoginButton";
 import InputField from "../../InputField";
 

@@ -3,18 +3,19 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "../../../components/ui/button";
-
+import { useTranslations, useLocale } from 'next-intl';
 library.add(fas);
-const FlexibleOptions = () => {
-  const [stayOption, setStayOption] = useState("Weekend");
 
+const FlexibleOptions = () => {
+  const t = useTranslations('Wishlist');
+  const [stayOption, setStayOption] = useState(t('weekend'));
+  const options = [t('weekend'), t('week'), t('month')];
   return (
     <div className="py-4 space-y-4">
-      <p className="text-lg font-semibold text-center">
-        Stay for a {stayOption}
-      </p>
+      <p className="text-lg font-semibold text-center">{t('how-long')}</p>
       <div className="flex flex-wrap justify-center gap-2">
-        {["Weekend", "Week", "Month"].map((option) => (
+
+        {options.map((option) => (
           <Button
             key={option}
             variant="outline"
@@ -37,20 +38,12 @@ const MonthButtons = () => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const scrollContainerRef = useRef(null);
+  const t = useTranslations('Wishlist');
+  const locale = useLocale();
 
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    t('January'), t('February'), t('March'), t('April'), t('May'), t('June'),
+    t('July'), t('August'), t('September'), t('October'), t('November'), t('December'),
   ];
 
   const handleMonthClick = (month) => {
@@ -94,21 +87,21 @@ const MonthButtons = () => {
   }, []);
 
   return (
-    <div className="relative mx-10">
+    <div className="relative mx-6 sm:mx-10">
       <p className="text-lg font-semibold text-center">
         {activeMonths.length > 0
-          ? `Go in ${activeMonths.join(", ")}`
-          : "Go anytime"}
+          ? `${t('go-in')} ${activeMonths.join(", ")}`
+          : t('go-anytime')}
       </p>
       <div
         ref={scrollContainerRef}
-        className="overflow-x-auto flex gap-4 py-4 scroll-smooth"
+        className={`overflow-x-auto flex gap-4 py-4 scroll-smooth sm:gap-6 ${locale === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}
         style={{ scrollbarWidth: "none" }}
       >
         {months.map((month) => (
           <div
             key={month}
-            className={`min-w-32 py-6 px-4 border border-gray-300 rounded-xl hover:border-gray-900 transition duration-300 ease-in-out transform hover:scale-105 ${
+            className={`min-w-[100px] sm:min-w-32 py-4 px-3 sm:py-6 sm:px-4 border border-gray-300 rounded-xl hover:border-gray-900 transition duration-300 ease-in-out transform hover:scale-105 ${
               activeMonths.includes(month) ? "border-black bg-gray-200" : ""
             }`}
             onClick={() => handleMonthClick(month)}
@@ -125,17 +118,15 @@ const MonthButtons = () => {
                   className="text-gray-500 text-xl"
                 />
               )}
-              <div className="text-base font-medium mt-1">{month}</div>
-              <div className="text-xs font-light">
-                {new Date().getFullYear()}
-              </div>
+              <div className="text-sm font-medium mt-1">{month}</div>
+              <div className="text-xs font-light">{new Date().getFullYear()}</div>
             </div>
           </div>
         ))}
       </div>
       {showLeftArrow && (
         <button
-          className="absolute -left-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white p-2 border rounded-full shadow-md transition-opacity duration-300"
+          className="absolute -left-4 sm:-left-6 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white p-1 sm:p-2 border rounded-full shadow-md transition-opacity duration-300"
           onClick={() => scroll(-1)}
         >
           <FontAwesomeIcon icon={["fas", "chevron-left"]} />
@@ -143,7 +134,7 @@ const MonthButtons = () => {
       )}
       {showRightArrow && (
         <button
-          className="absolute -right-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white p-2 border rounded-full shadow-md transition-opacity duration-300"
+          className="absolute -right-4 sm:-right-6 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white p-1 sm:p-2 border rounded-full shadow-md transition-opacity duration-300"
           onClick={() => scroll(1)}
         >
           <FontAwesomeIcon icon={["fas", "chevron-right"]} />

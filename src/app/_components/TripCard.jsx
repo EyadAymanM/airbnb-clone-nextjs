@@ -23,7 +23,7 @@ import { Trash2, Moon, MapPin, Calendar } from "lucide-react";
 import Image from "next/image";
 import { format, differenceInDays } from "date-fns";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 
 export function TripCard({ trip, listingID, onCancel }) {
   const [isHovered, setIsHovered] = useState(false);

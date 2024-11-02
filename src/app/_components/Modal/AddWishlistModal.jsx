@@ -13,19 +13,16 @@ import {
 import grayHeartIcon from '../../_assets/gray-heart-icon.jpg';
 import IconButton from "../IconButton";
 import CreateWishlistModal from "./CreateWishlistModal";
-import withAuth from "@/lib/withAuth";
 
 const AddWishlistModal = ({ listingId }) => {
   const [showModal, setShowModal] = useState(false);
   const [wishlistItems, setWishlistItems] = useState([]);
   const [favoriteIds, setFavoriteIds] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const toggleModal = () => setShowModal(!showModal);
 
   useEffect(() => {
     const fetchItems = async () => {
-      setLoading(true);
       try {
         const res = await fetchWishlists();
         const favorite = await getAllFavoriteListingIds();
@@ -33,28 +30,24 @@ const AddWishlistModal = ({ listingId }) => {
         setFavoriteIds(favorite);
       } catch (error) {
         toast.error('Unable to fetch your wishlists. Please try again later.');
-      } 
-        setLoading(false);
-      
+      }       
     };
     fetchItems();
   }, []);
 
   const handleAddToWishlist = async (wishlistId) => {
-    setLoading(true);
     try {
       await addToWishlist(wishlistId, listingId);
-      toggleModal();
+      console.log(wishlistId, listingId);
+      toggleModal()
       setFavoriteIds((prev) => [...prev, listingId]);
       toast.success('The listing has been added to your wishlist!');
     } catch (error) {
       toast.error('Failed to add to wishlist. Please try again.');
     }
-      setLoading(false);
   };
 
   const handleRemoveFromWishlist = async () => {
-    setLoading(true);
     try {
       await removeFromWishlist(listingId);
       setFavoriteIds((prev) => prev.filter((id) => id !== listingId));
@@ -62,7 +55,6 @@ const AddWishlistModal = ({ listingId }) => {
     } catch (error) {
       toast.error('Failed to remove from wishlist. Please try again.');
     }
-      setLoading(false);
   };
 
   const isFavorite = favoriteIds.includes(listingId);
@@ -77,14 +69,14 @@ const AddWishlistModal = ({ listingId }) => {
 
   return (
     <div>
-      <Dialog open={showModal} onOpenChange={toggleModal}>
+      <Dialog open={isFavorite? null :showModal} onOpenChange={isFavorite?null :toggleModal}>
         <DialogTrigger asChild>
           <IconButton
             ariaLabel="Add to Wishlist"
             icon={AiFillHeart}
             onClick={handleIconClick}
-            classNames={`absolute top-4 right-4 flex items-center justify-center hover:scale-125 ${
-              isFavorite ? 'text-red-500' : 'text-gray-300'
+            classNames={`absolute top-4 text-gray-300 right-4 flex items-center justify-center hover:scale-125 ${
+              isFavorite ? 'text-red-500' : ''
             }`}
           />
         </DialogTrigger>
@@ -119,7 +111,7 @@ const AddWishlistModal = ({ listingId }) => {
   );
 };
 
-export default withAuth(AddWishlistModal);
+export default AddWishlistModal;
 
 const WishlistItem = ({ image, title, savedCount, id, click }) => (
   <button

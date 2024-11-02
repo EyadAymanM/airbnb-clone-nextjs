@@ -1,10 +1,11 @@
 'use client'
-import Link from "next/link";
+import {Link} from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function AddLisitngNav() {
-
+export default function AddLisitngNav({ onClick }) {
+  const t = useTranslations("become-a-host");
   const [scroll,setScroll] = useState(0)
   
   useEffect(()=>{
@@ -40,8 +41,10 @@ export default function AddLisitngNav() {
                 </svg>
               </Link>
 
-              <button className="py-2 px-4 border rounded-3xl hover:border-black font-semibold">
-                Save & exit
+              <button 
+              onClick={onClick}
+              className="py-2 px-4 border rounded-3xl hover:border-black font-semibold">
+                {t("save&exit")}
               </button>
             </div>
 

@@ -1,9 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Heading from "./Heading";
 import RemoveWishlistModal from "./Modal/removeWishlistModal";
+import { useTranslations } from 'next-intl';
 
 const WishlistCard = ({ imageSrc, imageAlt, title, savedCount, id }) => {
+  const t = useTranslations('Wishlist');
   return (
     <div className="relative group"> 
       <RemoveWishlistModal id={id} title={title} />
@@ -19,7 +21,7 @@ const WishlistCard = ({ imageSrc, imageAlt, title, savedCount, id }) => {
           </div>
         </div>
         <div className="p-1"> 
-            <Heading title={title} subtitle={`${savedCount} saved`} />
+            <Heading title={title} subtitle={`${t('saved')} ${savedCount} ${t('item')}`} />
           </div>
       </Link>
     </div>

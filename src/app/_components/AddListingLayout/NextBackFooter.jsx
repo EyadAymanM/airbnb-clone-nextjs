@@ -1,4 +1,7 @@
+import { useTranslations } from "next-intl";
+
 function NextBackFooter({ progress, back, next } ) {
+  const t = useTranslations("become-a-host");
   return (
     <div className="w-full sticky bottom-0 start-0 bg-white font-airbnb z-20">
 
@@ -8,9 +11,9 @@ function NextBackFooter({ progress, back, next } ) {
 
         <div className="flex flex-row items-center justify-between gap-3 md:gap-0 py-5">
 
-          <button className="underline hover:bg-[#f7f7f7] px-4 py-2 rounded-[5px]" onClick={back}>Back</button>
+          <button className="underline hover:bg-[#f7f7f7] px-4 py-2 rounded-[5px]" onClick={back}>{t("back")}</button>
           
-          <button className={`bg-[#222] hover:bg-black px-8 py-3 text-white rounded-[6px]`} onClick={next}>Next</button>
+          <button className={`bg-[#222] hover:bg-black px-8 py-3 text-white rounded-[6px]`} onClick={next}>{t("next")}</button>
 
         </div>
 

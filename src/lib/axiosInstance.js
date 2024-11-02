@@ -10,12 +10,11 @@ axiosInstance.interceptors.request.use(
   async (config) => {
     if (typeof window !== "undefined") {
       const session = await getSession();
-      const token = session?.user?.access_token;
+      const token = session?.user?.token.access_token;
       if (token) {
         config.headers.Authorization = token;
       }
     }
-
     return config;
   },
   (error) => {

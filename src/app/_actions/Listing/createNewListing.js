@@ -1,5 +1,5 @@
 'use server'
-import { redirect } from "next/navigation";
+import { redirect } from "@/i18n/routing";
 
 export const createNewListing = async (token) => {
   const res = await fetch("http://localhost:3000/listing/user",{

@@ -1,4 +1,4 @@
-import axiosInstance from "@/lib/axiosInstance";
+import axiosInstance from '@/lib/axiosInstance';
 import { revalidatePath } from 'next/cache';
 
 
@@ -42,10 +42,9 @@ export const removeWishlist = async (id) => {
 export const addToWishlist = async (wishlistId, listingId) => {
   try {
     const response = await axiosInstance.put(
-      `${API_BASE_URL}/add`,
+      `/wishlist/add`,
       { wishlistId, listingId }
     );
-    revalidatePath('/');
     return response.data;
   } catch (error) {
     console.error('Error adding listing to wishlist:', error);
