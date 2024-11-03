@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Gallery from "../_components/Gallery";
 import PageNav from "@/app/_components/Navbar/NavBar";
-import StickyNav from "../_components/stickyNav";
+import StickyNav from "../_components/StickyNav";
 import Title from "../_components/Title";
 import owner from "../../../_assets/camera.jpg";
 import { useRouter } from "@/i18n/routing";

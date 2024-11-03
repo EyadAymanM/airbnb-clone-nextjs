@@ -7,7 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "@/i18n/routing";
 import { updateListing } from "@/app/_actions/Listing/updateListing";
 import Image from "next/image";
-import camera from "../../../_assets/camera.jpg"
+import camera from "../../../../_assets/camera.jpg"
 import CldImage from "./CIdImage";
 import { CldUploadButton } from 'next-cloudinary';
 import { useTranslations } from "next-intl";
