@@ -80,7 +80,7 @@ function Page({ params: { id } }) {
             {/* owner */}
             <div className="flex items-center my-6 pb-8 border-b">
               <Image
-                src={room.owner.image || "https://res.cloudinary.com/dqrid1fi3/image/upload/v1729230344/kwrifwuycusuohxopa8j.jpg"}
+                src={room.owner?.image || "https://res.cloudinary.com/dqrid1fi3/image/upload/v1729230344/kwrifwuycusuohxopa8j.jpg"}
                 alt=""
                 width="40"
                 height="40"
@@ -88,7 +88,7 @@ function Page({ params: { id } }) {
                 onClick={() => router.push(`user/${owner.id}`)}
               />
               <div className="text-base font-medium">
-                {t("stay-with")} {room.owner.firstName}
+                {t("stay-with")} {room.owner?.firstName}
               </div>
             </div>
             {/* description */}

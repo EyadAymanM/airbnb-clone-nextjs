@@ -8,6 +8,8 @@ import {Link} from "@/i18n/routing";
 import UnauthenticatedComponent from "../../_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
 import Loading from "../../_components/UnauthenticatedComponent.jsx/Loading";
 import { useLocale, useTranslations } from "next-intl";
+import NavBar from "@/app/_components/Navbar/NavBar";
+import Footer from "@/app/_components/Footer/Footer";
 
 
 function Page() {
@@ -27,9 +29,10 @@ function Page() {
     )
   if (status == 'authenticated')
     return (
-      <>
+      <div>
+      <NavBar />
         <Container>
-          <div className="flex flex-col w-[620px] mx-auto px-4 font-airbnb gap-10">
+          <div className="flex flex-col w-[620px] mx-auto px-4 font-airbnb gap-10 md:mt-16">
             <h1 className="text-4xl font-semibold">{t("welcome")} {session.user.token.firstName} </h1>
 
             <div className="font-bold text-2xl">{t("manage")}</div>
@@ -67,7 +70,8 @@ function Page() {
             </div>
           </div>
         </Container>
-      </>
+        <Footer position={'fixed'}/>
+      </div>
     );
 }
 export default Page;

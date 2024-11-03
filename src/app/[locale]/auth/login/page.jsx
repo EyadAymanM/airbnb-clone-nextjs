@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import toast, { Toaster } from 'react-hot-toast';
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { Link, useRouter } from "@/i18n/routing";
 import SocialLoginButton from "@/app/_components/Modal/User/SocialLoginButton";
 import InputField from "@/app/_components/InputField";
@@ -51,6 +51,8 @@ const LoginPage = () => {
       toast.error(t('login-failed'));
     }
   };
+
+  if(status == "authenticated") router.push("/")
 
   return (
     <div className="min-h-screen flex items-center justify-center">

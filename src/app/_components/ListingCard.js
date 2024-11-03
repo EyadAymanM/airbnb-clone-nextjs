@@ -45,12 +45,12 @@ const ListingCard = ({ listing }) => {
           onMouseOut={handleOut}
         >
           <Link href={`/rooms/${listing._id}`}>
-            <CarouselContent>
+            <CarouselContent dir={locale == "ar" ? "ltr" : ""}>
               {listing.photos.map((photo, index) => (
                 <CarouselItem key={index}>
                   <div className="p-2">
                     <Card>
-                      <CardContent dir={locale == "ar" ? "ltr" : ""} className="flex aspect-square items-center justify-center p-0 ">
+                      <CardContent className="flex aspect-square items-center justify-center p-0 ">
                         <Image className="rounded-xl h-full" src={photo} width={303} height={200} alt="" />
                       </CardContent>
                     </Card>
