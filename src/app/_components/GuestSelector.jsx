@@ -26,7 +26,6 @@ const GuestSelector = ({wishlistItems, setWishlistItems}) => {
 
   const resetGuests = () => {
     setGuests({ adults: 1, children: 0, infants: 0, pets: 0 });
-    setWishlistItems([]);
   };
 
   const GuestTypeSelector = ({ title, subtitle, type }) => (
