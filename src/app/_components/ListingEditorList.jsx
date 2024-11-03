@@ -1,18 +1,22 @@
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
-import {Link} from "@/i18n/routing";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-const ListingEditorList = async ({ listings }) => {
-  const t = await getTranslations('Listings');
+const ListingEditorList = ({ listings, searchTerm }) => {
+  const t = useTranslations("Listings");
+  const filteredListings = listings.filter((listing) =>
+    listing.title?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="space-y-4">
-      {listings.map((listing, index) => (
+      {filteredListings.map((listing, index) => (
         <Link
           href={`/hosting/listings/${listing._id}/photo-tour`}
           key={index}
-          className="grid grid-cols-4 gap-4 bg-white p-6 shadow-md rounded-3xl transition-all hover:shadow-lg hover:cursor-pointer hover:bg-gray-100 items-center"
+          className="grid grid-cols-1 sm:grid-cols-4 gap-6 bg-white p-4 sm:p-6 shadow-md rounded-xl transition-all hover:shadow-lg hover:bg-gray-50 items-center"
         >
-          <div className="flex space-x-4 items-center col-span-2">
+          <div className="flex space-x-4 items-center col-span-1 sm:col-span-2">
             <Image
               width={64}
               height={64}
@@ -21,13 +25,15 @@ const ListingEditorList = async ({ listings }) => {
               className="w-16 h-16 bg-gray-300 rounded-lg object-cover"
             />
             <div>
-              <p className="font-semibold text-lg">{listing.title}</p>
+              <p className="font-semibold text-lg text-gray-800">{listing.title}</p>
             </div>
           </div>
-          <div className="col-span-1">
-            {`${listing.address.street}, ${listing.address.city}, ${listing.address.governorate}, ${listing.address.country}`}
+          <div className="col-span-1 sm:col-span-1 text-gray-600">
+            {listing.address 
+              ? `${listing.address.street || ""}, ${listing.address.city || ""}, ${listing.address.governorate || ""}, ${listing.address.country || ""}` 
+              : t("location-not-specified")}
           </div>
-          <div className="col-span-1">
+          <div className="col-span-1 sm:col-span-1 flex justify-center">
             <span
               className={`inline-block px-3 py-1 rounded-full text-sm font-medium 
                   ${
@@ -41,6 +47,12 @@ const ListingEditorList = async ({ listings }) => {
           </div>
         </Link>
       ))}
+
+      {filteredListings.length === 0 && (
+        <div className="text-center text-gray-600 py-10">
+          {t("no-matching-listings")}
+        </div>
+      )}
     </div>
   );
 };

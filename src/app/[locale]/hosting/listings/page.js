@@ -1,40 +1,91 @@
+"use client";
 import { CiSearch } from "react-icons/ci";
+import { AiOutlineClose } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa6";
 import { BsBricks } from "react-icons/bs";
 import ListingEditorList from "@/app/_components/ListingEditorList";
-import { fetchData } from "@/app/_actions/Listing/fetchData";
-import {Link} from "@/i18n/routing";
-import { getTranslations } from "next-intl/server";
+import axiosInstance from "@/lib/axiosInstance";
+import { useEffect, useState } from "react";
+import NavBar from "@/app/_components/Navbar/NavBar";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
+function Page() {
+  const [listings, setListings] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchVisible, setSearchVisible] = useState(false);
+  const t = useTranslations('Listings');
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const response = await axiosInstance.get("/listing/hosting/listings");
+        setListings(response.data);
+      } catch (error) {
+        console.error("Failed to fetch listings:", error);
+      }
+    };
+    fetchListings();
+  }, []);
 
+  const handleSearchClick = () => {
+    setSearchVisible((prev) => !prev);
+  };
 
-async function Page() {
-  const t = await getTranslations('Listings');
-  const listings = await fetchData('listing');
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
-    <div className="container mx-auto px-10 ">
-      <div className="flex justify-between items-center my-5">
-        <h1 className="text-4xl font-bold mb-10">{t('your-listings')}</h1>
-        <div className="flex items-center">
-          <CiSearch className="text-4xl mr-4 bg-gray-100 rounded-full p-2 hover:bg-gray-300" />
-          <BsBricks className="text-4xl mr-4 bg-gray-100 rounded-full p-2 hover:bg-gray-300" />
-          <Link href="/become-a-host">
-          <FaPlus className="text-4xl bg-gray-100 rounded-full p-2 hover:bg-gray-300" />
+    <>
+    <NavBar className="hidden md:block" />
+    <div className="container mx-auto px-4 sm:px-10">
+      <div className="flex flex-col sm:flex-row justify-between items-center my-5 ">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-5 sm:mb-0">
+          {t("your-listings")}
+        </h1>
+        <div className="flex space-x-4 items-center">
+          <div className="relative flex items-center">
+            {searchVisible ? (
+              <AiOutlineClose
+                onClick={handleSearchClick}
+                className="text-3xl  sm:text-4xl p-2 bg-gray-100 rounded-full hover:bg-gray-300 cursor-pointer"
+              />
+            ) : (
+              <CiSearch
+                onClick={handleSearchClick}
+                className="text-3xl sm:text-4xl p-2 bg-gray-100 rounded-full hover:bg-gray-300 cursor-pointer transition-colors duration-200 ease-in-out mx-2"
+              />
+            )}
+
+            {searchVisible && (
+              <input
+                type="text"
+                placeholder={t("search-listings-by-name")}
+                value={searchTerm}
+                onChange={handleSearchChange}
+                className="pl-12 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 w-full sm:w-80 transition-transform duration-200 ease-in-out transform"
+              />
+            )}
+          </div>
+
+          <BsBricks className="text-3xl sm:text-4xl p-2 bg-gray-100 rounded-full hover:bg-gray-300 cursor-pointer" />
+          <Link href="/become-a-host"> 
+            <FaPlus className="text-3xl sm:text-4xl p-2 bg-gray-100 rounded-full hover:bg-gray-300 cursor-pointer" />
           </Link>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-4 text-gray-600 font-semibold py-3 rounded-md mb-4">
-  <div className="col-span-2">{t("listing")}</div>
-  <div className="col-span-1">{t("location")}</div>
-  <div className="col-span-1">{t("status")}</div>
-</div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-gray-600 font-semibold py-3 rounded-md mb-4">
+        <div className="col-span-2 sm:col-span-2">{t("listing")}</div>
+        <div className="hidden sm:table-cell">{t("location")}</div>
+        <div className="hidden sm:table-cell">{t("status")}</div>
+      </div>
+      
       <div className="mb-20">
-        <ListingEditorList listings={listings} />
+        <ListingEditorList listings={listings} searchTerm={searchTerm} />
       </div>
     </div>
+    </>
   );
 }
 
 export default Page;
-
-export const revalidate=60

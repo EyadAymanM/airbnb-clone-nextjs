@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
@@ -7,6 +7,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { updateListing } from "@/app/_actions/Listing/updateListing";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { fetchData } from "@/app/_actions/Listing/fetchData";
+import { useLocale, useTranslations } from "next-intl";
 
 const LocationMarker = ({ setLocation }) => {
   useMapEvents({
@@ -19,6 +20,7 @@ const LocationMarker = ({ setLocation }) => {
 };
 
 const Location = ({ params: { id } }) => {
+  const t = useTranslations("Listings");
   const [location, setLocation] = useState({
     latitude: 26.555,
     longitude: 31.695,
@@ -31,6 +33,7 @@ const Location = ({ params: { id } }) => {
     postalCode: "",
   });
   const [loading, setLoading] = useState(true);
+  const locale = useLocale();
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -51,12 +54,12 @@ const Location = ({ params: { id } }) => {
     try {
       const listing = await updateListing(id, { address: values, location });
       if (listing._id) {
-        toast.success("Location updated successfully!");
+        toast.success(t("location-updated-successfully"));
       } else {
-        toast.error("Something went wrong.");
+        toast.error(t("something-went-wrong"));
       }
     } catch (error) {
-      toast.error("Error updating location: " + error.message);
+      toast.error(t("error-updating-location") + " " + error.message);
     }
   };
 
@@ -65,8 +68,8 @@ const Location = ({ params: { id } }) => {
       <Toaster />
       <div className="flex justify-center font-airbnb">
         <div className="w-full">
-          <h1 className="my-2 text-3xl font-semibold text-start">Location</h1>
-          <div className="h-[70vh] overflow-y-auto">
+          <h1 className="my-4 text-3xl font-semibold text-start sticky top-0 bg-white">{t("location")}</h1>
+          {/* <div className=""> */}
             {loading ? (
               <div className="animate-pulse h-[300px] w-full rounded-xl shadow border border-[#555] bg-gray-300"></div>
             ) : (
@@ -88,7 +91,7 @@ const Location = ({ params: { id } }) => {
               {({ isSubmitting }) => (
                 <Form>
                   <div className="border-2 rounded-xl my-4 shadow p-4">
-                    {Object.keys(initialAddress).map((field) => (
+                    {["country", "city", "governorate", "street", "postalCode"].map((field) => (
                       <div key={field} className="relative mb-4">
                         <Field
                           id={field}
@@ -98,9 +101,9 @@ const Location = ({ params: { id } }) => {
                         />
                         <label
                           htmlFor={field}
-                          className="absolute text-sm text-neutral-600 -translate-y-3 top-5 left-4 peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-4 peer-focus:scale-75"
+                          className={`absolute text-sm text-neutral-600 -translate-y-3 top-5 peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-4 peer-focus:scale-75 ${locale === "ar" ? "right-4" : "left-4 "}`}
                         >
-                          {field.charAt(0).toUpperCase() + field.slice(1)}
+                          {t(field)} 
                         </label>
                         <ErrorMessage name={field} component="div" className="text-red-500 text-sm" />
                       </div>
@@ -112,7 +115,7 @@ const Location = ({ params: { id } }) => {
                       className="p-4 bg-black text-white rounded-xl hover:bg-gray-800"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? "Updating..." : "Update Location"}
+                      {isSubmitting ? t("saving") : t("save")}
                     </button>
                   </div>
                 </Form>
@@ -120,7 +123,7 @@ const Location = ({ params: { id } }) => {
             </Formik>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };

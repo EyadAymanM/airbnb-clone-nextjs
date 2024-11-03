@@ -3,12 +3,13 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { MdEmail, MdPerson } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { Link } from "@/i18n/routing";
 import InputField from "../../../_components/InputField";
 import { signUp } from "@/app/_actions/User/user";
-import { useRouter } from '@/i18n/routing';
+import { Link, useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 const RegisterPage = () => {
+  const t = useTranslations('auth');
   const router = useRouter();
   const initialValues = {
     firstName: "",
@@ -19,21 +20,21 @@ const RegisterPage = () => {
   };
 
   const validationSchema = Yup.object({
-    firstName: Yup.string().required("First Name is required"),
-    lastName: Yup.string().required("Last Name is required"),
+    firstName: Yup.string().required(t('first-name-is-required')),
+    lastName: Yup.string().required(t('last-name-is-required')),
     email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required")
+      .email(t('invalid-email-address'))
+      .required(t('email-is-required'))
       .matches(
         /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        "Invalid email address pattern"
+        t('invalid-email-address-pattern')
       ),
     password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .required("Password is required"),
+      .min(6, t('password-must-be-at-least-6-characters'))
+      .required(t('password-is-required')),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords must match')
-      .required('Confirm Password is required'),
+      .oneOf([Yup.ref('password'), null], t('passwords-must-match'))
+      .required(t('confirm-password-is-required')),
   });
 
   const onSubmit = async (values) => {
@@ -47,11 +48,13 @@ const RegisterPage = () => {
 
   return (
             <div className=" min-h-screen flex items-center justify-center">
-            <div className="bg-white border rounded-2xl w-full max-w-2xl p-6 shadow-lg">
-              <h1 className="text-xl text-center text-gray-900 p-3">Create a new account</h1>
+            <div className="bg-white border rounded-2xl w-full max-w-lg p-6 shadow-lg">
+              <h1 className="text-xl text-center text-gray-900 p-3">
+                {t('create-a-new-account')}
+              </h1>
               <hr className="border-neutral-300 mb-4" />
               <p className="text-lg text-gray-900 font-semibold mb-4">
-                Welcome to Airbnb
+                {t('welcome-to-airbnb')}
               </p>
         
       <Formik
@@ -65,48 +68,48 @@ const RegisterPage = () => {
               id="firstName"
               name="firstName"
               type="text"
-              label="First Name"
+              label={t('first-name')}
               icon={MdPerson}
             />
             <InputField
               id="lastName"
               name="lastName"
               type="text"
-              label="Last Name"
+              label={t('last-name')}
               icon={MdPerson}
             />
             <InputField
               id="email"
               name="email"
               type="email"
-              label="Email"
+              label={t('email')}
               icon={MdEmail}
             />
             <InputField
               id="password"
               name="password"
               type="password"
-              label="Password"
+              label={t('password')}
               icon={RiLockPasswordLine}
             />
             <InputField
               id="confirmPassword"
               name="confirmPassword"
               type="password"
-              label="Confirm Password"
+              label={t('confirm-password')}
               icon={RiLockPasswordLine}
             />
             <p className="text-sm text-red-600 mb-4">
               {touched.firstName && errors.firstName ? errors.firstName :
-               touched.lastName && errors.lastName ? errors.lastName :
-               touched.email && errors.email ? errors.email :
-               touched.password && errors.password ? errors.password :
-               touched.confirmPassword && errors.confirmPassword ? errors.confirmPassword : null}
+                touched.lastName && errors.lastName ? errors.lastName :
+                  touched.email && errors.email ? errors.email :
+                    touched.password && errors.password ? errors.password :
+                      touched.confirmPassword && errors.confirmPassword ? errors.confirmPassword : null}
             </p>
             <p className="text-sm text-gray-600 mb-4">
-              We&apos;ll email you to confirm your email address. Standard message and data rates apply.{" "}
+              {t('we-ll-email-you-to-confirm-your-email-address')}. {t('standard-message-and-data-rates-apply')}{" "}
               <Link href="#" className="underline">
-                Privacy Policy
+                {t('privacy-policy')}
               </Link>
             </p>
             <button
@@ -114,15 +117,15 @@ const RegisterPage = () => {
               disabled={isSubmitting}
               className="w-full py-3 bg-[#D70466] text-white rounded-lg hover:bg-[#e1227b] transition duration-300 font-semibold disabled:opacity-50"
             >
-              {isSubmitting ? "Creating Account..." : "Create Account"}
+              {isSubmitting ? t('creating-account') : t('create-account')}
             </button>
             <p className="text-sm text-center mt-4">
-              Already have an account?{" "}
+              {t('already-have-an-account')}{" "}
               <Link
                 href="/auth/login"
                 className="text-[#D70466] hover:underline"
               >
-                Log in
+                {t('login')}
               </Link>
             </p>
           </Form>

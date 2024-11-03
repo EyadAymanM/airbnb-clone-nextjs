@@ -3,10 +3,12 @@ import { fetchData } from '@/app/_actions/Listing/fetchData';
 import { updateListing } from '@/app/_actions/Listing/updateListing';
 import { Button } from '@/components/ui/button';
 import { Field, Form, Formik, useFormikContext } from 'formik';
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 export default function PropertyType({ params: { id } }) {
+  const t = useTranslations('propertyType');
   const [category, setCategory] = useState([]);
   const [listingType, setListingType] = useState('');
   const [listingCategory, setListingCategory] = useState('');
@@ -34,18 +36,20 @@ export default function PropertyType({ params: { id } }) {
     try {
       const listing = await updateListing(id, values);
       if (listing._id) {  
-        toast.success("Property saved successfully!");
+        toast.success(t("property-saved-successfully"));
       } else {
-        toast.error("Something went wrong...");
+        toast.error(t("something-went-wrong"));
       }
     } catch (error) {
-      toast.error("Error saving property: " + error.message);
+      toast.error(t("failed-to-save-property"));
     }
   };
 
   return (
     <div className="container mx-auto p-8">
-      <h2 className="text-2xl font-bold mb-6">Property Type</h2>
+      <h2 className="text-2xl font-bold mb-6">
+        {t("property-type")}
+      </h2>
 
       <Formik
         initialValues={{
@@ -61,15 +65,15 @@ export default function PropertyType({ params: { id } }) {
           <Form className="space-y-6"> 
             <PropertyTypeSelect />
             <CategorySelect category={category} />
-            <CounterSelect name="bathrooms" label="How many bathrooms?" />
-            <CounterSelect name="bedrooms" label="How many bedrooms?" />
+            <CounterSelect name="bathrooms" label={t("how-many-bathrooms")} />
+            <CounterSelect name="bedrooms" label={t("how-many-bedrooms")} />
             <div className="mt-6">
               <div className="flex justify-end items-center">
                 <Button
                   className="bg-black text-white px-8 py-6 rounded-2xl hover:bg-gray-800 transition-colors"
                   type="submit"
                 >
-                  Save
+                  {t("save")}
                 </Button>
               </div>
             </div>
@@ -80,33 +84,40 @@ export default function PropertyType({ params: { id } }) {
   );
 }
 
-export const PropertyTypeSelect = () => (
-  <div className="mb-4 w-full relative">
-    <Field
+export const PropertyTypeSelect = () => {
+  const t = useTranslations('propertyType');
+  const locale = useLocale();
+  return (
+    <div className="mb-4 w-full relative">
+      <Field
       as="select"
       id="type"
       name="type"
       className="w-full pt-6 bg-white border-2 rounded-xl transition border-neutral-400 focus:border-neutral-800 focus:outline-none"
     >
-      <option value="apartment">Apartment</option>
-      <option value="house">House</option>
-      <option value="room">Room</option>
-      <option value="hostel">Hostel</option>
-      <option value="villa">Villa</option>
+      <option value="apartment">{t("apartment")}</option>
+      <option value="house">{t("house")}</option>
+      <option value="room">{t("room")}</option>
+      <option value="hostel">{t("hostel")}</option>
+      <option value="villa">{t("villa")}</option>
     </Field>
     <label
       htmlFor="type"
-      className="absolute font-extralight text-md duration-150 transform -translate-y-3 top-4 z-10 origin-[0] left-4"
+      className={`absolute font-extralight text-md duration-150 transform -translate-y-3 top-4 z-10 origin-[0] left-4 ${locale === 'ar' ? 'right-4' : 'left-4'}`}
     >
-      Which is most like your place?
+      {t("which-is-most-like-your-place")}
     </label>
-  </div>
-);
+    </div>
+  );
+};
 
-export const CategorySelect = ({ category }) => (
-  <div className="mb-4 w-full relative">
-    <Field
-      as="select"
+export const CategorySelect = ({ category }) => {
+  const t = useTranslations('propertyType');
+  const locale = useLocale();
+  return (
+    <div className="mb-4 w-full relative">
+      <Field
+        as="select"
       id="category"
       name="category"
       className="w-full pt-6 bg-white border-2 rounded-xl transition border-neutral-400 focus:border-neutral-800 focus:outline-none"
@@ -117,28 +128,32 @@ export const CategorySelect = ({ category }) => (
     </Field>
     <label
       htmlFor="category"
-      className="absolute font-extralight text-md duration-150 transform -translate-y-3 top-4 z-10 origin-[0] left-4"
+      className={`absolute font-extralight text-md duration-150 transform -translate-y-3 top-4 z-10 origin-[0] left-4 ${locale === 'ar' ? 'right-4' : 'left-4'}`}
+      
     >
-      Which category fits your property?
+      {t("which-category-fits-your-property")}
     </label>
-  </div>
-);
+    </div>
+    );
+};
 
 
 export const CounterSelect = ({ name, label }) => {
   const { values, setFieldValue } = useFormikContext();
-
+  const locale = useLocale();
   const increment = () => {
     setFieldValue(name, values[name] + 1);
   };
 
   const decrement = () => {
-    setFieldValue(name, values[name] - 1);
+    if (values[name] > 0) {
+      setFieldValue(name, values[name] - 1);
+    }
   };
 
   return (
     <div className="mb-4 w-full relative">
-      <div className="flex justify-end items-center space-x-4">
+      <div className={`flex justify-end items-center  space-y-2 sm:space-y-0 sm:space-x-4 `}>
         <button
           onClick={decrement}
           type="button"
@@ -148,7 +163,7 @@ export const CounterSelect = ({ name, label }) => {
         >
           -
         </button>
-        <span className="text-2xl font-bold">
+        <span className="text-2xl font-bold md:text-xl">
           {values[name]}
         </span>
         <button
@@ -162,7 +177,7 @@ export const CounterSelect = ({ name, label }) => {
       </div>
       <label
         htmlFor={name}
-        className="absolute font-extralight text-md duration-150 transform -translate-y-3 top-4 z-10 origin-[0] left-4"
+        className={`absolute font-extralight text-md duration-150 transform -translate-y-3 top-4 z-10 origin-[0] left-4 ${locale === 'ar' ? 'right-4' : 'left-4'}`}
       >
         {label}
       </label>

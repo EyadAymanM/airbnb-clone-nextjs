@@ -6,10 +6,12 @@ import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { CldUploadButton } from "next-cloudinary";
 import { Button } from "@/components/ui/button";
 import { FaPlus, FaTrash } from "react-icons/fa";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useTranslations } from "next-intl";
 
 function Page({ params: { id } }) {
+  const t = useTranslations('Listings');
   const [photos, setPhotos] = useState([]);
   const [displayedPhotos, setDisplayedPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,13 +23,13 @@ function Page({ params: { id } }) {
         setPhotos(data.photos || []);
         setDisplayedPhotos(data.photos || []);
       } catch (error) {
-        toast.error("Error fetching initial data.");
+        toast.error(t("fetch_error"));
       } finally {
         setLoading(false);
       }
     };
     fetchInitialData();
-  }, [id]);
+  }, [id, t]);
 
   const handleUpload = (result) => {
     if (result.event === "success") {
@@ -40,69 +42,58 @@ function Page({ params: { id } }) {
     if (photos.length) {
       const listing = await updateListing(id, { photos });
       if (listing._id) {
-        toast.success("Photos updated successfully!");
+        toast.success(t("photos-updated-successfully"));
       } else {
-        toast.error("Something went wrong..");
+        toast.error(t("something-went-wrong"));
       }
     } else {
-      toast.error("Please add at least 1 photo");
+      toast.error(t("please-add-at-least-1-photo"));
     }
   };
 
   const handleRemovePhoto = async (photo) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this photo?");
-    
-    if (confirmDelete) {
-      try {
-        await updateListing(id, { photos: photos.filter((p) => p !== photo) });
-        setPhotos((prev) => prev.filter((p) => p !== photo));
-        setDisplayedPhotos((prev) => prev.filter((p) => p !== photo));
-        toast.success("Photo deleted successfully.");
-      } catch (error) {
-        toast.error("Failed to delete photo.");
-      }
-    } else {
-      toast.error("Photo deletion canceled.");
+    try {
+      await updateListing(id, { photos: photos.filter((p) => p !== photo) });
+      setPhotos((prev) => prev.filter((p) => p !== photo));
+      setDisplayedPhotos((prev) => prev.filter((p) => p !== photo));
+      toast.success(t("photo-deleted-successfully"));
+    } catch (error) {
+      toast.error(t("failed-to-delete-photo"));
     }
   };
 
   return (
     <>
-      <div className="flex justify-center font-airbnb">
+      <div className="flex justify-center font-airbnb px-4">
         <Toaster />
-        <div className="px-3">
-          <h1 className="text-3xl font-semibold font-airbnb text-start mb-2">
-            Photo tour
-          </h1>
+        <div className="max-w-lg w-full">
+          <h1 className="text-3xl font-semibold text-start mb-2">{t("photo-tour")}</h1>
           <div className="text-[#777] text-base mb-8">
-            Manage photos and add details. Guests will only see your tour if
-            every room has a photo.
+            {t("manage-photos-description")}.
           </div>
-          <div className="flex flex-wrap">
-            {loading ? (
-              Array.from({ length: 5 }).map((_, index) => (
-                <div key={index} className="relative w-52 h-52 mr-2 mb-2">
-                  <Skeleton height="100%" width="100%" />
-                </div>
-              ))
-            ) : (
-              displayedPhotos.map((photo, index) => (
-                <div key={index} className="relative w-52 h-52 mr-2 mb-2">
-                  <div
-                    className="h-full w-full bg-[#f7f7f7] rounded-xl border-4 border-solid border-gray-300 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${photo})` }}
-                  />
-                  <button
-                    onClick={() => handleRemovePhoto(photo)}
-                    className="absolute top-2 right-2 bg-gray-100 rounded-full p-2 hover:bg-gray-300"
-                    aria-label="Remove photo"
-                  >
-                    <FaTrash className="text-red-500" />
-                  </button>
-                </div>
-              ))
-            )}
-            <div className="w-52 h-52 bg-[#f7f7f7] flex flex-col justify-center items-center rounded-xl border-2 border-solid ">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            {loading
+              ? Array.from({ length: 5 }).map((_, index) => (
+                  <div key={index} className="relative w-full h-40">
+                    <Skeleton height="100%" width="100%" />
+                  </div>
+                ))
+              : displayedPhotos.map((photo, index) => (
+                  <div key={index} className="relative w-full h-40">
+                    <div
+                      className="h-full w-full bg-[#f7f7f7] rounded-xl border-4 border-solid border-gray-300 bg-cover bg-center"
+                      style={{ backgroundImage: `url(${photo})` }}
+                    />
+                    <button
+                      onClick={() => handleRemovePhoto(photo)}
+                      className="absolute top-2 right-2 bg-gray-100 rounded-full p-2 hover:bg-gray-300"
+                      aria-label="Remove photo"
+                    >
+                      <FaTrash className="text-red-500" />
+                    </button>
+                  </div>
+                ))}
+            <div className="relative w-full h-40 bg-[#f7f7f7] flex flex-col justify-center items-center rounded-xl border-2 border-solid">
               <CldUploadButton
                 uploadPreset="airbnb-clone"
                 onSuccess={handleUpload}
@@ -116,11 +107,11 @@ function Page({ params: { id } }) {
           </div>
           <div className="flex justify-end items-center mt-4">
             <Button
-              className="bg-black text-white px-8 py-6 rounded-2xl hover:bg-gray-800 transition-colors"
+              className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors w-full sm:w-auto"
               type="submit"
               onClick={updatePhotos}
             >
-              Save
+              {t("save")}
             </Button>
           </div>
         </div>

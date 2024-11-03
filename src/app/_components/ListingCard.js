@@ -67,11 +67,13 @@ const ListingCard = ({ listing }) => {
           />
         </Carousel>
 
-        {wishlistItems && wishlistItems.length > 0 ? (
-          <AddWishlistModal listingId={listing._id} />
-        ) : (
-          <CreateWishlistModal listingId={listing._id} />
-        )}
+        {
+          wishlistItems && wishlistItems.length > 0 ? (
+            <AddWishlistModal listingId={listing._id} />
+          ) : (
+            <CreateWishlistModal listingId={listing._id} />
+          )
+        }
         <Link href={`/rooms/${listing._id}`}>
           <div className="px-2">
             <div className="flex pt-1">

@@ -1,27 +1,32 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import {Link} from "@/i18n/routing";
-import { useMemo } from "react";
+import { Link } from "@/i18n/routing";
+import React, { useMemo } from "react";
+import { useTranslations } from "next-intl";
 
-const CardLocationEdit = ({ id, activated, onClick, latitude, longitude, address }) => {
+const CardLocationEdit = React.memo(({ id, activated, onClick, latitude, longitude, address }) => {
   const defaultPosition = [30.0444, 31.2357]; 
+  const t = useTranslations("Listings");
+
   const position = useMemo(() => {
     return latitude && longitude
       ? [latitude, longitude]
       : defaultPosition;
-  }, [defaultPosition, latitude,longitude]);
+  }, [latitude, longitude]);
+
+  CardLocationEdit.displayName = "CardLocationEdit";
+
   return (
     <Link href={`/hosting/listings/${id}/location`}>
       <div
         className={`flex flex-col items-center justify-center p-6 bg-white shadow-md rounded-2xl mx-auto hover:bg-gray-50 transition duration-200 w-[300px] 
                   ${activated ? "border-black border-2" : "border-gray-300 border"} cursor-pointer`}
-        onClick={onClick} 
+        onClick={onClick}
       >
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Location</h2>
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('location')}</h2>
 
         <div className="w-full h-64 mb-4 rounded-lg overflow-hidden">
           <MapContainer
@@ -52,6 +57,6 @@ const CardLocationEdit = ({ id, activated, onClick, latitude, longitude, address
       </div>
     </Link>
   );
-};
+});
 
 export default CardLocationEdit;

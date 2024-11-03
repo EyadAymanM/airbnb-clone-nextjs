@@ -13,8 +13,10 @@ import { FaPlus } from "react-icons/fa";
 import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { Button } from "@/components/ui/button";
 import { updateListing } from "@/app/_actions/Listing/updateListing";
+import { useTranslations } from "next-intl";
 
 const AmenitiesModal = ({ listingId, selectedAmenities }) => {
+  const t = useTranslations("Listings");
   const [showModal, setShowModal] = useState(false);
   const [amenities, setAmenities] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -40,7 +42,7 @@ const AmenitiesModal = ({ listingId, selectedAmenities }) => {
           const data = await fetchData("amenity");
           setAmenities(data);
         } catch (error) {
-          toast.error("Error fetching amenities: " + error.message);
+          toast.error(t("error-fetching-amenities") + " " + error.message);
         } finally {
           setLoading(false);
         }
@@ -54,20 +56,19 @@ const AmenitiesModal = ({ listingId, selectedAmenities }) => {
     try {
       const listing = await updateListing(listingId, { amenities: selected });
       if (listing._id) {
-        toast.success("Amenities updated successfully!");
+        toast.success(t("amenities-updated-successfully"));
         toggleModal();
       } else {
-        toast.error("Something went wrong...");
+        toast.error(t("something-went-wrong"));
       }
     } catch (error) {
-      console.error("Error updating amenities:", error);
-      toast.error("Failed to update the amenities.");
+      toast.error(t("failed-to-update-the-amenities"));
     }
   };
 
   return (
     <div>
-      <Dialog open={showModal} onOpenChange={toggleModal}>
+      <Dialog open={showModal} onOpenChange={toggleModal} aria-labelledby="amenities-dialog" aria-describedby="Select amenities for your listing">
         <DialogTrigger asChild>
           <div>
             <FaPlus className="text-4xl bg-gray-100 rounded-full p-2 hover:bg-gray-300 cursor-pointer" />
@@ -75,12 +76,12 @@ const AmenitiesModal = ({ listingId, selectedAmenities }) => {
         </DialogTrigger>
         <DialogContent className="bg-white border rounded-3xl max-w-xl p-6 shadow-lg">
           <DialogHeader>
-            <DialogTitle className="text-xl text-center font-airbnb">
-              Amenities
+            <DialogTitle id="amenities-dialog" className="text-xl text-center font-airbnb">
+              {t("amenities")}
             </DialogTitle>
           </DialogHeader>
           <hr className="my-4 border-gray-300" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl h-auto overflow-y-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl h-80 overflow-y-auto">
             {loading ? (
               <LoadingSkeleton count={9} />
             ) : (
@@ -98,14 +99,14 @@ const AmenitiesModal = ({ listingId, selectedAmenities }) => {
           </div>
           <hr className="my-4 border-gray-300" />
           <div className="flex justify-end items-center">
-              <Button
-                className="bg-black text-white px-8 py-6 rounded-2xl hover:bg-gray-800 transition-colors"
-                type="submit"
-                onClick={handleSave}
-              >
-                Save
-              </Button>
-            </div>
+            <Button
+              className="bg-black text-white px-8 py-6 rounded-2xl hover:bg-gray-800 transition-colors"
+              type="submit"
+              onClick={handleSave}
+            >
+              {t("save")}
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

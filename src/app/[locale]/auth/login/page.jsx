@@ -3,57 +3,63 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { Link } from "@/i18n/routing";
-import InputField from "../../../_components/InputField";
-import SocialLoginButton from "../../../_components/Modal/User/SocialLoginButton";
-import { login } from "@/app/_actions/User/user";
-import { useRouter } from '@/i18n/routing';
 import toast, { Toaster } from 'react-hot-toast';
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import { Link, useRouter } from "@/i18n/routing";
+import SocialLoginButton from "@/app/_components/Modal/User/SocialLoginButton";
+import InputField from "@/app/_components/InputField";
+import { useTranslations, useLocale } from "next-intl";
 
 
 const LoginPage = () => {
   const {data : session , status} = useSession()
   const router = useRouter();
+  const t = useTranslations('auth');
+  const locale = useLocale();
   const initialValues = {
     email: "",
     password: "",
   };
-  const notify = () => toast('Here is your toast.');
-
+  
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required")
+      .email(t('invalid-email-address'))
+      .required(t('email-is-required'))
       .matches(
         /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        "Invalid email address pattern"
+        t('invalid-email-address-pattern')
       ),
     password: Yup.string()
-      .min(4, "Password must be at least 4 characters")
-      .required("Password is required"),
+      .min(4, t('password-must-be-at-least-4-characters'))
+      .required(t('password-is-required')),
   });
 
-  const onSubmit = async (values) => {
-    // console.log(values);
-    const res = await signIn('credentials', {...values,redirect:false})
-    // console.log(res);
-    
-    if(res.error){
-      toast.error(res.error)
-    }else{
-      router.push('/')
+  
+  const onSubmit = async (values, { setSubmitting }) => {
+    const result = await signIn("credentials", {
+      redirect: false,
+      email: values.email,
+      password: values.password,
+    });
+
+    setSubmitting(false);
+
+    if (result.ok) {
+      router.push('/');
+      toast.success(t('login-successful'));
+    } else {
+      toast.error(t('login-failed'));
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center ">
+    <div className="min-h-screen flex items-center justify-center">
       <Toaster position="top-center" reverseOrder={false} />
-      <div className="bg-white border rounded-2xl w-full max-w-xl p-6 shadow-lg">
-        <h1 className="text-xl text-center text-gray-900 p-3">Log in</h1>
+      <div className="bg-white border rounded-2xl w-full max-w-lg p-6 shadow-lg">
+        <h1 className="text-xl text-center text-gray-900 p-3">{t('login')}</h1>
         <hr className="border-neutral-300 mb-4" />
         <p className="text-lg text-gray-900 font-semibold mb-4">
-          Welcome to Airbnb
+          {t('welcome-to-airbnb')}
         </p>
 
         <Formik
@@ -67,7 +73,7 @@ const LoginPage = () => {
                 id="email"
                 name="email"
                 type="email"
-                label="Email"
+                label={t('email')}
                 icon={MdEmail}
               />
               <p className="text-sm text-red-600 mb-1">
@@ -77,32 +83,31 @@ const LoginPage = () => {
                 id="password"
                 name="password"
                 type="password"
-                label="Password"
+                label={t('password')}
                 icon={RiLockPasswordLine}
               />
               <p className="text-sm text-red-600 mb-1">
                 {touched.password && errors.password}
               </p>
               <p className="text-sm text-gray-600 mb-4">
-                We&apos;ll email you to confirm your email address. Standard
-                message and data rates apply.{" "}
+                {t('confirm-your-email')}{" "}
                 <Link href="#" className="underline">
-                  Privacy Policy
+                  {t('privacy-policy')}
                 </Link>
               </p>
               <button
                 type="submit"
                 className="w-full py-3 bg-[#D70466] text-white rounded-lg hover:bg-[#e1227b] transition duration-300 font-semibold"
               >
-                Continue
+                {t('login')}
               </button>
               <p className="text-sm text-center mt-4">
-                Don&apos;t have an account?{" "}
+                {t('dont-have-an-account')}{" "}
                 <Link
                   href="/auth/register"
                   className="text-[#D70466] hover:underline"
                 >
-                  Register now
+                  {t('register-now')}
                 </Link>
               </p>
             </Form>
@@ -111,16 +116,13 @@ const LoginPage = () => {
 
         <div className="flex items-center my-4">
           <hr className="flex-grow border-t border-gray-300" />
-          <span className="px-3 text-gray-500 text-sm">or</span>
+          <span className="px-3 text-gray-500 text-sm">{t('or')}</span>
           <hr className="flex-grow border-t border-gray-300" />
         </div>
         <div className="space-y-2">
-          <SocialLoginButton
-            provider="facebook"
-            text="Continue with Facebook"
-          />
-          <SocialLoginButton provider="google" text="Continue with Google" />
-          <SocialLoginButton provider="apple" text="Continue with Apple" />
+          <SocialLoginButton provider="facebook" text={t('continue-with-facebook')} />
+          <SocialLoginButton provider="google" text={t('continue-with-google')} />
+          <SocialLoginButton provider="apple" text={t('continue-with-apple')} />
         </div>
       </div>
     </div>

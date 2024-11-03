@@ -48,7 +48,7 @@ function UserMenu() {
     <>
       <div className="flex">
         <div className="flex items-center me-1">
-          <button onClick={()=> router.push('/hosting/listings')} className="text-[#222] font-medium  hover:bg-[#f7f7f7] p-3 rounded-full">
+          <button onClick={()=> router.push('/become-a-host')} className="text-[#222] font-medium  hover:bg-[#f7f7f7] p-3 rounded-full">
             {t('switch')}
           </button>
           <Dialog>

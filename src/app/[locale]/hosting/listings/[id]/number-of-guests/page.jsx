@@ -22,9 +22,10 @@ import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { updateListing } from "@/app/_actions/Listing/updateListing"; 
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
-
+import { useTranslations } from "next-intl";
 const GuestSelector = ({ params: { id } }) => {
   const [guestCount, setGuestCount] = useState(1);
+  const t = useTranslations('Listings');
   const maxGuests = 16;
   const images = [
     avatar1,
@@ -51,7 +52,7 @@ const GuestSelector = ({ params: { id } }) => {
         const data = await fetchData(`listing/${id}`);
         setGuestCount(data.guests || 1); 
       } catch (error) {
-        toast.error("Error fetching initial data.");
+        toast.error(t("fetch_error"));
       }
     };
 
@@ -74,13 +75,12 @@ const GuestSelector = ({ params: { id } }) => {
     try {
       const listing = await updateListing(id, { guests: guestCount });
       if (listing._id) {
-        toast.success("Guest count updated successfully!");
+        toast.success(t("guest-count-updated-successfully"));
       } else {
-        toast.error("Something went wrong...");
+        toast.error(t("something-went-wrong"));
       }
     } catch (error) {
-      console.error("Error updating guest count:", error);
-      toast.error("Failed to update the guest count.");
+      toast.error(t("failed-to-update-the-guest-count"));
     }
   };
 
@@ -101,7 +101,7 @@ const GuestSelector = ({ params: { id } }) => {
             ))}
           </div>
           <p className="my-10 text-gray-700">
-            How many guests can fit comfortably in your space?
+            {t("how-many-guests")}
           </p>
           <div className="flex justify-center items-center space-x-4">
             <button
@@ -129,7 +129,7 @@ const GuestSelector = ({ params: { id } }) => {
           className="bg-black text-white px-8 py-6 rounded-2xl hover:bg-gray-800 transition-colors"
           onClick={onSubmit}
         >
-          Save
+          {t("save")}
         </Button>
       </div>
     </>

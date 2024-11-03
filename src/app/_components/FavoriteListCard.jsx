@@ -11,6 +11,7 @@ import Image from "next/image";
 import {Link} from "@/i18n/routing";
 import AddWishlistModal from "./Modal/AddWishlistModal";
 import { useState } from "react";
+import { useLocale } from "next-intl";
 
 const FavoriteListCard = ({ listing }) => {
   const [hover, setHover] = useState(false);
@@ -20,16 +21,17 @@ const FavoriteListCard = ({ listing }) => {
   const handleOut = () => {
     setHover(false);
   };
+  const locale = useLocale();
   return (
     <>
-      <div className="max-w-xs mb-4 relative">
+      <div className="max-w-xs mb-4 relative ">
         <Carousel
           className="w-full max-w-xs"
           onMouseOver={handleOver}
           onMouseOut={handleOut}
         >
           <Link href={`/rooms/${listing._id}`}>
-            <CarouselContent>
+            <CarouselContent dir={locale == "ar" ? "ltr" : ""}>
               {listing.photos.map((photo, index) => (
                 <CarouselItem key={index}>
                   <div className="p-2">
@@ -49,6 +51,7 @@ const FavoriteListCard = ({ listing }) => {
               ))}
             </CarouselContent>
           </Link>
+          
           <CarouselPrevious
             className={`bg-white hover:bg-white top-1/2 left-3 ${hover ? "" : "hidden"}`}
           />

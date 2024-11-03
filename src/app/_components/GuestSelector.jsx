@@ -2,12 +2,14 @@
 import {Link} from "@/i18n/routing";
 import { useEffect, useState } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "../../components/ui/dropdown-menu";
-
-const GuestSelector = () => {
+import { useTranslations, useLocale } from "next-intl";
+import { toast } from "react-hot-toast";
+const GuestSelector = ({wishlistItems, setWishlistItems}) => {
   const [guests, setGuests] = useState({ adults: 1, children: 0, infants: 0, pets: 0 });
   const [totalGuests, setTotalGuests] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
-
+  const locale = useLocale();
+  const t = useTranslations('book');
   useEffect(() => {
     setTotalGuests(guests.adults + guests.children + guests.infants + guests.pets);
   }, [guests]);
@@ -24,6 +26,7 @@ const GuestSelector = () => {
 
   const resetGuests = () => {
     setGuests({ adults: 1, children: 0, infants: 0, pets: 0 });
+    setWishlistItems([]);
   };
 
   const GuestTypeSelector = ({ title, subtitle, type }) => (
@@ -51,41 +54,47 @@ const GuestSelector = () => {
     </div>
   );
 
+  const handleSave = () => {
+    const filteredItems = wishlistItems.filter(item => item.guests >= totalGuests);
+    if (filteredItems.length === 0) {
+      setWishlistItems([]);
+      toast.error(t("no-matching-items"));
+    } else {
+      setWishlistItems(filteredItems);
+    }
+    setIsOpen(false);
+  };
+
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen} >
       <DropdownMenuTrigger asChild>
         <button className="bg-white text-gray-700 border border-gray-200 rounded-full px-5 py-2 hover:border-gray-900 transition duration-300 flex items-center outline-0">
-          {totalGuests} {totalGuests === 1 ? "Guest" : "Guests"}
+          {totalGuests} {totalGuests === 1 ? t('guest') : t('guests')}
         </button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
         className="w-96 p-6 bg-white rounded-xl shadow-lg"
-        align="start"
+        align={locale === 'ar' ? 'end' : 'start'}
       >
         <div className="space-y-4 max-h-64 overflow-y-auto">
           <GuestTypeSelector
-            title="Adults"
-            subtitle="Ages 18 or above"
+            title={t('adults')}
+            subtitle={t('ages-18-or-above')}
             type="adults"
           />
           <GuestTypeSelector
-            title="Children"
-            subtitle="Ages 2-17"
+            title={t('children')}
+            subtitle={t('ages')}
             type="children"
           />
           <GuestTypeSelector
-            title="Infants"
-            subtitle="Under 2"
+            title={t('infants')}
+            subtitle={t('under-2')}
             type="infants"
           />
           <GuestTypeSelector
-            title="Pets"
-            subtitle={
-              <Link href="#" className="underline">
-                Bringing a service animal?
-              </Link>
-            }
+            title={t('pets')}
             type="pets"
           />
         </div>
@@ -96,13 +105,13 @@ const GuestSelector = () => {
             className="px-4 py-2 rounded-2xl underline font-semibold text-gray-700 hover:bg-gray-100 transition-colors duration-300 disabled:text-gray-400 disabled:hover:bg-transparent disabled:cursor-not-allowed"
             disabled={totalGuests === 1}
           >
-            Reset
+            {t('reset')}
           </button>
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={handleSave}
             className="bg-black text-white px-4 py-2 rounded-2xl hover:bg-gray-800 transition-colors"
           >
-            Save
+            {t('save')}
           </button>
         </div>
       </DropdownMenuContent>

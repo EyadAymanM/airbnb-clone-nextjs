@@ -8,6 +8,7 @@ import Footer from "../_components/Footer/Footer";
 export default async function Home({ searchParams }) {
   const t = await getTranslations('HomePage');
   const listings = searchParams['category'] ? await fetchData(`listing/verified?category=${searchParams['category']}`) : await fetchData(`listing/verified`)
+  console.log('listings', listings);
   try {
     if (listings['message'])
       console.log('');
@@ -34,7 +35,7 @@ export default async function Home({ searchParams }) {
           )}
         </div>
       </Container>
-      <Footer position={"sticky"}/>   
+      <Footer position={"sticky"}/>
     </div>
   );
 }

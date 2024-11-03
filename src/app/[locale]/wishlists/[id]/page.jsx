@@ -2,7 +2,7 @@
 import { getWishlistById } from "@/app/_actions/wishlist/wishlist";
 import FavoriteListCard from "@/app/_components/FavoriteListCard";
 import { useRouter } from "@/i18n/routing";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { toast } from "react-hot-toast";
 import { IoIosArrowBack } from "react-icons/io";
 import DateDropdown from "../../../_components/DateDropdown/DateDropdown";
@@ -12,6 +12,8 @@ import IconButton from "../../../_components/IconButton";
 import Map from "../../../_components/Map/Map";
 import SettingsModal from "../../../_components/Modal/SettingsModal";
 import ShareModal from "../../../_components/Modal/ShareModal";
+import NavBar from "@/app/_components/Navbar/NavBar";
+import { useLocale, useTranslations } from "next-intl";
 
 const heartIconHtml = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="16px" height="16px">
@@ -20,72 +22,105 @@ const heartIconHtml = `
 `;
 
 const Page = ({ params: { id } }) => {
+  const t = useTranslations("Wishlist");
   const router = useRouter();
   const [wishlistItems, setWishlistItems] = useState([]);
+  const [filteredWishlistItems, setFilteredWishlistItems] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const locale = useLocale();
 
   useEffect(() => {
     const fetchWishlistItems = async () => {
       try {
         const data = await getWishlistById(id);
         setWishlistItems(data);
+        setFilteredWishlistItems(data);
       } catch (error) {
-        toast.error("Unable to fetch your wishlist. Please try again later.");
+        setError(t("failed-to-fetch-wishlist"));
+        toast.error(t("failed-to-fetch-wishlist"));
+      } finally {
+        setLoading(false);
       }
     };
     fetchWishlistItems();
-  }, [id]);
+  }, [id, t]);
 
-  const locations = wishlistItems.map((item) => ({
-    coordinates: [item.location.latitude, item.location.longitude],
-    content: `$${item.price} ${heartIconHtml}`,
-  }));
+  const locations = useMemo(
+    () =>
+      wishlistItems.map((item) => ({
+        coordinates: [item.location.latitude, item.location.longitude],
+        content: `$${item.price} ${heartIconHtml}`,
+      })),
+    [wishlistItems]
+  );
 
   const handleBackClick = () => {
-    router.back();
+    router.push(`/wishlists`);
   };
 
   return (
-    <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
-      <div className="lg:w-2/3 w-full mx-3">
-        <div className="flex flex-col">
-          <div className="flex justify-between items-center p-4">
-            <IconButton
-              ariaLabel="Go Back"
-              icon={IoIosArrowBack}
-              onClick={handleBackClick}
-            />
-            <SettingsModal />
-          </div>
+    <>
+      <NavBar className="hidden md:block" />
+      <div
+        className={`flex flex-col lg:flex-row ${
+          locale === "ar" ? "pr-4" : "pl-4"
+        }`}
+      >
+        <div className="lg:w-2/3 w-full sm:w-full">
+          <div className="flex flex-col">
+            <div className="flex justify-between items-center pr-4">
+              <IconButton
+                ariaLabel="Go Back"
+                icon={IoIosArrowBack}
+                onClick={handleBackClick}
+                classNames={`${
+                  locale === "ar" ? "rotate-180" : ""
+                } hover:bg-gray-100 rounded-full transition duration-200 ease-in-out`}
+              />
+              <SettingsModal />
+            </div>
 
-          <div className="ml-7 mb-4">
-            <Heading title="Your Wishlist" />
-          </div>
+            <div className="mx-7 mb-4 sm:mx-2">
+              <Heading title={t("your-wishlist")} />
+            </div>
 
-          {/* Button Group */}
-          <div className="mx-7 mb-4 flex space-x-2">
-            <DateDropdown />
-            <GuestSelector />
-            <ShareModal />
-          </div>
+            {/* Button Group */}
+            <div className="mb-4 flex justify-around md:justify-start gap-2 ">
+              <DateDropdown />
+              <GuestSelector
+                wishlistItems={wishlistItems}
+                setWishlistItems={setFilteredWishlistItems}
+              />
+              <ShareModal />
+            </div>
 
-          {/* Wishlist Items */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 mx-7">
-            {wishlistItems?.length > 0 ? (
-              wishlistItems.map((item) => (
-                <FavoriteListCard key={item.id} listing={item} />
-              ))
-            ) : (
-              <p>No items in the wishlist.</p>
-            )}
+            {/* Wishlist Items */}
+            <div className="grid grid-cols-1 mx-auto sm:pl-0 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {loading ? (
+                <div className="flex justify-center items-center h-full">
+                  <span className="loader"></span>
+                </div>
+              ) : error ? (
+                <p className="text-red-500">{error}</p>
+              ) : filteredWishlistItems.length > 0 ? (
+                filteredWishlistItems.map((item) => (
+                  <FavoriteListCard key={item.id} listing={item} />
+                ))
+              ) : (
+                <p>{t("no-items-in-the-wishlist")}</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Right Section: Map */}
-      <div className="lg:w-1/3 w-full fixed right-0">
-        <Map locations={locations}/>
+        {/* Right Section: Map */}
+        <div className="hidden lg:block lg:w-1/3 w-full">
+          <Map locations={locations} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
