@@ -1,8 +1,9 @@
 'use server'
 import axios from "axios";
+const api = process.env.NEXT_PUBLIC_API_URL
 export const submitReview = async (data,token)=>{
   try{
-    const review = await axios.post(`http://localhost:3000/review/add`,data,{
+    const review = await axios.post(`${api}/review/add`,data,{
       headers: { 'Authorization': token },
     })
     return review.status
