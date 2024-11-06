@@ -30,7 +30,7 @@ function Page({ params: { id } }) {
   const [selectedType, setSelectedType] = useState(null);
   const updateType = async () => {
     if (selectedType) {
-      const listing = await updateListing(id, { category: selectedType })
+      const listing = await updateListing(id, { type: selectedType })
       if (listing._id)
         router.push(`/become-a-host/${id}/location`)
       else

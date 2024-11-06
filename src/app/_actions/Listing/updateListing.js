@@ -6,6 +6,7 @@ export const updateListing = async (id, data) => {
     const newlisting = await axios.put(`${api}/listing/${id}`, data)
     return newlisting.data
   } catch (err){
+    console.log(err);
     return err.message
   }
 }
