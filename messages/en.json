@@ -321,7 +321,8 @@
     "ages": "ages-2-17",
     "children": "Children",
     "guest-type": "Guest type",
-    "no-matching-items": "No matching items."
+    "no-matching-items": "No matching items.",
+    "book":"Book"
   },
   "share": {
     "invite-others-to-join": "Invite others to join",
@@ -381,5 +382,59 @@
     "first-name-is-required": "First Name is required.",
     "last-name-is-required": "Last Name is required.",
     "password-must-be-at-least-6-characters": "Password must be at least 6 characters"
+  },
+  "Trips":{
+    "confirm":"Are you sure you want to cancel this trip ?",
+    "trips":"Trips",
+    "upcoming":"Upcoming",
+    "past":"Past",
+    "in-progress":"In Progress",
+    "add": "Add Review",
+    "q1": "Are you sure yon want to cancel this trip?",
+    "q2": "This action cannot be undone. This will permanently cancel your trip to",
+    "confirm2":"confirm",
+    "cancel":"Cancel",
+    "no-trips":"No trips booked...yet!",
+    "no-trips2":"Time to dust off your bags and start planning your next adventure.",
+    "no-trips3":"start searching"
+  },
+  "Review":{
+    "success":"Review submitted successfully",
+    "placeholder":"leave a comment for others describing your experience...",
+    "toast":"please fill review first",
+    "submit": "Submit review"
+  },
+  "invite":{
+    "1":"Guest referrals",
+    "2":"Common questions",
+    "3":"Check out these answers to common questions and review other",
+    "4":"program information in the",
+    "5":"Help Center",
+    "6":"Is the referral program still open?",
+    "7":" The referrals program is no longer open and no new invites can be sent. If you were sent a coupon prior to the shutdown of the program, you will be able to use the coupon on any booking made prior to the expiration of the coupon. Sender credits will be honored till they expire. For prior referrals, you will receive credit upon completion of successful stay if the coupon is used prior to expiry (credit amount based on offer at the time).",
+    "8":"I referred a friend but did not get travel credit",
+    "9":"For referrals made after Oct 1, 2020, Airbnb does not offer travel credit for referrals."
+  },
+  "work":{
+    "1":"Travel for work",
+    "2":"Join Airbnb for Work",
+    "3":"Add your work email to get seamless expensing and exclusive offers on work trips.",
+    "4":"Work email address",
+    "5":"Add work email",
+    "6":"Simplified expensing",
+    "7":"We’ll send work trip receipts to your work inbox for easy expensing.",
+    "8":"Trip description",
+    "9":"Add an expense code and business purpose to work trip",
+    "10":"Keep personal trips private",
+    "11":"Your company can only get info about trips you mark for work at checkout."
+  },
+  "pref":{
+    "1":"Global preferences",
+    "2":"Preferred language",
+    "3":"Preferred currency",
+    "4":"Time zone",
+    "5":"Your global preferences",
+    "6":"Changing your currency updates how you see prices. You can change how you get payments in your payments & payouts preferences.",
+    "edit":"Edit"
   }
 }

@@ -12,6 +12,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Checkout from "./_components/Checkout";
 import { useSession } from "next-auth/react";
 import UnauthenticatedComponent from "@/app/_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
+import Footer from "@/app/_components/Footer/Footer";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
 
 function Page({ params: { id } }) {
@@ -68,7 +69,7 @@ function Page({ params: { id } }) {
               <h1 className="text-2xl font-bold">{t("trip")}</h1>
               <div className="text-base">
                 <div className="font-medium">{t("dates")}</div>
-                <div className="text-[#444]">Jan 3 – 8, 2025</div>
+                <div className="text-[#444]">{(new Date(listing.startDate)).toLocaleDateString(locale, { day: "2-digit", month: "short" })} - {(new Date(listing.endDate)).toLocaleDateString(locale, { day: "2-digit", month: "short" })}</div>
               </div>
               <div className="text-base">
                 <div className="font-medium">{t("guests")}</div>
@@ -140,6 +141,7 @@ function Page({ params: { id } }) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

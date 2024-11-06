@@ -1,22 +1,25 @@
 import { submitReview } from "@/app/_actions/review/submitReview";
 import { useSession } from "next-auth/react";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FiStar } from "react-icons/fi";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
 export function ReviewComponent({ title, city, trip }) {
+  const t = useTranslations("Review")
+  const locale = useLocale()
   const { data: session, status } = useSession()
   const [stars, setStarts] = useState(0);
   const [comment, setComment] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const ratingData = [
-    { label: "Poor", color: "#E74C3C" },
-    { label: "Bad", color: "#E59866" },
-    { label: "Okay", color: "#F7DC6F" },
-    { label: "Good", color: "#76D7C4" },
-    { label: "Great", color: "#229954" },
+    { label: "Poor",labelar:"سيء جدا", color: "#E74C3C" },
+    { label: "Bad",labelar:"سيء", color: "#E59866" },
+    { label: "Okay",labelar:"جيد", color: "#F7DC6F" },
+    { label: "Good",labelar:"جيد جدا", color: "#76D7C4" },
+    { label: "Great",labelar:"ممتاز", color: "#229954" },
   ];
 
   const handleSubmit = async () => {
@@ -30,14 +33,14 @@ export function ReviewComponent({ title, city, trip }) {
       if(res == 201)
         setSubmitted(true)   
     }else{
-      toast("please fill review first")
+      toast(t("toast"))
     }
   }
   if (submitted)
     return (
       <div className="h-40 flex flex-col justify-center items-center">
         <IoCheckmarkCircle fill="green" className="w-full h-full" />
-        <span className="font-airbnb text-2xl font-semibold">Review submitted successfully</span>
+        <span className="font-airbnb text-2xl font-semibold">{t("success")}</span>
       </div>
     )
   return (
@@ -64,15 +67,15 @@ export function ReviewComponent({ title, city, trip }) {
           <div
             className="font-semibold min-w-[60px] p-2"
             style={{ color: ratingData[stars - 1]?.color }}>
-            {ratingData[stars - 1]?.label}
+            {locale == "ar" ? ratingData[stars - 1]?.labelar : ratingData[stars - 1]?.label}
           </div>
         ) : (
-          <p className="font-semibold text-gray-400">None</p>
+          <p className="font-semibold text-gray-400">{locale == "ar"? "لم يتم الاختيار":"None"}</p>
         )}
       </div>
-      <label htmlFor="comment" className="font-semibold">Add a comment</label>
+      <label htmlFor="comment" className="font-semibold">{locale == "ar" ? "أضف تعليقاً" : "Add a comment"}</label>
       <textarea
-        placeholder="leave a comment for others describing your experience..."
+        placeholder={t("placeholder")}
         name="comment"
         id="comment"
         rows="4"
@@ -85,7 +88,7 @@ export function ReviewComponent({ title, city, trip }) {
         onClick={handleSubmit}
         className="w-fit px-6 py-2 rounded-lg bg-[#E51D53] hover:bg-[#D11146] text-white self-end mt-4"
       >
-        Submit review
+        {t("submit")}
       </button>
     </div>
 

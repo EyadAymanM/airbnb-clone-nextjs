@@ -8,6 +8,7 @@ import { format, differenceInDays } from "date-fns";
 import { addReservation } from "@/app/_actions/booking/fetchtrips"
 
 function Checkout({ amount , listing }) {
+  const api = process.env.NEXT_PUBLIC_API_URL
   const { data: session } = useSession()
   const locale = useLocale()
   const t = useTranslations("book")
@@ -47,7 +48,7 @@ function Checkout({ amount , listing }) {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://localhost:3001/${locale}/successful-book`
+        return_url: `${api}/${locale}/successful-book`
       }
     })
 

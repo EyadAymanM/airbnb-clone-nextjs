@@ -10,6 +10,19 @@ export const fetchData = async (path) => {
   }
 };
 
+export const getUserTrips = async (path, token) => {
+  try {
+    const res = await axios.get(`${api}/${path}`,{
+      headers:{
+        "Authorization" : token
+      }
+    });
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const deleteData = async (id) => {
   try {
     const res = await axios.delete(`${api}/book/${id}`);

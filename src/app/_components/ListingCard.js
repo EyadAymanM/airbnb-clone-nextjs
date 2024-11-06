@@ -15,6 +15,8 @@ import { useEffect, useState } from "react";
 import { fetchWishlists } from "../_actions/wishlist/wishlist";
 import CreateWishlistModal from "./Modal/CreateWishlistModal";
 import { useLocale, useTranslations } from "next-intl";
+import { format, differenceInDays } from "date-fns";
+
 
 const ListingCard = ({ listing }) => {
   const t = useTranslations('ListingCard');
@@ -86,11 +88,13 @@ const ListingCard = ({ listing }) => {
               </span>
             </div>
             <div className="text-[#777] leading-4">{t("stay")} {listing.address.city}</div>
-            <div className="text-[#777] leading-6">Oct 10 - 15</div>
+            <div className="text-[#777] leading-6">
+              {(new Date(listing.startDate)).toLocaleDateString(locale, { day: "2-digit", month: "short" })} - {(new Date(listing.endDate)).toLocaleDateString(locale,{day:"2-digit",month:"short"})}
+            </div>
           </div>
         </Link>
         <div className="font-semibold ms-2">
-          {listing.price * 10}ج.م <span className="font-light">{t("night")}</span>
+          {listing.price}ج.م <span className="font-light">{t("night")}</span>
         </div>
       </div>
     </>

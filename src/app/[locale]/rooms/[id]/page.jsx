@@ -174,9 +174,7 @@ function Page({ params: { id } }) {
             </h1>
 
             <div className="grid md:grid-cols-2 grid-cols-1 gap-x-24 gap-y-8 py-6">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Review key={i} />
-              ))}
+              <Review id={id}/>
             </div>
           </div>
 

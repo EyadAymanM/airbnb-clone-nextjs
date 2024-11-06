@@ -12,3 +12,13 @@ export const submitReview = async (data,token)=>{
     return err.status
   }
 }
+export const getListingReviews = async (id)=>{
+  console.log(id);
+  try{
+    const review = await axios.get(`${api}/review/listing/${id}`)
+    return review.data
+  }catch(err){
+    console.log(err.response);
+    return err.status
+  }
+}
