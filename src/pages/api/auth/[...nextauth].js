@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+const api = process.env.NEXT_PUBLIC_API_URL
 export default NextAuth({
 
   providers: [
@@ -13,7 +13,7 @@ export default NextAuth({
       },
       async authorize(credentials, req) {
 
-        const res = await fetch("http://localhost:3000/auth/login", {
+        const res = await fetch(`${api}/auth/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
