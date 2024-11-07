@@ -15,6 +15,7 @@ export const getListingByUser = async (token) => {
     const response = await axios.get(`${api}/listing/hosting/listings`, {
       headers: { Authorization: token },
     });
+    return response.data
   } catch (error) {
     console.error("Failed to fetch listings:", error);
   }

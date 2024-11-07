@@ -11,9 +11,13 @@ import { useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import { getListingByUser } from "@/app/_actions/Listing/fetchData";
+import Loading from "@/app/_components/UnauthenticatedComponent.jsx/Loading";
+import UnauthenticatedComponent from "@/app/_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
+import Footer from "@/app/_components/Footer/Footer";
 
 function Page() {
   const [listings, setListings] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchVisible, setSearchVisible] = useState(false);
   const t = useTranslations('Listings');
@@ -25,6 +29,7 @@ function Page() {
       try {
         const response = await getListingByUser(session?.user.token.access_token)
         setListings(response);
+        setLoading(false);
       } catch (error) {
         console.error("Failed to fetch listings:", error);
       }
@@ -41,6 +46,11 @@ function Page() {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
+
+  if(loading)
+    return <Loading />
+  if(status == "unauthenticated")
+    return <UnauthenticatedComponent />
 
   return (
     <>
@@ -91,6 +101,7 @@ function Page() {
           <ListingEditorList listings={listings} searchTerm={searchTerm} />
         </div>
       </div>
+      <Footer position={"fixed"}/>
     </>
   );
 }

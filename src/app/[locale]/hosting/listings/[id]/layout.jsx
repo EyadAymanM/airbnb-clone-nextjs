@@ -8,6 +8,9 @@ import { useEffect, useState } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { useTranslations } from "next-intl";
 import { useLocale } from 'next-intl';
+import { useSession } from "next-auth/react";
+import UnauthenticatedComponent from "@/app/_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
+import NavBar from "@/app/_components/Navbar/NavBar";
 function Layout({ children, params }) {
   const t = useTranslations('Listings');
   const { id } = params;
@@ -15,7 +18,7 @@ function Layout({ children, params }) {
   const [listing, setListing] = useState({});
   const [showChildren, setShowChildren] = useState(false);
   const [error, setError] = useState(null); 
-
+  const { data: session, status } = useSession();
   useEffect(() => {
     const fetchListing = async () => {
       try {
@@ -33,7 +36,12 @@ function Layout({ children, params }) {
   const handleCardClick = () => setShowChildren(true);
   const handleBackToSidebar = () => setShowChildren(false);
 
+  if (status == "unauthenticated")
+    return <UnauthenticatedComponent />
+
   return (
+  <>
+    <NavBar />
     <div className="flex flex-col md:flex-row">
       {/* LEFT - Sidebar */}
       <div className={classNames("w-full md:w-1/3 bg-white p-4 md:p-6 border-r border-gray-200", { hidden: showChildren && 'md:hidden' })}>
@@ -70,6 +78,7 @@ function Layout({ children, params }) {
         {children}
       </div>
     </div>
+  </>
   );
 }
 
