@@ -4,28 +4,37 @@ import { AiOutlineClose } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa6";
 import { BsBricks } from "react-icons/bs";
 import ListingEditorList from "@/app/_components/ListingEditorList";
-import axiosInstance from "@/lib/axiosInstance";
 import { useEffect, useState } from "react";
 import NavBar from "@/app/_components/Navbar/NavBar";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import { useSession } from "next-auth/react";
+import axios from "axios";
 
 function Page() {
   const [listings, setListings] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchVisible, setSearchVisible] = useState(false);
   const t = useTranslations('Listings');
+  const { data: session, status } = useSession();
+
+  const api = process.env.NEXT_PUBLIC_API_URL
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const response = await axiosInstance.get("/listing/hosting/listings");
+        const response = await axios.get(`${api}/listing/hosting/listings`, {
+          headers: { Authorization:  session?.user.token.access_token },
+        });
         setListings(response.data);
       } catch (error) {
-        // console.error("Failed to fetch listings:", error);
+        console.error("Failed to fetch listings:", error);
       }
     };
-    fetchListings();
-  }, []);
+    
+    if (session) {
+      fetchListings();
+    }
+  }, [session]); 
 
   const handleSearchClick = () => {
     setSearchVisible((prev) => !prev);
