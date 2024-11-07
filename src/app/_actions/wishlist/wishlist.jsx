@@ -1,6 +1,8 @@
-import axiosInstance from '@/lib/axiosInstance';
+"use server"
+// import axiosInstance from '@/lib/axiosInstance';
 import axios from 'axios';
-import { revalidatePath } from 'next/cache';
+// import { revalidatePath } from 'next/cache';
+
 const api = process.env.NEXT_PUBLIC_API_URL
 
 export const fetchWishlists = async (token) => {

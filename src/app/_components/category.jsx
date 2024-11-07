@@ -18,7 +18,7 @@ function CategoryIcon({ svgString, className }) {
   return <>{parse(SVG)}</>;
 }
 
-const Category = ({ icon, displayName, activated, onClick, technicalName, _id }) => (
+const Category = ({ icon, displayName, activated, onClick, _id }) => (
   <div
     className={`cursor-pointer border-b-2 flex flex-col items-center p-2 transition-all duration-300 ${activated
       ? "category-activated border-black"
@@ -42,20 +42,20 @@ const CategoryList = () => {
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
-  const [activeCategory, setActiveCategory] = useState("ALL");
+  const [activeCategory, setActiveCategory] = useState("6718f7cdbc8ed3f1143e174e");
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const scrollContainerRef = useRef(null);
   const router = useRouter()
 
-  const handleCategoryClick = (technicalName,_id) => {
-    if (technicalName == "ALL") {
+  const handleCategoryClick = (_id) => {
+    if (_id == "6718f7cdbc8ed3f1143e174e") {
       router.push('/')
-      setActiveCategory(technicalName);
+      setActiveCategory(_id);
       return
     }
     router.push(`/?category=${_id}`)
-    setActiveCategory(technicalName);
+    setActiveCategory(_id);
   };
 
   const handleScroll = () => {
@@ -124,12 +124,11 @@ const CategoryList = () => {
       >
         {categories.map((category) => (
           <Category
-            key={category.technicalName}
+            key={category._id}
             icon={category.icon}
             displayName={locale == "ar" ? category.displayName.ar : category.displayName.en}
-            activated={activeCategory === category.technicalName}
-            technicalName={category.technicalName}
-            onClick={() => handleCategoryClick(category.technicalName,category._id)}
+            activated={activeCategory === category._id}
+            onClick={() => handleCategoryClick(category._id)}
           />
         ))}
       </div>
