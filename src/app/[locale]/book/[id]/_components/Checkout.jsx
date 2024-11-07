@@ -8,7 +8,7 @@ import { format, differenceInDays } from "date-fns";
 import { addReservation } from "@/app/_actions/booking/fetchtrips"
 
 function Checkout({ amount , listing }) {
-  const api = process.env.NEXT_PUBLIC_API_URL
+  const api = process.env.NEXT_PUBLIC_APP_URL
   const { data: session } = useSession()
   const locale = useLocale()
   const t = useTranslations("book")
@@ -61,7 +61,7 @@ function Checkout({ amount , listing }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ amount: amount * 100 })
+      body: JSON.stringify({ amount: amount * 100 * differenceInDays(listing.endDate, listing.startDate) })
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret))
