@@ -14,6 +14,7 @@ export default function PropertyType({ params: { id } }) {
   const [listingCategory, setListingCategory] = useState('');
   const [bathrooms, setBathrooms] = useState(0);
   const [bedrooms, setBedrooms] = useState(0); 
+  const locale = useLocale();
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -123,7 +124,7 @@ export const CategorySelect = ({ category }) => {
       className="w-full pt-6 bg-white border-2 rounded-xl transition border-neutral-400 focus:border-neutral-800 focus:outline-none"
     >
       {category.map(({ _id, displayName, technicalName }) => (
-        <option key={_id} value={technicalName}>{displayName}</option>
+        <option key={_id} value={technicalName}>{locale === "en"? displayName.en: displayName.ar}</option>
       ))}
     </Field>
     <label

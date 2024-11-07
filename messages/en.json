@@ -220,7 +220,8 @@
     "postalCode": "Postal code",
     "location-updated-successfully": "Location updated successfully",
     "error-updating-location": "Error updating location",
-    "guests": "guests"
+    "guests": "guests",
+    "no-matching-listings":"No matching listings"
   },
   "propertyType": {
     "how-many-bathrooms": "How many bathrooms?",
@@ -439,5 +440,23 @@
     "5":"Your global preferences",
     "6":"Changing your currency updates how you see prices. You can change how you get payments in your payments & payouts preferences.",
     "edit":"Edit"
+  },
+  "model":{
+    "add-to-wishlist": "Add to Wishlist",
+    "no-wishlists-available": "No wishlists available.",
+    "listing-added": "The listing has been added to your wishlist!",
+    "listing-removed": "The listing has been removed from your wishlist.",
+    "fetch-error": "Unable to fetch your wishlists. Please try again later.",
+    "add-failure": "Failed to add to wishlist. Please try again.",
+    "remove-failure": "Failed to remove from wishlist. Please try again.",
+    "create-wishlist": "Create Wishlist",
+    "wishlist-name": "Name",
+    "create-new-wishlist": "Create New Wishlist",
+    "wishlist-name-required": "Wishlist name is required",
+    "wishlist-max-length": "Maximum 50 characters allowed",
+    "clear": "Clear",
+    "creating": "Creating...",
+    "create": "Create",
+    "characters": "characters"
   }
 }

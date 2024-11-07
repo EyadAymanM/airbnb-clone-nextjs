@@ -13,7 +13,7 @@ import { FaPlus } from "react-icons/fa";
 import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { Button } from "@/components/ui/button";
 import { updateListing } from "@/app/_actions/Listing/updateListing";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const AmenitiesModal = ({ listingId, selectedAmenities }) => {
   const t = useTranslations("Listings");
@@ -21,7 +21,7 @@ const AmenitiesModal = ({ listingId, selectedAmenities }) => {
   const [amenities, setAmenities] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState(selectedAmenities);
-
+  const locale = useLocale();
   useEffect(() => {
     setSelected(selectedAmenities);
   }, [selectedAmenities]);
@@ -81,14 +81,14 @@ const AmenitiesModal = ({ listingId, selectedAmenities }) => {
             </DialogTitle>
           </DialogHeader>
           <hr className="my-4 border-gray-300" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl h-80 overflow-y-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl h-80 overflow-y-auto ">
             {loading ? (
               <LoadingSkeleton count={9} />
             ) : (
               amenities.map(({ name, icon, _id }) => (
                 <AmenityCard
                   key={_id}
-                  name={name}
+                  name={locale === "en"? name.en: name.ar}
                   icon={icon}
                   id={_id}
                   selected={selected.includes(_id)}
@@ -116,7 +116,7 @@ const AmenitiesModal = ({ listingId, selectedAmenities }) => {
 const AmenityCard = ({ name, icon, id, selected, toggleAmenity }) => (
   <div
     onClick={() => toggleAmenity(id)}
-    className={`flex justify-center items-center p-2 border rounded-xl cursor-pointer transition-all overflow-hidden ${
+    className={`flex justify-center items-center p-5 border rounded-xl cursor-pointer transition-all  ${
       selected ? "border-primary text-primary bg-[#f7f7f7]" : "border-gray-200 hover:border-gray-300"
     }`}
     role="checkbox"

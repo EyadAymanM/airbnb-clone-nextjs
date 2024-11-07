@@ -21,7 +21,7 @@ function Page() {
         const response = await axiosInstance.get("/listing/hosting/listings");
         setListings(response.data);
       } catch (error) {
-        console.error("Failed to fetch listings:", error);
+        // console.error("Failed to fetch listings:", error);
       }
     };
     fetchListings();

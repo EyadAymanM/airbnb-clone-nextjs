@@ -7,6 +7,7 @@ import CategoryList from "../_components/category";
 import Footer from "../_components/Footer/Footer";
 export default async function Home({ searchParams }) {
   const t = await getTranslations('HomePage');
+  
   const listings = searchParams['category'] ? await fetchData(`listing/verified?category=${searchParams['category']}`) : await fetchData(`listing/verified`)
   // console.log('listings', listings);
   try {

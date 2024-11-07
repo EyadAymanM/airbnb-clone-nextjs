@@ -16,7 +16,7 @@ import {
   FacebookShareButton,
   TwitterShareButton,
   WhatsappShareButton,
-} from "react-share"; // Changed to react-share
+} from "react-share"; 
 import {
   Dialog,
   DialogContent,

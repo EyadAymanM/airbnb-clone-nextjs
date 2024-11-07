@@ -122,8 +122,8 @@ const LoginPage = () => {
           <hr className="flex-grow border-t border-gray-300" />
         </div>
         <div className="space-y-2">
-          <SocialLoginButton provider="facebook" text={t('continue-with-facebook')} />
           <SocialLoginButton provider="google" text={t('continue-with-google')} />
+          <SocialLoginButton provider="facebook" text={t('continue-with-facebook')} />
           <SocialLoginButton provider="apple" text={t('continue-with-apple')} />
         </div>
       </div>

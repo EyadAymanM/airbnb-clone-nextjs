@@ -2,10 +2,11 @@
 import { useState } from "react";
 import CardEditor from "./CardEditor";
 import CardLocationEdit from "./CardLocationEdit";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const CardEditorList = ({ listing = {}, onCardClick, mobile }) => {
   const t = useTranslations('Listings');
+  const locale = useLocale();
   const cardData = [
     { title: t("photo-tour"), description: t("photo-tour-description"), route: "photo-tour" },
     { title: t("title"), description: listing.title || t("no-title-available"), route: "title" },
@@ -17,10 +18,10 @@ const CardEditorList = ({ listing = {}, onCardClick, mobile }) => {
           : t("no-description-available"),
       route: "description",
     },
-    { title: t("property-type"), description: listing.category || t("no-category"), route: "property-type" },
+    { title: t("property-type"), description: listing.type || t("no-category"), route: "property-type" },
     { title: t("pricing"), description: listing.price ? `$${listing.price}` : t("no-price-available"), route: "pricing" },
     { title: t("number-of-guests"), description: listing.guests ? `${listing.guests} ${t("guests")}` : t("no-guests-info"), route: "number-of-guests" },
-    { title: t("amenities"), description: listing.amenities?.map((amenity) => amenity.name).join(', ') || t("no-amenities"), route: "amenities" },
+    { title: t("amenities"), description: listing.amenities?.map((amenity) => locale === "en"? amenity.name.en :amenity.name.ar).join(', ') || t("no-amenities"), route: "amenities" },
     {
       title: t("location"),
       description: listing.location

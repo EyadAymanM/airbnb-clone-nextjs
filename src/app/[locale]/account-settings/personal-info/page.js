@@ -17,7 +17,6 @@ export default function Page() {
   const t = useTranslations("user-info")
   const router = useRouter();
   const { data: session, status } = useSession();
-
   const [nameForm, setNameForm] = useState(false);
   const toggleNameForm = () => {
     setNameForm(!nameForm);
@@ -77,6 +76,7 @@ export default function Page() {
     }
   };
   const changeAddress = async () => {
+    // const user = await updateUser({ address }, token)
     const user = await updateUser({ address }, session.user.token.access_token)
     if (user.address) {
       toast(t("success"))
@@ -262,10 +262,6 @@ export default function Page() {
                     {t("save")}
                   </div>
                 </div>
-
-
-
-
 
                 <label>{t("email")}</label>
                 <div className="flex items-center border-b border-grye-500 py-2 mb-10">
