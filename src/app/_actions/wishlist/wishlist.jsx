@@ -1,10 +1,15 @@
 import axiosInstance from '@/lib/axiosInstance';
+import axios from 'axios';
 import { revalidatePath } from 'next/cache';
 const api = process.env.NEXT_PUBLIC_API_URL
 
-export const fetchWishlists = async () => {
+export const fetchWishlists = async (token) => {
+  console.log(token);
+  
   try {
-    const response = await axiosInstance.get('/wishlist');
+    const response = await axios.get(`${api}/wishlist`, {
+      headers: { 'Authorization': token },
+    });
     return response.data;
   } catch (error) {
     console.error("Error fetching wishlists:", error);

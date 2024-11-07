@@ -74,7 +74,10 @@ function Page({ params: { id } }) {
     <>
       <h1 className="max-w-2xl mx-auto my-2 text-3xl font-semibold font-airbnb text-center">{t("category")}</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 max-w-2xl mx-auto">
-        {categories.map(({ icon, displayName ,_id }) => (
+        {categories.map(({ icon, displayName ,_id }) => {
+          if(displayName.en=="ALL")
+            return <></>
+          return(
           <div
             key={displayName}
             onClick={() => setSelectedCategory(_id)}
@@ -93,7 +96,7 @@ function Page({ params: { id } }) {
             </div>
             <span className={`text-base font-semibold font-airbnb ms-2 text-[#333]`}>{locale == "ar"?displayName.ar:displayName.en}</span>
           </div>
-        ))}
+        )})}
       </div>
       <NextBackFooter progress={12} next={updateCategory} />
     </>

@@ -101,8 +101,8 @@ export default function Page() {
   };
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      if (status == "authenticated") {
+    if (status == "authenticated") {
+      const fetchUserData = async () => {
         const user = await getUser(session.user.token.access_token);
 
         setFirstName(user.firstName);
@@ -110,9 +110,9 @@ export default function Page() {
         setEmail(user.email);
         setAddress(user.address);
         setImage(user.image)
-      }
-    };
-    fetchUserData();
+      };
+      fetchUserData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
   if (status == "loading") {

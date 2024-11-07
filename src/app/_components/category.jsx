@@ -18,7 +18,7 @@ function CategoryIcon({ svgString, className }) {
   return <>{parse(SVG)}</>;
 }
 
-const Category = ({ icon, displayName, activated, onClick, technicalName }) => (
+const Category = ({ icon, displayName, activated, onClick, technicalName, _id }) => (
   <div
     className={`cursor-pointer border-b-2 flex flex-col items-center p-2 transition-all duration-300 ${activated
       ? "category-activated border-black"
@@ -48,13 +48,13 @@ const CategoryList = () => {
   const scrollContainerRef = useRef(null);
   const router = useRouter()
 
-  const handleCategoryClick = (technicalName) => {
+  const handleCategoryClick = (technicalName,_id) => {
     if (technicalName == "ALL") {
       router.push('/')
       setActiveCategory(technicalName);
       return
     }
-    router.push(`/?category=${technicalName}`)
+    router.push(`/?category=${_id}`)
     setActiveCategory(technicalName);
   };
 
@@ -129,7 +129,7 @@ const CategoryList = () => {
             displayName={locale == "ar" ? category.displayName.ar : category.displayName.en}
             activated={activeCategory === category.technicalName}
             technicalName={category.technicalName}
-            onClick={() => handleCategoryClick(category.technicalName)}
+            onClick={() => handleCategoryClick(category.technicalName,category._id)}
           />
         ))}
       </div>
