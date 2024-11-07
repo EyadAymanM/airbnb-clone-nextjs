@@ -108,7 +108,7 @@ function Page({ params: { id } }) {
                       svgString={amenity.icon}
                       className={"w-6 h-6"}
                     />
-                    <span>{amenity.name}</span>
+                    <span>{locale == "ar" ? amenity.name.ar : amenity.name.en}</span>
                   </div>
                 ))}
               </div>
@@ -121,7 +121,7 @@ function Page({ params: { id } }) {
               <div className="font-airbnb text-2xl">
                 {Intl.NumberFormat("us-US", {
                   style: "currency",
-                  currency: "EGP",
+                  currency: "USD",
                   minimumFractionDigits: 0,
                 }).format(room.price)}
                 <span className="text-base"> {t2("night")}</span>

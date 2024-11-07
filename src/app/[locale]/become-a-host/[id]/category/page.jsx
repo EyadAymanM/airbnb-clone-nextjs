@@ -9,10 +9,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import toast from "react-hot-toast";
 import { fetchData } from "@/app/_actions/Listing/fetchData";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 library.add(fas);
 function Page({ params: { id } }) {
   const t = useTranslations("become-a-host");
+  const locale = useLocale()
   const router = useRouter()
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -90,7 +91,7 @@ function Page({ params: { id } }) {
                 className={`w-8 h-8`}
               />
             </div>
-            <span className={`text-base font-semibold font-airbnb ms-2 text-[#333]`}>{displayName}</span>
+            <span className={`text-base font-semibold font-airbnb ms-2 text-[#333]`}>{locale == "ar"?displayName.ar:displayName.en}</span>
           </div>
         ))}
       </div>

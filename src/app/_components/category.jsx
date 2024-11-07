@@ -28,7 +28,7 @@ const Category = ({ icon, displayName, activated, onClick, technicalName }) => (
   >
     <CategoryIcon svgString={icon} className={`w-8 h-8 mb-1 ${activated ? "fill-black" : "fill-gray-500"}`} />
     <span
-      className={`text-center text-[0.8rem] whitespace-nowrap tracking-[0.25px] ${activated ? "font-semibold" : ""
+      className={`text-center font-airbnb text-[0.8rem] whitespace-nowrap tracking-[0.25px] ${activated ? "font-semibold" : ""
         }`}
       title={displayName}
     >
@@ -126,7 +126,7 @@ const CategoryList = () => {
           <Category
             key={category.technicalName}
             icon={category.icon}
-            displayName={category.displayName}
+            displayName={locale == "ar" ? category.displayName.ar : category.displayName.en}
             activated={activeCategory === category.technicalName}
             technicalName={category.technicalName}
             onClick={() => handleCategoryClick(category.technicalName)}

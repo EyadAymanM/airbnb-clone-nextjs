@@ -133,8 +133,8 @@ function Page({ params: { id } }) {
               <div className="flex flex-col mt-2 gap-2">
                 <div className="text-2xl">{t("price")}</div>
                 <div className="text-base flex justify-between">
-                  <span>{t("total")}<span className="underline">(EGP)</span></span>
-                  <span className="">{listing.price}ج.م</span>
+                  <span>{t("total")}<span className="underline">(USD)</span></span>
+                  <span className="">{listing.price}USD</span>
                 </div>
               </div>
             </div>

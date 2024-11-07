@@ -94,7 +94,7 @@ const ListingCard = ({ listing }) => {
           </div>
         </Link>
         <div className="font-semibold ms-2">
-          {listing.price}ج.م <span className="font-light">{t("night")}</span>
+          {listing.price}$ <span className="font-light"> {t("night")}</span>
         </div>
       </div>
     </>
