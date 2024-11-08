@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import logoWord from "../../_assets/svgs/Airbnb-word-Logo.png";
 import logo from "../../_assets/svgs/airbnb-logo-only.svg";
 function Logo() {

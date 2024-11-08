@@ -1,3 +1,5 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images:{
@@ -19,9 +21,15 @@ const nextConfig = {
         hostname: "res.cloudinary.com",
         port: "", 
         pathname: "/**"
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",  
+        port: "", 
+        pathname: "/**"
       }
     ]
-  }
+  },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

@@ -19,13 +19,27 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Trash2, Moon, MapPin, Calendar } from "lucide-react";
 import Image from "next/image";
 import { format, differenceInDays } from "date-fns";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
+import { useLocale, useTranslations } from "next-intl";
+import { ReviewComponent } from "./Review/ReviewComponent";
+
+
 
 export function TripCard({ trip, listingID, onCancel }) {
+  const t = useTranslations("Trips")
+  const locale = useLocale();
   const [isHovered, setIsHovered] = useState(false);
 
   const title = listingID?.title || "No title available";
@@ -67,17 +81,17 @@ export function TripCard({ trip, listingID, onCancel }) {
           />
           {isUpcoming && (
             <Badge className="absolute top-2 right-2 bg-green-500 text-white">
-              Upcoming
+              {t("upcoming")}
             </Badge>
           )}
           {isInProgress && (
             <Badge className="absolute top-2 right-2 bg-blue-500 text-white">
-              In Progress
+              {t("in-progress")}
             </Badge>
           )}
           {isPast && (
             <Badge className="absolute top-2 right-2 bg-gray-500 text-white">
-              Past
+              {t("past")}
             </Badge>
           )}
         </div>
@@ -87,20 +101,42 @@ export function TripCard({ trip, listingID, onCancel }) {
         <CardContent>
           <div className="space-y-2 text-sm text-muted-foreground">
             <div className="flex items-center">
-              <MapPin className="w-4 h-4 mr-2 text-primary" />
+              <MapPin className="w-4 h-4 me-2 text-primary" />
               {city}
             </div>
             <div className="flex items-center">
-              <Calendar className="w-4 h-4 mr-2 text-primary" />
+              <Calendar className="w-4 h-4 me-2 text-primary" />
               {formatDate(startDate)} - {formatDate(endDate)}
             </div>
             <div className="flex items-center">
-              <Moon className="w-4 h-4 mr-2 text-primary" />
-              {nights} {nights === 1 ? "night" : "nights"}
+              <Moon className="w-4 h-4 me-2 text-primary" />
+              {nights} {(locale == "ar"? "ليلة" :nights === 1 ? "night" : "nights")}
             </div>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-end">
+        <CardFooter className="flex justify-center">
+          {isPast && (
+
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <button
+                  className="w-fit px-12 py-3 rounded-lg bg-[#E51D53] hover:bg-[#D11146] text-white"
+                >
+                  {t("add")}
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[525px] bg-white">
+                <DialogHeader>
+                  <DialogTitle className="text-center border-b pb-4">{locale == 'en' ? 'Submit a Review' : 'أضف مراجعة'}</DialogTitle>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="flex justify-around">
+                    <ReviewComponent title={title} city={city} trip={trip}/>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>)}
           {isUpcoming && (
             <AlertDialog>
               <AlertDialogTrigger asChild>
@@ -118,17 +154,16 @@ export function TripCard({ trip, listingID, onCancel }) {
               <AlertDialogContent className="bg-white p-6 rounded-xl">
                 <AlertDialogHeader>
                   <AlertDialogTitle>
-                    Are you sure the trip has been cancelled?
+                    {t("q1")}
                   </AlertDialogTitle>
                   <AlertDialogDescription>
-                    This action cannot be undone. This will permanently cancel
-                    your trip to {city}.
+                    {t("q2")} {city}.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>cancel</AlertDialogCancel>
+                  <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
                   <AlertDialogAction onClick={() => onCancel(trip._id)}>
-                    confirm
+                    {t("confirm2")}
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
@@ -141,19 +176,20 @@ export function TripCard({ trip, listingID, onCancel }) {
 }
 
 export function NoTripsContent() {
+  const t = useTranslations("Trips")
   const router = useRouter();
   return (
     <div className="text-start py-6 border-b">
-      <h2 className="text-2xl font-semibold mb-2">No trips booked...yet!</h2>
+      <h2 className="text-2xl font-semibold mb-2">{t("no-trips")}</h2>
       <p className="text-gray-600 mb-4">
-        Time to dust off your bags and start planning your next adventure.
+        {t("no-trips2")}
       </p>
       <Button
         variant="outline"
         className="text-xl text-center p-5  hover:bg-black hover:text-white rounded-xl "
         onClick={() => router.push("/")}
       >
-        start searching{" "}
+        {t("no-trips3")}{" "}
       </Button>
     </div>
   );
