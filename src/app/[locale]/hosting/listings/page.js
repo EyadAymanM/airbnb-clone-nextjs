@@ -47,9 +47,9 @@ function Page() {
     setSearchTerm(e.target.value);
   };
 
-  if(loading)
+  if (loading)
     return <Loading />
-  if(status == "unauthenticated")
+  if (status == "unauthenticated")
     return <UnauthenticatedComponent />
 
   return (
@@ -98,10 +98,13 @@ function Page() {
         </div>
 
         <div className="mb-20">
-          <ListingEditorList listings={listings} searchTerm={searchTerm} />
+          {listings.length > 0 ?
+            <ListingEditorList listings={listings} searchTerm={searchTerm} />
+            :
+            <div className="text-center text-2xl font-airbnb py-8">{t("no-listing-hosted")}</div>}
         </div>
       </div>
-      <Footer position={"fixed"}/>
+      <Footer position={"fixed"} />
     </>
   );
 }

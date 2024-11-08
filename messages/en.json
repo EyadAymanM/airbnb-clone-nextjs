@@ -221,7 +221,8 @@
     "location-updated-successfully": "Location updated successfully",
     "error-updating-location": "Error updating location",
     "guests": "guests",
-    "no-matching-listings":"No matching listings"
+    "no-matching-listings":"No matching listings",
+    "no-listing-hosted":"You have Listings hosted yet..."
   },
   "propertyType": {
     "how-many-bathrooms": "How many bathrooms?",

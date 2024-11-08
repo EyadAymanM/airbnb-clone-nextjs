@@ -221,7 +221,8 @@
     "postalCode": "الرمز البريدي",
     "location-updated-successfully": "تم تحديث الموقع بنجاح",
     "error-updating-location": "خطأ في تحديث الموقع",
-    "guests": "ضيوف"
+    "guests": "ضيوف",
+    "no-listing-hosted": "لم تقم بإستضافة أي مساكن حتى الان..."
   },
   "propertyType": {
     "how-many-bathrooms": "كم حمام؟",
