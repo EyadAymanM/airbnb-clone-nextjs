@@ -16,7 +16,7 @@ export default async function Home({ searchParams }) {
   } catch {
     return (
       <div>
-      <NavBar position={"sticky"}/>
+      <NavBar show={true} position={"sticky"}/>
       <Container>
         <CategoryList />
           <h1 className="h-96 pt-40 font-airbnb text-2xl text-center">{t('not-found')}</h1>
@@ -27,7 +27,7 @@ export default async function Home({ searchParams }) {
   }
   return (
     <div>
-      <NavBar position={"sticky"}/>
+      <NavBar show={true} position={"sticky"}/>
       <Container>
         <CategoryList />
         <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">

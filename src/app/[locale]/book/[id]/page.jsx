@@ -116,7 +116,7 @@ function Page({ params: { id } }) {
                 currency: 'usd'
               }}
             >
-              <Checkout amount={listing.price} listing={listing} token={session.user.access_token}/>
+              <Checkout amount={listing.price} listing={listing} token={session.user.access_token} id={id}/>
             </Elements>
 
           </div>

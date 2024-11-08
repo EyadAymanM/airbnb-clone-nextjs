@@ -6,8 +6,9 @@ import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 import { format, differenceInDays } from "date-fns";
 import { addReservation } from "@/app/_actions/booking/fetchtrips"
+import { updateListing } from "@/app/_actions/Listing/updateListing"
 
-function Checkout({ amount , listing }) {
+function Checkout({ amount , listing , id }) {
   const api = process.env.NEXT_PUBLIC_APP_URL
   const { data: session } = useSession()
   const locale = useLocale()
@@ -43,6 +44,9 @@ function Checkout({ amount , listing }) {
       guestsCount: listing.guests,
       totalPrice: listing.price * differenceInDays(listing.endDate, listing.startDate)
     })
+
+    const listingBooked = await updateListing(id , { book: true })
+
 
     const { error } = await stripe.confirmPayment({
       elements,

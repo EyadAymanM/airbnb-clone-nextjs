@@ -27,7 +27,7 @@ function Page({ params: { id } }) {
 
   const updateDates = async () => {
     if (selected) {
-      const listing = await updateListing(id, { startDate: state[0].startDate, endDate: state[0].endDate })
+      const listing = await updateListing(id, { startDate: state[0].startDate, endDate: state[0].endDate, book:false })
       if (listing._id)
         router.push(`/hosting/listings`)
       else
