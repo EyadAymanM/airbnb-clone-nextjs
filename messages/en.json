@@ -37,7 +37,8 @@
     "login": "log in"
   },
   "HomePage": {
-    "not-found": "No listing in available in this category"
+    "not-found": "No listing in available in this category",
+    "not-found-search": "No listing in available by this name"
   },
   "UserMenu": {
     "switch": "Switch to hosting",
@@ -155,7 +156,6 @@
     "status": "Status",
     "verified": "Verified",
     "not-verified": "Verification required",
-    "no-matching-listings": "No listing matching your search",
     "search-listings-by-name": "Search listings by name",
     "fetch_error": "Failed to load listing data.",
     "editor_title": "Listing Editor",
@@ -458,5 +458,8 @@
     "creating": "Creating...",
     "create": "Create",
     "characters": "characters"
+  },
+  "search-listing":{
+    "placeholder": "Search Listings..."
   }
 }

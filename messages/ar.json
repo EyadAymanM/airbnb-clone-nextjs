@@ -37,7 +37,8 @@
     "login": "قم بتسجيل الدخول"
   },
   "HomePage": {
-    "not-found": "لا توجد مساكن في هذا التصنيف"
+    "not-found": "لا توجد مساكن في هذا التصنيف",
+    "not-found-search": "لا توجد مساكن بهذا الاسم"
   },
   "UserMenu": {
     "switch": "الاستضافة",
@@ -453,5 +454,8 @@
     "creating": "جاري الإنشاء...",
     "create": "إنشاء",
     "characters": "حروف"
+  },
+  "search-listing": {
+    "placeholder": "ابحث عن مساكن..."
   }
 }
