@@ -15,6 +15,7 @@ import ShareModal from "../../../_components/Modal/ShareModal";
 import NavBar from "@/app/_components/Navbar/NavBar";
 import { useLocale, useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
+import UnauthenticatedComponent from "@/app/_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
 
 const heartIconHtml = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="16px" height="16px">
@@ -60,7 +61,8 @@ const Page = ({ params: { id } }) => {
   const handleBackClick = () => {
     router.push(`/wishlists`);
   };
-
+  if (status == "unauthenticated")
+    return <UnauthenticatedComponent/>
   return (
     <>
       <NavBar className="hidden md:block" />

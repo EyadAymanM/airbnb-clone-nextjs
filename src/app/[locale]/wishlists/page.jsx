@@ -9,6 +9,7 @@ import WishlistCard from "@/app/_components/WishlistCard";
 import NavBar from "@/app/_components/Navbar/NavBar";
 import { useTranslations } from 'next-intl';
 import { useSession } from "next-auth/react";
+import UnauthenticatedComponent from "@/app/_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
 
 const Wishlist = () => {
   const { data: session, status } = useSession()
@@ -32,6 +33,9 @@ const Wishlist = () => {
       setIsLoading(false)
     }
   }, [status]);
+
+  if (status == "unauthenticated")
+    return <UnauthenticatedComponent />
 
   return (
     <>
