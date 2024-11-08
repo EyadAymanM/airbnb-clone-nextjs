@@ -44,20 +44,20 @@ function Layout({ children, params }) {
     <NavBar />
     <div className="flex flex-col md:flex-row">
       {/* LEFT - Sidebar */}
-      <div className={classNames("w-full md:w-1/3 bg-white p-4 md:p-6 border-r border-gray-200", { hidden: showChildren && 'md:hidden' })}>
-        <div className="flex items-center gap-2 p-2 md:p-4 sticky top-0 bg-white">
+      <div className={classNames("w-full md:w-1/3  bg-white p-4 md:p-6 border-r border-gray-200", { hidden: showChildren && 'md:hidden' })}>
+        <div className="flex items-center gap-2 p-2 md:p-4 sticky  top-8 bg-white">
           <BackButton/>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 ">
             {t("editor_title")}
           </h1>
         </div>
         {/* Sidebar list for desktop view */}
-        <div className="max-h-[calc(100vh-8rem)] fixed overflow-y-auto hidden md:block">
+        <div className="max-h-[calc(100vh-12rem)] fixed overflow-y-auto hidden md:block">
           <CardEditorList listing={listing} />
         </div>
 
         {/* Sidebar list for mobile view */}
-        <div className="max-h-[calc(100vh-8rem)]  overflow-y-auto md:hidden block ">
+        <div className="max-h-[calc(100vh-12rem)]  overflow-y-auto md:hidden block ">
           <CardEditorList listing={listing} onCardClick={handleCardClick} mobile={true} />
         </div>
       

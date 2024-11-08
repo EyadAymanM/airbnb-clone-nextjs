@@ -45,7 +45,7 @@ const AddWishlistModal = ({ listingId }) => {
       };
       fetchItems();
     }
-  }, [t,status]);
+  }, [t, status, session.user.token.access_token]);
 
   const handleAddToWishlist = async (wishlistId) => {
     try {

@@ -10,11 +10,11 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     async function fetchToken() {
       const session = await getSession();
-      if (session?.user.token.access_token) {
+      if (session?.user.token.access_token || session.user.idToken) {
         setToken(session?.user.token.access_token);
       }
     }
-    fetchToken();
+    // fetchToken();
   }, []);
   console.log("Token ", token)
   return (

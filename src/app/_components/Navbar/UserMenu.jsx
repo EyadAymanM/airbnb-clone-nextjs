@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useAuthToken } from "@/lib/context/authContext";
 import { setAuthToken } from "@/lib/axiosInstance";
+import { sendUserDataToBackend } from "@/app/_actions/User/user";
 
 function UserMenu() {
   const t = useTranslations("UserMenu");
@@ -49,7 +50,7 @@ function UserMenu() {
   };
   useEffect(() => {
     if (status == "authenticated") {
-      setAvatar(session.user.token.image)
+      setAvatar(session.user.token?.image || session.user.image )
     }
     if (status == "unauthenticated") {
       setAvatar(
@@ -58,6 +59,13 @@ function UserMenu() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
+  useEffect(() => {
+    if (session?.user && session.user.idToken) {
+      console.log('Google login detected, sending user data...');
+      sendUserDataToBackend(session.user.idToken);
+    }
+  }, [session, status]);
+
   return (
     <>
       <div className="flex">

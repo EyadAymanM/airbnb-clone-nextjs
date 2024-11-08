@@ -31,7 +31,7 @@ const Wishlist = () => {
       getWishlist()
       setIsLoading(false)
     }
-  }, [status]);
+  }, [status, session.user.token.access_token]);
 
   return (
     <>

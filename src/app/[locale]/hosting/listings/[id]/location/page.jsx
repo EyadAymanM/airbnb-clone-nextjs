@@ -65,7 +65,6 @@ const Location = ({ params: { id } }) => {
 
   return (
     <>
-      <Toaster />
       <div className="flex justify-center font-airbnb">
         <div className="w-full">
           <h1 className="my-4 text-3xl font-semibold text-start sticky top-0 bg-white">{t("location")}</h1>

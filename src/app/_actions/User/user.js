@@ -39,3 +39,13 @@ export const signUp = async (userData) => {
 };
 
 
+export  const sendUserDataToBackend = async (idToken) => {
+  try {
+    const response = await axios.post(`${api}/auth/google-login`, {
+      idToken,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error sending user data to the backend:', error);
+  }
+};

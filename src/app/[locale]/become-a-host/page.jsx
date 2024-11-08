@@ -42,7 +42,7 @@ function Page() {
       <NavBar />
         <Container>
           <div className="flex flex-col w-[620px] mx-auto px-4 font-airbnb gap-10 md:mt-16">
-            <h1 className="text-4xl font-semibold">{t("welcome")} {session.user.token.firstName} </h1>
+            <h1 className="text-4xl font-semibold">{t("welcome")} {session.user.token?.firstName} </h1>
 
             <div className="font-bold text-2xl">{t("manage")}</div>
             <div onClick={() => router.push('/hosting/listings')} className="flex flex-col gap-4">

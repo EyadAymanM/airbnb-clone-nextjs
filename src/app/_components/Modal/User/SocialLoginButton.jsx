@@ -3,8 +3,9 @@
 import { signIn, useSession } from 'next-auth/react';
 import { FaApple, FaFacebookSquare } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import axios from 'axios'; // Make sure axios is imported
+import { sendUserDataToBackend } from '@/app/_actions/User/user';
 
 const SocialLoginButton = ({ provider, text }) => {
   const { data: session, status } = useSession();
@@ -13,22 +14,18 @@ const SocialLoginButton = ({ provider, text }) => {
   const handleSocialLogin = async () => {
     setLoading(true);
     try {
-      let res;
+      const res = await signIn(provider, { redirect: true, callbackUrl: '/' });
 
-      if (provider === 'google') {
-        res = await signIn('google', {
-          redirect: false,
-        });
-
-        if (res?.ok && session?.user) {
-          await sendUserDataToBackend(session.user.token.jti);
-        } else {
-          console.error('Google login failed');
-        }
-      } else {
-        res = await signIn(provider, { redirect: true, callbackUrl: '/' });
-        if (!res?.ok) {
-          throw new Error(`${provider} login failed`);
+      if (res?.ok && provider === 'google' && session?.user?.idToken) {
+        console.log('Google login successful, sending data to backend...');
+        try {
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/google-login`, {
+            idToken: session.user.idToken,
+          });
+          console.log('User data successfully sent:', response.data);
+          return response.data;
+        } catch (error) {
+          console.error('Error sending user data to the backend:', error);
         }
       }
     } catch (error) {
@@ -38,16 +35,12 @@ const SocialLoginButton = ({ provider, text }) => {
     }
   };
 
-  const sendUserDataToBackend = async (idToken) => {
-    try {
-      const response = await axios.post(`${process.env.API_URL}/auth/google-login`, {
-        idToken,
-      });
-      console.log('User data successfully sent:', response.data);
-    } catch (error) {
-      console.error('Error sending user data to the backend:', error);
+  useEffect(() => {
+    if (session?.user && session.user.idToken) {
+      console.log('Google login detected, sending user data...');
+      sendUserDataToBackend(session.user.idToken);
     }
-  };
+  }, [session, provider]);
 
   const getIcon = (provider) => {
     switch (provider) {
@@ -61,12 +54,6 @@ const SocialLoginButton = ({ provider, text }) => {
         return null;
     }
   };
-
-  // useEffect(() => {
-  //   if (session?.user?.idToken) {
-  //     sendUserDataToBackend(session.user.idToken);
-  //   }
-  // }, [session]);
 
   return (
     <button
