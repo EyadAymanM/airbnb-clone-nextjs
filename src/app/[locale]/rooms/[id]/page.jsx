@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Gallery from "../_components/Gallery";
 import PageNav from "@/app/_components/Navbar/NavBar";
-import StickyNav from "../_components/stickyNav";
+import StickyNav from "../_components/StickyNav";
 import Title from "../_components/Title";
 import owner from "../../../_assets/camera.jpg";
 import { useRouter } from "@/i18n/routing";
@@ -13,10 +13,12 @@ import { useEffect, useState } from "react";
 import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { useLocale, useTranslations } from "next-intl";
 import Footer from "../../../_components/Footer/Footer";
+import Loading from "@/app/_components/UnauthenticatedComponent.jsx/Loading";
 
 function Page({ params: { id } }) {
   const t = useTranslations("Room")
   const t2 = useTranslations("ListingCard")
+  const [loading, setLoading] = useState(true);
   const locale = useLocale()
   const router = useRouter();
 
@@ -40,9 +42,12 @@ function Page({ params: { id } }) {
     const getRoom = async () => {
       const data = await fetchData(`listing/${id}`);
       setRoom(data);
+      setLoading(false)
     };
     getRoom();
   }, [id]);
+  if(loading)
+    return <Loading/>;
 
   return (
     <div>
@@ -75,7 +80,7 @@ function Page({ params: { id } }) {
             {/* owner */}
             <div className="flex items-center my-6 pb-8 border-b">
               <Image
-                src={owner}
+                src={room.owner?.image || "https://res.cloudinary.com/dqrid1fi3/image/upload/v1729230344/kwrifwuycusuohxopa8j.jpg"}
                 alt=""
                 width="40"
                 height="40"
@@ -83,7 +88,7 @@ function Page({ params: { id } }) {
                 onClick={() => router.push(`user/${owner.id}`)}
               />
               <div className="text-base font-medium">
-                {t("stay-with")} {room.owner.firstName}
+                {t("stay-with")} {room.owner?.firstName}
               </div>
             </div>
             {/* description */}
@@ -103,7 +108,7 @@ function Page({ params: { id } }) {
                       svgString={amenity.icon}
                       className={"w-6 h-6"}
                     />
-                    <span>{amenity.name}</span>
+                    <span>{locale == "ar" ? amenity.name.ar : amenity.name.en}</span>
                   </div>
                 ))}
               </div>
@@ -116,12 +121,14 @@ function Page({ params: { id } }) {
               <div className="font-airbnb text-2xl">
                 {Intl.NumberFormat("us-US", {
                   style: "currency",
-                  currency: "EGP",
+                  currency: "USD",
                   minimumFractionDigits: 0,
                 }).format(room.price)}
                 <span className="text-base"> {t2("night")}</span>
               </div>
-              <button className="bg-[#FF385C] text-white w-full text-lg rounded-[6px] py-2 my-2 ">
+              <button
+                onClick={()=> router.push(`/book/${id}`)}
+                className="bg-[#FF385C] text-white w-full text-lg rounded-[6px] py-2 my-2 ">
                 {t("reserve")}
               </button>
             </div>
@@ -167,9 +174,7 @@ function Page({ params: { id } }) {
             </h1>
 
             <div className="grid md:grid-cols-2 grid-cols-1 gap-x-24 gap-y-8 py-6">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Review key={i} />
-              ))}
+              <Review id={id}/>
             </div>
           </div>
 

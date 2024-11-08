@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from "../_assets/svgs/airbnb-logo-only.svg"
-import imageCard from "../_assets/rotate.jpg"
+import logo from "../../_assets/svgs/airbnb-logo-only.svg"
+import imageCard from "../../_assets/rotate.jpg"
 import Image from "next/image"
 
 

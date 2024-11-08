@@ -1,10 +1,10 @@
 'use server'
 import axios from "axios";
 import { cookies } from 'next/headers';
-
+const api = process.env.NEXT_PUBLIC_API_URL
 export const login = async (userData) => {
   try {
-    const response = await axios.post('http://localhost:3000/auth/login', userData);
+    const response = await axios.post(`${api}/auth/login`, userData);
     const { access_token } = response.data;
     
     cookies().set('access_token', access_token, {
@@ -22,7 +22,7 @@ export const login = async (userData) => {
 
 export const signUp = async (userData) => {
   try {
-    const response = await axios.post('http://localhost:3000/auth/register', userData);
+    const response = await axios.post(`${api}/auth/register`, userData);
     const { access_token } = response.data;
     
     cookies().set('access_token', access_token, {
@@ -39,3 +39,13 @@ export const signUp = async (userData) => {
 };
 
 
+export  const sendUserDataToBackend = async (idToken) => {
+  try {
+    const response = await axios.post(`${api}/auth/google-login`, {
+      idToken,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error sending user data to the backend:', error);
+  }
+};

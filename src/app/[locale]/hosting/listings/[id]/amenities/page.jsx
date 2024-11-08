@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { fetchData } from "@/app/_actions/Listing/fetchData";
 import AmenitiesModal from "@/app/_components/Modal/AmenitiesModal";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import toast from "react-hot-toast";
 
 const AmenityIcon = ({ svgString, size = "w-6 h-6" }) => {
@@ -14,6 +14,7 @@ const AmenityIcon = ({ svgString, size = "w-6 h-6" }) => {
 function Page({ params: { id } }) {
   const [amenities, setAmenities] = useState([]);
   const t = useTranslations('Listings');
+  const locale = useLocale();
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
@@ -39,7 +40,7 @@ function Page({ params: { id } }) {
         {amenities.map(({ name, icon, _id }) => (
           <li key={_id} className="flex items-center p-4 transition-all gap-4">
             <AmenityIcon svgString={icon} size="w-8 h-8" />
-            <span className="text-base font-semibold font-airbnb text-gray-700">{name}</span>
+            <span className="text-base font-semibold font-airbnb text-gray-700">{locale === "en"? name.en: name.ar}</span>
           </li>
         ))}
       </div>

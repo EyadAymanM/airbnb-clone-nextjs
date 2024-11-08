@@ -2,7 +2,7 @@
   "user-info": {
     "save": "Save",
     "info": "Personal Info",
-    "success": "somthing went wrong try again later",
+    "success": "updated successfully",
     "fail": "somthing went wrong try again later",
     "cancel": "Cancel",
     "edit": "Edit",
@@ -37,7 +37,8 @@
     "login": "log in"
   },
   "HomePage": {
-    "not-found": "No listing in available in this category"
+    "not-found": "No listing in available in this category",
+    "not-found-search": "No listing in available by this name"
   },
   "UserMenu": {
     "switch": "Switch to hosting",
@@ -130,7 +131,10 @@
     "room": "A room",
     "room-desc": "Guests have their own room in a home, plus access to shared spaces.",
     "sharedroom": "A shared room in a hostel",
-    "sharedroom-desc": "Guests have the whole place to themselves."
+    "sharedroom-desc": "Guests have the whole place to themselves.",
+    "dates": "Please add when is your listing available",
+    "dates-desc": "Pick two dates: the start date and the end date - you can always change it later if it wasn't booked and add another date if the current date gets booked",
+    "dates-toast": "Please Select a Date"
   },
   "personal": {
     "account" : "Account",
@@ -192,12 +196,14 @@
     "description-updated-successfully": "Description updated successfully!",
     "listing-description": "Listing description",
     "maximum-500-characters-allowed": "Maximum 500 characters allowed",
+    "maximum-500-characters-allowed-toast": "description must be between 1 and 500 characters.",
     "enter-price": "Enter price...",
     "price-must-be-a-positive-number": "Price must be a positive number",
     "failed-to-update-price": "Failed to update the price.",
     "price-updated-successfully": "Price updated successfully!",
     "error-updating-pricing": "Error updating pricing.",
     "price": "Price",
+    "price-placeholder": "Type in price...",
     "how-many-guests": "How many guests can fit comfortably in your space?",
     "guest-count-updated-successfully": "Guest count updated successfully!",
     "failed-to-update-the-guest-count": "Failed to update the guest count.",
@@ -214,7 +220,9 @@
     "postalCode": "Postal code",
     "location-updated-successfully": "Location updated successfully",
     "error-updating-location": "Error updating location",
-    "guests": "guests"
+    "guests": "guests",
+    "no-matching-listings":"No matching listings",
+    "no-listing-hosted":"You have Listings hosted yet..."
   },
   "propertyType": {
     "how-many-bathrooms": "How many bathrooms?",
@@ -293,7 +301,7 @@
     "trip": "Your trip",
     "dates": "Dates",
     "guests": "Guests",
-    "guest": "Guests",
+    "guest": "guests",
     "rule": "Ground rules",
     "rules": "We ask every guest to remember a few simple things about what makes a great guest.",
     "rule-1": "Follow the house rules",
@@ -318,7 +326,8 @@
     "ages": "ages-2-17",
     "children": "Children",
     "guest-type": "Guest type",
-    "no-matching-items": "No matching items."
+    "no-matching-items": "No matching items.",
+    "book":"Book"
   },
   "share": {
     "invite-others-to-join": "Invite others to join",
@@ -378,5 +387,80 @@
     "first-name-is-required": "First Name is required.",
     "last-name-is-required": "Last Name is required.",
     "password-must-be-at-least-6-characters": "Password must be at least 6 characters"
+  },
+  "Trips":{
+    "confirm":"Are you sure you want to cancel this trip ?",
+    "trips":"Trips",
+    "upcoming":"Upcoming",
+    "past":"Past",
+    "in-progress":"In Progress",
+    "add": "Add Review",
+    "q1": "Are you sure yon want to cancel this trip?",
+    "q2": "This action cannot be undone. This will permanently cancel your trip to",
+    "confirm2":"confirm",
+    "cancel":"Cancel",
+    "no-trips":"No trips booked...yet!",
+    "no-trips2":"Time to dust off your bags and start planning your next adventure.",
+    "no-trips3":"start searching"
+  },
+  "Review":{
+    "success":"Review submitted successfully",
+    "placeholder":"leave a comment for others describing your experience...",
+    "toast":"please fill review first",
+    "submit": "Submit review"
+  },
+  "invite":{
+    "1":"Guest referrals",
+    "2":"Common questions",
+    "3":"Check out these answers to common questions and review other",
+    "4":"program information in the",
+    "5":"Help Center",
+    "6":"Is the referral program still open?",
+    "7":" The referrals program is no longer open and no new invites can be sent. If you were sent a coupon prior to the shutdown of the program, you will be able to use the coupon on any booking made prior to the expiration of the coupon. Sender credits will be honored till they expire. For prior referrals, you will receive credit upon completion of successful stay if the coupon is used prior to expiry (credit amount based on offer at the time).",
+    "8":"I referred a friend but did not get travel credit",
+    "9":"For referrals made after Oct 1, 2020, Airbnb does not offer travel credit for referrals."
+  },
+  "work":{
+    "1":"Travel for work",
+    "2":"Join Airbnb for Work",
+    "3":"Add your work email to get seamless expensing and exclusive offers on work trips.",
+    "4":"Work email address",
+    "5":"Add work email",
+    "6":"Simplified expensing",
+    "7":"We’ll send work trip receipts to your work inbox for easy expensing.",
+    "8":"Trip description",
+    "9":"Add an expense code and business purpose to work trip",
+    "10":"Keep personal trips private",
+    "11":"Your company can only get info about trips you mark for work at checkout."
+  },
+  "pref":{
+    "1":"Global preferences",
+    "2":"Preferred language",
+    "3":"Preferred currency",
+    "4":"Time zone",
+    "5":"Your global preferences",
+    "6":"Changing your currency updates how you see prices. You can change how you get payments in your payments & payouts preferences.",
+    "edit":"Edit"
+  },
+  "model":{
+    "add-to-wishlist": "Add to Wishlist",
+    "no-wishlists-available": "No wishlists available.",
+    "listing-added": "The listing has been added to your wishlist!",
+    "listing-removed": "The listing has been removed from your wishlist.",
+    "fetch-error": "Unable to fetch your wishlists. Please try again later.",
+    "add-failure": "Failed to add to wishlist. Please try again.",
+    "remove-failure": "Failed to remove from wishlist. Please try again.",
+    "create-wishlist": "Create Wishlist",
+    "wishlist-name": "Name",
+    "create-new-wishlist": "Create New Wishlist",
+    "wishlist-name-required": "Wishlist name is required",
+    "wishlist-max-length": "Maximum 50 characters allowed",
+    "clear": "Clear",
+    "creating": "Creating...",
+    "create": "Create",
+    "characters": "characters"
+  },
+  "search-listing":{
+    "placeholder": "Search Listings..."
   }
 }

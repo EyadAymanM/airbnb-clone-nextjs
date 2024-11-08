@@ -1,73 +1,46 @@
-// 'use client';
+'use client';
+import { useRouter } from "@/i18n/routing";
+import { useLocale, useTranslations } from "next-intl";
+import { useState } from "react";
+import { BiSearch } from "react-icons/bi";
+const Searchbar = ({mobile}) => {
+  const t = useTranslations("search-listing")
+  const locale = useLocale()
+  const router = useRouter()
+  const [isFocused, setIsFocused] = useState(false)
+  const [search, setSearch] = useState('')
 
-// import useSearchModal from '@/app/hooks/useSearchModal';
-// import { BiSearch } from 'react-icons/bi';
+  const handleSearch = async(e)=>{
+    e.preventDefault()
+    if(search.length > 0)
+      router.push(`?search=${search}`)
+  }
 
-// import React, { useMemo } from 'react'
-// import { useSearchParams } from 'next/navigation';
-// import useCountries from '@/app/hooks/useCountries';
-// import { differenceInDays } from 'date-fns';
+  return (
+    <>
+      <div className={`${mobile ? 'md:hidden pt-3' :'hidden md:block ms-20 max-w-96'} relative w-full  font-airbnb`}>
+        <div
+          className={`flex items-center rounded-full border-2 ${isFocused ? 'border-rose-500' : 'border-gray-300'
+            } transition-colors duration-200`}
+        >
+          <div onClick={handleSearch} className={`absolute ${locale == 'en'?'right-3':'left-3'} text-gray-400 hidden md:block cursor-pointer p-[5px] rounded-full hover:bg-gray-300`}>
+            <BiSearch className={`h-5 w-5 rounded-full ${isFocused ? 'text-rose-500' : ''}`} />
+          </div>
+          <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            placeholder={t("placeholder")}
+            className="w-full py-2 ps-6 text-sm text-gray-600 rounded-full border-none focus:outline-none focus:ring-0"
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            onChange={(e)=>setSearch(e.target.value)}
+          />
+          </form>
+        </div>
+      </div>
+  
+    </>
+  );
+};
 
-// export default function Search() {
-//   const searchModal = useSearchModal()
-//   const params = useSearchParams()
-//   const {getByValue} = useCountries()
-
-//   const locationValue = params?.get('locationValue')
-//   const startDate = params?.get('startDate')
-//   const endDate = params?.get('endDate')
-//   const guestCount = params?.get('guestCount')
-
-//   const locationLabel = useMemo(() => {
-//     if (locationValue) {
-//       return getByValue(locationValue)?.label;
-//     }
-
-//     return 'Anywhere';
-//   }, [locationValue, getByValue]);
-
-//   const durationLabel = useMemo(() => {
-//     if (startDate && endDate) {
-//       const start = new Date(startDate);
-//       const end = new Date(endDate);
-//       let diff = differenceInDays(end, start);
-
-//       if (diff === 0) {
-//         diff = 1;
-//       }
-
-//       return `${diff} Days`;
-//     }
-
-//     return 'Any Week'
-//   }, [startDate, endDate]);
-
-//   const guestLabel = useMemo(() => {
-//     if (guestCount) {
-//       return `${guestCount} Guests`;
-//     }
-
-//     return 'Add Guests';
-//   }, [guestCount]);
-
-//   return (
-//     <div className="border-[1px] w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md transition cursor-pointer" onClick={searchModal.onOpen}>
-//       <div className="flex flex-row items-center justify-between">
-//         <div className="text-sm font-semibold px-6">
-//             {locationLabel}
-//         </div>
-//         <div className="hidden sm:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center">
-//           {durationLabel}
-//         </div>
-//         <div className="text-sm pl-6 pr-2 text-gray-600 flex flex-row items-center gap-3">
-//           <div className="hidden sm:block">
-//             {guestLabel}
-//           </div>
-//           <div className="p-2 bg-rose-500 rounded-full text-white">
-//             <BiSearch  />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
+export default Searchbar;

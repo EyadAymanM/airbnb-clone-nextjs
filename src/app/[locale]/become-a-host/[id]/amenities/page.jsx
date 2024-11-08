@@ -6,10 +6,11 @@ import { fetchData } from "@/app/_actions/Listing/fetchData";
 import { updateListing } from "@/app/_actions/Listing/updateListing";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 function Page({ params: { id } }) {
   const t = useTranslations("become-a-host");
+  const locale = useLocale()
   const router = useRouter();
   const [amenities, setAmenities] = useState([]);
   const [selected, setSelected] = useState([]);
@@ -98,7 +99,7 @@ function Page({ params: { id } }) {
             {amenities.map(({ name, description, icon, _id }) => {
               return (
                 <div
-                  key={name}
+                  key={_id}
                   onClick={() => toggleAmenity(_id)}
                   className={`flex flex-col  justify-center p-4 border rounded-xl cursor-pointer transition-all overflow-hidden ${
                     selected.includes(_id)
@@ -112,7 +113,7 @@ function Page({ params: { id } }) {
                     <AmenityIcon svgString={icon} className={`w-6 h-6`} />
                   </div>
                   <span className="text-base font-semibold font-airbnb ms-2 text-[#333]">
-                    {name}
+                    {locale == "ar"? name.ar : name.en}
                   </span>
                 </div>
               );

@@ -7,6 +7,7 @@ import MessageContentSection from '@/app/_components/messages-components/message
 import Image from 'next/image'
 import { useState } from 'react'
 import MessageDetails from '@/app/_components/messages-components/messageDetails'
+import NavBar from '@/app/_components/Navbar/NavBar'
 const Page = () => {
   const [detailsOpen, setDetailsOpen] = useState(true)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -21,6 +22,7 @@ const Page = () => {
   }
   return (
     <>
+    <NavBar />
       <div className="flex">
         <div className="w-[26.25rem] max-h-[calc(100vh-5rem)] border-t border-[#ededed]  overflow-y-scroll">
           <div className='flex flex-col'>

@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import toast, { Toaster } from 'react-hot-toast';
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { Link, useRouter } from "@/i18n/routing";
 import SocialLoginButton from "@/app/_components/Modal/User/SocialLoginButton";
 import InputField from "@/app/_components/InputField";
@@ -12,6 +12,7 @@ import { useTranslations, useLocale } from "next-intl";
 
 
 const LoginPage = () => {
+  const {data : session , status} = useSession()
   const router = useRouter();
   const t = useTranslations('auth');
   const locale = useLocale();
@@ -50,6 +51,8 @@ const LoginPage = () => {
       toast.error(t('login-failed'));
     }
   };
+
+  if(status == "authenticated") router.push("/")
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -119,8 +122,8 @@ const LoginPage = () => {
           <hr className="flex-grow border-t border-gray-300" />
         </div>
         <div className="space-y-2">
-          <SocialLoginButton provider="facebook" text={t('continue-with-facebook')} />
           <SocialLoginButton provider="google" text={t('continue-with-google')} />
+          <SocialLoginButton provider="facebook" text={t('continue-with-facebook')} />
           <SocialLoginButton provider="apple" text={t('continue-with-apple')} />
         </div>
       </div>

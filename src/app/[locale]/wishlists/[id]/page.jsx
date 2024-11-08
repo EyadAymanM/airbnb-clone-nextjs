@@ -14,6 +14,7 @@ import SettingsModal from "../../../_components/Modal/SettingsModal";
 import ShareModal from "../../../_components/Modal/ShareModal";
 import NavBar from "@/app/_components/Navbar/NavBar";
 import { useLocale, useTranslations } from "next-intl";
+import { useSession } from "next-auth/react";
 
 const heartIconHtml = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="16px" height="16px">
@@ -30,11 +31,11 @@ const Page = ({ params: { id } }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const locale = useLocale();
-
+  const { data: session, status } = useSession()
   useEffect(() => {
     const fetchWishlistItems = async () => {
       try {
-        const data = await getWishlistById(id);
+        const data = await getWishlistById(id,session.user.token.access_token);
         setWishlistItems(data);
         setFilteredWishlistItems(data);
       } catch (error) {

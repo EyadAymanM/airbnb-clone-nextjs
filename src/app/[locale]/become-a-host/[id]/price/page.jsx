@@ -25,7 +25,7 @@ function Page({ params: { id } }) {
     if (+price > 9 && +price <9139 ) {
       const listing = await updateListing(id, { price })
       if (listing._id)
-        router.push(`/hosting/listings`)
+        router.push(`/become-a-host/${id}/available-dates`)
       else
         toast(t("fail"))
     } else {

@@ -7,7 +7,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { useLocale } from "next-intl"
 function Gallery({ photos }) {
+  const locale = useLocale()
   return (
     <>
       {/* desktop */}
@@ -20,8 +22,8 @@ function Gallery({ photos }) {
           <Image src={photos[2]} width={1000} height={1000} alt="" className="object-cover w-full h-full border-1 hover:brightness-90" />
         </div>
         <div className="w-1/4 h-full flex flex-col gap-2">
-          <Image src={photos[3]} width={1000} height={1000} alt="" className="object-cover w-full h-full border-1 rounded-tr-2xl hover:brightness-90" />
-          <Image src={photos[4]} width={1000} height={1000} alt="" className="object-cover w-full h-full border-1 rounded-br-2xl hover:brightness-90" />
+          <Image src={photos[3]} width={1000} height={1000} alt="" className={`object-cover w-full h-full border-1 ${locale=='en'?'rounded-tr-2xl':'rounded-tl-2xl'} hover:brightness-90`} />
+          <Image src={photos[4]} width={1000} height={1000} alt="" className={`object-cover w-full h-full border-1 ${locale=='en'?'rounded-br-2xl':'rounded-bl-2xl'} hover:brightness-90`} />
         </div>
       </div>
 

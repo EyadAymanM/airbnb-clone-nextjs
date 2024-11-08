@@ -1,6 +1,7 @@
 "use server"
+const api = process.env.NEXT_PUBLIC_API_URL
 export const getUser = async (token) => {
-  const res = await fetch(`http://localhost:3000/user/info`, {
+  const res = await fetch(`${api}/user/info`, {
     method: "GET",
     headers: {
       'authorization': token, mode: 'cors'

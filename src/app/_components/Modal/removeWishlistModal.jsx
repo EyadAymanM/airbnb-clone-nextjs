@@ -12,17 +12,19 @@ import { removeWishlist } from "@/app/_actions/wishlist/wishlist";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 import { useTranslations } from 'next-intl';
+import { useSession } from "next-auth/react";
 
 const RemoveWishlistModal = ({ id, title }) => {
   const t = useTranslations('Wishlist');
   const [showModal, setShowModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { data: session, status } = useSession();
 
   const toggleModal = () => setShowModal(!showModal);
 
   const onSubmit = async () => {
     setIsSubmitting(true);
-    await removeWishlist(id);
+    await removeWishlist(id, session.user.token.access_token);
     setShowModal(false);
   };
 

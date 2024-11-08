@@ -17,7 +17,7 @@ function Footer({position}) {
   const pathname = usePathname()
   return (
     <>
-      <div className={`w-full border-t ${position} start-0 end-0 bottom-0 bg-white z-10`}>
+      <div className={`w-full hidden sm:block border-t ${position} start-0 end-0 bottom-0 bg-white z-10`}>
 
         <div className="py-2 border-b">
 

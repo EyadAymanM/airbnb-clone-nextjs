@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { AuthProvider } from "@/lib/context/authContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -54,11 +55,13 @@ export default async function RootLayout({ children, params: { locale } }) {
         className={`${airbnbCereal.variable} ${airbnbCerealArabic.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          <Provider>
-            {/* <SessionContextProvider> */}
-              <ToastProvider />
+        <Provider>
+        <AuthProvider>
+          {/* <SessionContextProvider> */}
+          <ToastProvider />
               {children}
             {/* </SessionContextProvider> */}
+        </AuthProvider>
           </Provider>
         </NextIntlClientProvider>
       </body>
