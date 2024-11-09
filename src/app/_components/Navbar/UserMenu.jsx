@@ -33,8 +33,8 @@ function UserMenu() {
     "https://res.cloudinary.com/dqrid1fi3/image/upload/v1729230344/kwrifwuycusuohxopa8j.jpg"
   );
   const { data: session, status } = useSession();
-  console.log("session:", session);
-  console.log("status:", status);
+  // console.log("session:", session);
+  // console.log("status:", status);
 
   const token = useAuthToken();
   useEffect(() => {

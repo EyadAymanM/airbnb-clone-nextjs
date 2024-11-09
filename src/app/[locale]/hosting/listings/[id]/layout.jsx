@@ -11,6 +11,7 @@ import { useLocale } from 'next-intl';
 import { useSession } from "next-auth/react";
 import UnauthenticatedComponent from "@/app/_components/UnauthenticatedComponent.jsx/UnauthenticatedComponent";
 import NavBar from "@/app/_components/Navbar/NavBar";
+import Loading from "@/app/_components/UnauthenticatedComponent.jsx/Loading";
 function Layout({ children, params }) {
   const t = useTranslations('Listings');
   const { id } = params;
@@ -36,6 +37,8 @@ function Layout({ children, params }) {
   const handleCardClick = () => setShowChildren(true);
   const handleBackToSidebar = () => setShowChildren(false);
 
+  if (status == "loading")
+    return <Loading />
   if (status == "unauthenticated")
     return <UnauthenticatedComponent />
 

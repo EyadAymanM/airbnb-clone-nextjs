@@ -15,7 +15,6 @@ export default async function Home({ searchParams }) {
   if (searchParams['search']) {
     listings = await fetchData(`listing/search?title=${searchParams['search']}`)
   }
-  // console.log('listings', listings);
   try {
     if (listings['message'])
       console.log('');

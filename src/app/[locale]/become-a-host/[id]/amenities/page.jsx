@@ -21,8 +21,8 @@ function Page({ params: { id } }) {
     const index = selected.findIndex((item) => item == amenity);
     if (index == -1) setSelected([...selected, amenity]);
     else setSelected(selected.filter((item) => item != amenity));
-    console.log(amenities);
-    console.log(selected);
+    // console.log(amenities);
+    // console.log(selected);
   };
 
   const updateAmenties = async () => {

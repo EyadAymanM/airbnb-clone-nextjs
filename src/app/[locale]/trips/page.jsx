@@ -83,7 +83,6 @@ export default function TripsPage() {
       <Container>
         <div className="min-h-screen">
           <h1 className="text-3xl font-bold mb-6 pb-3">{t("trips")}</h1>
-          {/* <button onClick={()=> console.log(pastTrips,upcomingTrips)}>see</button> */}
           {upcomingTrips.length === 0 && pastTrips.length === 0 ? (
             <NoTripsContent />
           ) : (
