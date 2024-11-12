@@ -35,7 +35,7 @@ import { useRouter } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { ReviewComponent } from "./Review/ReviewComponent";
 
-
+  
 
 export function TripCard({ trip, listingID, onCancel }) {
   const t = useTranslations("Trips")
